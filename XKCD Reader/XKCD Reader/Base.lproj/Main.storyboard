@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JiN-Tq-2Xa">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="xkcd-script.ttf">
+            <string>xkcdScript</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--SearchTab-->
+        <scene sceneID="Dhr-dr-ExR">
+            <objects>
+                <viewController id="5e3-Iq-eWO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tVe-eo-c1D">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6DQ-vv-DDh"/>
+                        <color key="backgroundColor" name="Silver"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="SearchTab" image="magnifyingglass" catalog="system" id="DsE-RJ-7Yr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sCx-QH-u1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="700" y="-432"/>
+        </scene>
+        <!--Homepage Tab-->
+        <scene sceneID="7Ih-en-Uue">
+            <objects>
+                <viewController id="lyC-05-14d" userLabel="Homepage Tab" customClass="HomePageViewController" customModule="XKCD_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Brx-Bk-zfr">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87a-Fp-hCI" userLabel="Comics Container">
+                                <rect key="frame" x="8" y="139" width="374" height="562"/>
+                                <connections>
+                                    <segue destination="kER-mY-S0M" kind="embed" id="17x-3i-XIK"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yi7-5K-8DJ" userLabel="Comic Header">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="119"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comic Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjZ-kj-SiQ" userLabel="Comic Title">
+                                        <rect key="frame" x="139" y="55.666666666666664" width="112.33333333333331" height="31.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comic #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwH-s7-w4S">
+                                        <rect key="frame" x="165" y="87.333333333333329" width="60" height="23.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6R-mt-bPF" userLabel="Info Button">
+                                        <rect key="frame" x="344.66666666666669" y="56.333333333333336" width="45.333333333333314" height="30.666666666666664"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="infoClicked:" destination="lyC-05-14d" eventType="touchUpInside" id="UZ4-cL-ZNJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-wF-iem" userLabel="Shuffle Button">
+                                        <rect key="frame" x="7.9999999999999964" y="56.333333333333336" width="48.666666666666657" height="30.666666666666664"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="shuffle" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="shuffleClicked:" destination="lyC-05-14d" eventType="touchUpInside" id="uS6-cB-OJz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Charcoal"/>
+                                <constraints>
+                                    <constraint firstItem="SjZ-kj-SiQ" firstAttribute="centerX" secondItem="yi7-5K-8DJ" secondAttribute="centerX" id="5wB-fa-ncJ"/>
+                                    <constraint firstItem="XQa-wF-iem" firstAttribute="centerY" secondItem="SjZ-kj-SiQ" secondAttribute="centerY" id="ILV-QQ-f3O"/>
+                                    <constraint firstItem="XQa-wF-iem" firstAttribute="leading" secondItem="yi7-5K-8DJ" secondAttribute="leading" constant="8" id="JYG-ZZ-YKe"/>
+                                    <constraint firstItem="K6R-mt-bPF" firstAttribute="centerY" secondItem="SjZ-kj-SiQ" secondAttribute="centerY" id="N8t-nE-UvD"/>
+                                    <constraint firstAttribute="bottom" secondItem="SwH-s7-w4S" secondAttribute="bottom" constant="8" id="VEa-Tf-44q"/>
+                                    <constraint firstItem="SwH-s7-w4S" firstAttribute="centerX" secondItem="yi7-5K-8DJ" secondAttribute="centerX" id="dRV-kR-bS3"/>
+                                    <constraint firstItem="SwH-s7-w4S" firstAttribute="top" secondItem="SjZ-kj-SiQ" secondAttribute="bottom" id="dcn-GY-WHP"/>
+                                    <constraint firstAttribute="trailing" secondItem="K6R-mt-bPF" secondAttribute="trailing" id="oMa-zL-5wD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ppf-tP-EaZ" customClass="ComicInfoView" customModule="XKCD_Reader" customModuleProvider="target">
+                                <rect key="frame" x="45" y="255.66666666666663" width="300" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comic Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffl-eg-Gl2">
+                                        <rect key="frame" x="98" y="8.0000000000000302" width="104" height="31.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Released:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cg-I1-kRo" userLabel="Date Label">
+                                        <rect key="frame" x="8" y="44.666666666666657" width="111.66666666666667" height="23.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01/01/2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz0-bH-Gdm" userLabel="Date">
+                                        <rect key="frame" x="127" y="44.000000000000057" width="84" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alt Text:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azz-Gu-HfL" userLabel="Alt Label">
+                                        <rect key="frame" x="8" y="76.333333333333343" width="68" height="24"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" editable="NO" text="This is some random alt text." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYA-Sc-BPR" userLabel="Alt Text">
+                                        <rect key="frame" x="8" y="100.33333333333336" width="284" height="141.66666666666663"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" name="Silver"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="1QZ-eX-Dbn"/>
+                                    <constraint firstAttribute="bottom" secondItem="lYA-Sc-BPR" secondAttribute="bottom" constant="8" id="BZc-q6-vFt"/>
+                                    <constraint firstAttribute="trailing" secondItem="lYA-Sc-BPR" secondAttribute="trailing" constant="8" id="Ies-KU-qES"/>
+                                    <constraint firstItem="9cg-I1-kRo" firstAttribute="top" secondItem="Ffl-eg-Gl2" secondAttribute="bottom" constant="5" id="JbV-Mc-8Id"/>
+                                    <constraint firstItem="Azz-Gu-HfL" firstAttribute="top" secondItem="9cg-I1-kRo" secondAttribute="bottom" constant="8" id="Kzj-LA-EWT"/>
+                                    <constraint firstItem="Azz-Gu-HfL" firstAttribute="leading" secondItem="Ppf-tP-EaZ" secondAttribute="leading" constant="8" id="LYk-vh-aMD"/>
+                                    <constraint firstAttribute="width" constant="300" id="UCv-j2-nfI"/>
+                                    <constraint firstItem="Ffl-eg-Gl2" firstAttribute="top" secondItem="Ppf-tP-EaZ" secondAttribute="top" constant="8" id="YI8-BM-w8g"/>
+                                    <constraint firstItem="9cg-I1-kRo" firstAttribute="leading" secondItem="Ppf-tP-EaZ" secondAttribute="leading" constant="8" id="aJJ-gZ-CA7"/>
+                                    <constraint firstItem="lYA-Sc-BPR" firstAttribute="top" secondItem="Azz-Gu-HfL" secondAttribute="bottom" id="fpS-ho-LeK"/>
+                                    <constraint firstItem="lYA-Sc-BPR" firstAttribute="leading" secondItem="Ppf-tP-EaZ" secondAttribute="leading" constant="8" id="tRR-Og-PkD"/>
+                                    <constraint firstItem="Ffl-eg-Gl2" firstAttribute="centerX" secondItem="Ppf-tP-EaZ" secondAttribute="centerX" id="wdB-fn-wh3"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="altText" destination="lYA-Sc-BPR" id="eVb-6c-DeH"/>
+                                    <outlet property="dateLabel" destination="Mz0-bH-Gdm" id="6s7-jo-BCc"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IoD-9T-uN9"/>
+                        <color key="backgroundColor" name="Silver"/>
+                        <constraints>
+                            <constraint firstItem="87a-Fp-hCI" firstAttribute="leading" secondItem="IoD-9T-uN9" secondAttribute="leading" constant="8" id="6Ci-PA-hTs"/>
+                            <constraint firstItem="yi7-5K-8DJ" firstAttribute="leading" secondItem="IoD-9T-uN9" secondAttribute="leading" id="7DP-3G-nAs"/>
+                            <constraint firstItem="87a-Fp-hCI" firstAttribute="trailing" secondItem="IoD-9T-uN9" secondAttribute="trailing" constant="-8" id="Fzk-ob-Fxx"/>
+                            <constraint firstItem="Ppf-tP-EaZ" firstAttribute="centerX" secondItem="Brx-Bk-zfr" secondAttribute="centerX" id="H1a-xo-pgR"/>
+                            <constraint firstItem="yi7-5K-8DJ" firstAttribute="trailing" secondItem="IoD-9T-uN9" secondAttribute="trailing" id="I3c-c3-2ka"/>
+                            <constraint firstItem="IoD-9T-uN9" firstAttribute="bottom" secondItem="87a-Fp-hCI" secondAttribute="bottom" constant="60" id="PvE-gg-to3"/>
+                            <constraint firstItem="yi7-5K-8DJ" firstAttribute="top" secondItem="Brx-Bk-zfr" secondAttribute="top" id="RxV-wx-Md2"/>
+                            <constraint firstItem="Ppf-tP-EaZ" firstAttribute="centerY" secondItem="Brx-Bk-zfr" secondAttribute="centerY" id="VoP-GA-PrH"/>
+                            <constraint firstItem="87a-Fp-hCI" firstAttribute="top" secondItem="yi7-5K-8DJ" secondAttribute="bottom" constant="20" id="WpH-bq-n6m"/>
+                            <constraint firstItem="IoD-9T-uN9" firstAttribute="top" secondItem="yi7-5K-8DJ" secondAttribute="bottom" constant="-75" id="hVX-So-9Uq"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="ComicsTab" id="FMV-6q-azt"/>
+                    <connections>
+                        <outlet property="comicInfo" destination="Ppf-tP-EaZ" id="u9u-qP-elz"/>
+                        <outlet property="comicNumberLabel" destination="SwH-s7-w4S" id="t0V-7d-lTE"/>
+                        <outlet property="comicTitleLabel" destination="SjZ-kj-SiQ" id="3oU-qG-NUv"/>
+                        <outlet property="comicsContainer" destination="87a-Fp-hCI" id="loT-Np-Lw2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S4h-tT-X6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="700" y="-1116.1137440758293"/>
+        </scene>
+        <!--Comic Page View Controller-->
+        <scene sceneID="MeC-EY-Z1s">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="10" navigationOrientation="horizontal" spineLocation="none" id="kER-mY-S0M" userLabel="Comic Page View Controller" customClass="ComicsPageViewController" customModule="XKCD_Reader" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Str-M1-QJg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1499" y="-1114"/>
+        </scene>
+        <!--Comic View Controller-->
+        <scene sceneID="O3a-jE-uZN">
+            <objects>
+                <viewController storyboardIdentifier="comicViewController" id="ZLB-zW-4nh" userLabel="Comic View Controller" customClass="ComicViewController" customModule="XKCD_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tTH-74-dAt">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zij-fH-U9S" customClass="PanZoomImageView" customModule="XKCD_Reader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5BI-7h-VOs"/>
+                        <constraints>
+                            <constraint firstItem="Zij-fH-U9S" firstAttribute="top" secondItem="5BI-7h-VOs" secondAttribute="top" id="3RX-sx-od5"/>
+                            <constraint firstItem="Zij-fH-U9S" firstAttribute="bottom" secondItem="5BI-7h-VOs" secondAttribute="bottom" id="Hdx-v3-SWM"/>
+                            <constraint firstItem="Zij-fH-U9S" firstAttribute="trailing" secondItem="5BI-7h-VOs" secondAttribute="trailing" id="UKN-Ka-Up5"/>
+                            <constraint firstItem="Zij-fH-U9S" firstAttribute="leading" secondItem="5BI-7h-VOs" secondAttribute="leading" id="V5A-bI-Wqp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="comicImageView" destination="Zij-fH-U9S" id="0r3-Cq-Ejm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e6D-NT-YCy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2313.8461538461538" y="-1120.3791469194312"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Om4-l8-gJC">
+            <objects>
+                <tabBarController id="JiN-Tq-2Xa" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="TnS-qn-dos">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="Charcoal"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="lyC-05-14d" kind="relationship" relationship="viewControllers" id="kp7-8K-3Ta"/>
+                        <segue destination="5e3-Iq-eWO" kind="relationship" relationship="viewControllers" id="5hy-PD-Dnc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="grP-3Z-Xii" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-208" y="-132"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="shuffle" catalog="system" width="32" height="32"/>
+        <namedColor name="Charcoal">
+            <color red="0.30980392156862746" green="0.37254901960784315" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Silver">
+            <color red="0.74901960784313726" green="0.76470588235294112" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
