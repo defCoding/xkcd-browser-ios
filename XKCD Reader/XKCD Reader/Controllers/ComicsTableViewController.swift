@@ -14,7 +14,7 @@ class ComicsDiffableDataSource: UITableViewDiffableDataSource<Int, XKCDComic> {
 }
 
 class ComicsTableViewController: UIViewController {
-    @IBOutlet weak var comicsTableView
+    @IBOutlet weak var comicsTableView: UITableView!
     // https://www.swiftjectivec.com/diffable-datasource-tableview/
     lazy var dataSource: ComicsDiffableDataSource = {
         ComicsDiffableDataSource(tableView: self.comicsTableView) { (tableView, indexPath, comic) -> UITableViewCell? in
@@ -29,19 +29,31 @@ class ComicsTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        registerTableViewCells()
+        comicsTableView.delegate = self
+        comicsTableView.sectionFooterHeight = 5
+        comicsTableView.rowHeight = 80
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func registerTableViewCells() {
+        let comicCell = UINib(nibName: "ComicTableViewCell", bundle: nil)
+        comicsTableView.register(comicCell, forCellReuseIdentifier: "ComicCell")
     }
-    */
+}
 
+extension ComicsTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let comicCell = tableView.cellForRow(at: indexPath) as! ComicTableViewCell? else {
+            return
+        }
+        guard let comic = comicCell.comic else {
+            return
+        }
+        guard let tabBarController = tabBarController else {
+            return
+        }
+        let homepageVC = tabBarController.viewControllers?[0] as! HomePageViewController
+        homepageVC.currentComic = comic
+        tabBarController.selectedIndex = 0
+    }
 }

@@ -341,7 +341,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" selectedImage="heart.fill" id="VEb-Dk-5Jo"/>
                     <connections>
-                        <outlet property="comicsTableView" destination="Ahd-gT-9eg" id="VKv-o7-nwB"/>
+                        <outlet property="comicsTableView" destination="Ahd-gT-9eg" id="P4W-K6-QXo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vaw-XO-JDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
