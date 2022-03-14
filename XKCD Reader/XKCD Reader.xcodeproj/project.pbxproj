@@ -115,6 +115,13 @@
 			path = "Search Controllers";
 			sourceTree = "<group>";
 		};
+		0A6A25D927DF26C300CC359A /* Settings Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Settings Controllers";
+			sourceTree = "<group>";
+		};
 		0A9F8AC027DBFF540065A512 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +164,7 @@
 				0A4878AC27DC155F00E9DB81 /* Home Page Controllers */,
 				0A6A25C527DDA4C800CC359A /* Favorites Controllers */,
 				0A6A25D427DEDE0600CC359A /* Search Controllers */,
+				0A6A25D927DF26C300CC359A /* Settings Controllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
