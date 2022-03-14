@@ -14,14 +14,15 @@ enum XKCDError: Error {
 
 /// An XKCD Comic constructed from the JSON reply of an API response
 class XKCDComic: Codable {
-    let num : Int
-    let month : String
-    let day : String
-    let year : String
-    let title : String
-    let safeTitle : String
-    let alt : String
-    let img : String
+    let num: Int
+    let month: String
+    let day: String
+    let year: String
+    let title: String
+    let safeTitle: String
+    let transcript: String
+    let alt: String
+    let img: String
 }
 
 extension XKCDComic: Comparable {
@@ -47,10 +48,10 @@ class XKCDClient {
     /**
      Fetches an XKCD comic.
      
-     - Parameter num:           The number of the comic to fetch (fetches the most recent one if none is provided)
-     - Parameter completion:    The callback function for when the comic is fetched
+     - Parameter num:                       The number of the comic to fetch (fetches the most recent one if none is provided)
+     - Parameter completion:                The callback function for when the comic is fetched
      
-     - Returns:                 Nothing
+     - Returns:                             Nothing
      */
     static func fetchComic(num: Int?, completion: @escaping (XKCDComic?, Error?) -> Void) {
         var url : NSURL? = nil
@@ -94,10 +95,10 @@ class XKCDClient {
     /**
      Fetches a comic's image as a UIImage.
      
-     - Parameter comic:         The comic to fetch the image of
-     - Parameter completion:    The callback function for when the image is fetched
+     - Parameter comic:                     The comic to fetch the image of
+     - Parameter completion:                The callback function for when the image is fetched
      
-     - Returns:                 Nothing
+     - Returns:                             Nothing
      */
     static func fetchComicImage(comic: XKCDComic, completion: @escaping (UIImage?, Error?) -> Void) {
         guard let url = NSURL(string: comic.img) else {
@@ -126,5 +127,54 @@ class XKCDClient {
         }
         
         task.resume()
+    }
+   
+    /**
+     Returns a list of comics matching a search query.
+     
+     - Parameter query:                     The query string
+     - Parameter deepSearch:                Whether or not to perform a deep search (regular search only checks title and number)
+     - Parameter completion:                The callback function for when comics are fetched
+     
+     - Returns:                             Nothing
+     */
+    static func fetchSearchComics(query: String, deepSearch: Bool, completion: @escaping ([XKCDComic]?, Error?) -> Void) {
+        // https://stackoverflow.com/questions/35906568/wait-until-swift-for-loop-with-asynchronous-network-requests-finishes-executing
+        let group = DispatchGroup()
+        var comics: [XKCDComic] = []
+        let comicsSemaphore = DispatchSemaphore(value: 1)
+        
+        for comicNum in (1...latestComicNum).reversed() {
+            group.enter()
+            fetchComic(num: comicNum) { (comic, err) in
+                guard let comic = comic, err == nil else {
+                    group.leave()
+                    return
+                }
+               
+                let options: String.CompareOptions = [
+                    .diacriticInsensitive,
+                    .caseInsensitive,
+                ]
+                var basicMatch = comic.title.range(of: query, options: options) != nil
+                basicMatch = basicMatch || String(comic.num) == query
+                var indepthMatch = false
+                if (deepSearch) {
+                    indepthMatch = comic.alt.range(of: query, options: options) != nil
+                    indepthMatch = indepthMatch || comic.transcript.range(of: query, options: options) != nil
+                }
+                
+                if basicMatch || indepthMatch {
+                    comicsSemaphore.wait()
+                    comics.append(comic)
+                    comicsSemaphore.signal()
+                }
+                group.leave()
+            }
+        }
+       
+        group.notify(queue: .main) {
+            completion(comics.sorted().reversed(), nil)
+        }
     }
 }

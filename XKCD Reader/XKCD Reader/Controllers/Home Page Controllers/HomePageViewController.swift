@@ -23,6 +23,7 @@ class HomePageViewController: UIViewController {
     }
     
     @IBAction func shuffleClicked(_ sender: Any) {
+        // Grab a random comic
         let randomComicNum = Int.random(in: 1...XKCDClient.latestComicNum)
         let comicsPageVC = self.children[0] as! ComicsPageViewController
         comicsPageVC.displayComic(comicNum: randomComicNum)
@@ -160,7 +161,7 @@ extension HomePageViewController: UIGestureRecognizerDelegate {
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
     }
-    
+   
     @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         // Hide comic info if info is visible and touch is outside of info
         if (!comicInfo.isHidden) {

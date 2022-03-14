@@ -26,34 +26,69 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="119"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a comic" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqw-Q4-jtl">
-                                        <rect key="frame" x="8" y="60" width="374" height="51"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <rect key="frame" x="8" y="60" width="309.66666666666669" height="51"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
                                             <string>Title</string>
                                         </scopeButtonTitles>
                                     </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deep Search?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLR-xx-3Ue">
+                                        <rect key="frame" x="315" y="51" width="70" height="16"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7gl-2v-azT" userLabel="Deep Search Switch">
+                                        <rect key="frame" x="325.66666666666669" y="70" width="51" height="31"/>
+                                        <color key="onTintColor" name="Marble"/>
+                                        <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="switchToggled:" destination="5e3-Iq-eWO" eventType="valueChanged" id="iQg-RN-Uo8"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" name="Charcoal"/>
                                 <constraints>
+                                    <constraint firstItem="7gl-2v-azT" firstAttribute="centerY" secondItem="jqw-Q4-jtl" secondAttribute="centerY" id="Lh7-Dp-ieY"/>
                                     <constraint firstItem="jqw-Q4-jtl" firstAttribute="leading" secondItem="AUi-2C-nb4" secondAttribute="leading" constant="8" id="M7w-AQ-ZSA"/>
                                     <constraint firstAttribute="bottom" secondItem="jqw-Q4-jtl" secondAttribute="bottom" constant="8" id="UVG-KD-sNF"/>
-                                    <constraint firstAttribute="trailing" secondItem="jqw-Q4-jtl" secondAttribute="trailing" constant="8" id="pBh-hq-q6b"/>
+                                    <constraint firstAttribute="trailing" secondItem="dLR-xx-3Ue" secondAttribute="trailing" constant="5" id="XlP-8L-Ite"/>
+                                    <constraint firstItem="7gl-2v-azT" firstAttribute="centerX" secondItem="dLR-xx-3Ue" secondAttribute="centerX" id="t9Q-wp-qpo"/>
+                                    <constraint firstItem="7gl-2v-azT" firstAttribute="top" secondItem="dLR-xx-3Ue" secondAttribute="bottom" constant="3" id="tfM-Uw-gIY"/>
+                                    <constraint firstItem="7gl-2v-azT" firstAttribute="leading" secondItem="jqw-Q4-jtl" secondAttribute="trailing" constant="8" id="wjl-ra-NJr"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u8W-Xa-VoB">
+                                <rect key="frame" x="8" y="127" width="374" height="626"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WCW-O8-gfg">
+                                <rect key="frame" x="185" y="370.66666666666669" width="20" height="20"/>
+                                <color key="color" name="Charcoal"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6DQ-vv-DDh"/>
                         <color key="backgroundColor" name="Silver"/>
                         <constraints>
+                            <constraint firstItem="u8W-Xa-VoB" firstAttribute="top" secondItem="AUi-2C-nb4" secondAttribute="bottom" constant="8" id="1BQ-Gk-pw3"/>
                             <constraint firstItem="AUi-2C-nb4" firstAttribute="leading" secondItem="tVe-eo-c1D" secondAttribute="leading" id="1yw-IL-2Tn"/>
+                            <constraint firstItem="u8W-Xa-VoB" firstAttribute="leading" secondItem="6DQ-vv-DDh" secondAttribute="leading" constant="8" id="6XK-rs-NkP"/>
+                            <constraint firstItem="WCW-O8-gfg" firstAttribute="centerY" secondItem="tVe-eo-c1D" secondAttribute="centerY" id="Ppq-5e-is6"/>
                             <constraint firstItem="AUi-2C-nb4" firstAttribute="top" secondItem="tVe-eo-c1D" secondAttribute="top" id="To3-uX-o4N"/>
                             <constraint firstItem="AUi-2C-nb4" firstAttribute="trailing" secondItem="tVe-eo-c1D" secondAttribute="trailing" id="b9L-eb-KV7"/>
+                            <constraint firstItem="6DQ-vv-DDh" firstAttribute="trailing" secondItem="u8W-Xa-VoB" secondAttribute="trailing" constant="8" id="fHv-v3-hij"/>
                             <constraint firstItem="6DQ-vv-DDh" firstAttribute="top" secondItem="AUi-2C-nb4" secondAttribute="bottom" constant="-75" id="kfW-j9-HmT"/>
+                            <constraint firstItem="6DQ-vv-DDh" firstAttribute="bottom" secondItem="u8W-Xa-VoB" secondAttribute="bottom" constant="8" id="oqG-3d-36C"/>
+                            <constraint firstItem="WCW-O8-gfg" firstAttribute="centerX" secondItem="tVe-eo-c1D" secondAttribute="centerX" id="r3Z-Yf-PpB"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="DsE-RJ-7Yr"/>
                     <connections>
+                        <outlet property="comicsTableView" destination="u8W-Xa-VoB" id="K0b-sT-PlT"/>
+                        <outlet property="deepSearchSwitch" destination="7gl-2v-azT" id="hpb-zD-jYz"/>
                         <outlet property="searchBar" destination="jqw-Q4-jtl" id="uoc-S2-b67"/>
+                        <outlet property="spinner" destination="WCW-O8-gfg" id="Ngb-cZ-x6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCx-QH-u1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,7 +356,7 @@
                                     <constraint firstAttribute="bottom" secondItem="QMH-DA-H7p" secondAttribute="bottom" constant="16" id="XzB-AW-XTV"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ahd-gT-9eg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ahd-gT-9eg">
                                 <rect key="frame" x="8" y="127" width="374" height="626"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -360,6 +395,9 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="Charcoal">
             <color red="0.30980392156862746" green="0.37254901960784315" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Marble">
+            <color red="0.95686274509803926" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Silver">
             <color red="0.74901960784313726" green="0.76470588235294112" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

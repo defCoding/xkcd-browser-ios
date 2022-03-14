@@ -19,3 +19,6 @@
 [How to Create a Share Menu](https://blog.devgenius.io/how-to-share-content-from-your-app-with-uiactivityviewcontroller-in-swift-27e46438f11c)
 
 [UITableViewDiffableDataSource Tutorial](https://www.swiftjectivec.com/diffable-datasource-tableview/)
+
+[Aysnchronous API Calls in a Loop](https://stackoverflow.com/questions/35906568/wait-until-swift-for-loop-with-asynchronous-network-requests-finishes-executing)
+

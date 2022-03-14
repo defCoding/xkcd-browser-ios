@@ -34,7 +34,28 @@ class ComicsTableViewController: UIViewController {
         comicsTableView.sectionFooterHeight = 5
         comicsTableView.rowHeight = 80
     }
-    
+   
+    /**
+     Displays the provided comics in the table.
+     
+     - Parameter comics:                Comics to display
+     
+     - Returns:                         Nothing
+     */
+    func displayComics(comics: [XKCDComic]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, XKCDComic>()
+        comics.enumerated().forEach {
+            snapshot.appendSections([$0.0])
+            snapshot.appendItems([$0.1], toSection: $0.0)
+        }
+        dataSource.apply(snapshot)
+    }
+   
+    /**
+     Registers the ComicTableViewCell with the table view.
+     
+     - Returns:                         Nothing
+     */
     private func registerTableViewCells() {
         let comicCell = UINib(nibName: "ComicTableViewCell", bundle: nil)
         comicsTableView.register(comicCell, forCellReuseIdentifier: "ComicCell")

@@ -98,7 +98,12 @@ extension ComicViewController: UIGestureRecognizerDelegate {
             }
         }
     }
-    
+   
+    /**
+     Shows the heart animation for when a comic is favorited.
+     
+     - Returns:                     Nothing
+     */
     func doHeartAnimation() {
         guard let heartImage = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal) else {
             return

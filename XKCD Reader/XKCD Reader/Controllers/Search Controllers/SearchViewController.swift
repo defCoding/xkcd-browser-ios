@@ -7,31 +7,60 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: ComicsTableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var deepSearchSwitch: UISwitch!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         setup()
     }
-    
+   
+    @IBAction func switchToggled(_ sender: Any) {
+        // Update thumb tint color based on switch state.
+        if deepSearchSwitch.isOn {
+            deepSearchSwitch.thumbTintColor = UIColor(named: "Charcoal")
+        } else {
+            deepSearchSwitch.thumbTintColor = .lightGray
+        }
+    }
+   
+    /**
+     Searches the comics for the query and updates the table.
+     
+     - Parameter query:                 The search query
+     
+     - Returns:                         Nothing
+     */
+    private func performSearch(query: String) {
+        spinner.startAnimating()
+        XKCDClient.fetchSearchComics(query: query, deepSearch: deepSearchSwitch.isOn) { (comics, err) in
+            guard let comics = comics, err == nil else {
+                return
+            }
+            self.displayComics(comics: comics)
+            self.spinner.stopAnimating()
+        }
+    }
+   
+    /**
+     Sets up subview attributes.
+     
+     - Returns:                        Nothing
+     */
     private func setup() {
+        searchBar.delegate = self
         searchBar.searchBarStyle = .minimal
         searchBar.searchTextField.backgroundColor = UIColor(named: "Marble")
         searchBar.searchTextField.font = UIFont(name: "xkcdScript", size: 18)
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let query = searchBar.text {
+            performSearch(query: query)
+        }
     }
-    */
-
 }
