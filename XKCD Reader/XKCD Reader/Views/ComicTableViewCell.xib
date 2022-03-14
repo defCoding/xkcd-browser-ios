@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="xkcd-script.ttf">
+            <string>xkcdScript</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ComicCell" id="KGk-i7-Jjw" customClass="ComicTableViewCell" customModule="XKCD_Reader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="340" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JVd-EM-0G7">
+                        <rect key="frame" x="5" y="5" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="Ty3-bG-LAR"/>
+                            <constraint firstAttribute="width" constant="70" id="a0Z-1Q-pE4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Comic Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="1rO-j2-L1w">
+                        <rect key="frame" x="80" y="19" width="223" height="32"/>
+                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="24"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOc-MT-L2x" userLabel="Comic Number">
+                        <rect key="frame" x="80" y="51" width="56.5" height="20"/>
+                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPf-ZR-2W5" userLabel="Favorite Button">
+                        <rect key="frame" x="303" y="24" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="2ew-c4-NIs"/>
+                            <constraint firstAttribute="width" constant="32" id="MH7-bs-B1p"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
+                            <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="favoriteClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RpL-vS-YBG"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" name="Marble"/>
+                <constraints>
+                    <constraint firstItem="iOc-MT-L2x" firstAttribute="top" secondItem="1rO-j2-L1w" secondAttribute="bottom" id="7IY-y8-pPs"/>
+                    <constraint firstItem="JVd-EM-0G7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BYr-vJ-kil"/>
+                    <constraint firstItem="iOc-MT-L2x" firstAttribute="leading" secondItem="JVd-EM-0G7" secondAttribute="trailing" constant="5" id="Ens-TZ-e86"/>
+                    <constraint firstItem="1rO-j2-L1w" firstAttribute="leading" secondItem="JVd-EM-0G7" secondAttribute="trailing" constant="5" id="FW3-7j-1hy"/>
+                    <constraint firstItem="zPf-ZR-2W5" firstAttribute="leading" secondItem="1rO-j2-L1w" secondAttribute="trailing" id="VLx-Vv-A7j"/>
+                    <constraint firstItem="JVd-EM-0G7" firstAttribute="centerY" secondItem="1rO-j2-L1w" secondAttribute="centerY" constant="5" id="You-QH-kpo"/>
+                    <constraint firstItem="JVd-EM-0G7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="aOS-od-WVA"/>
+                    <constraint firstItem="zPf-ZR-2W5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hoP-8G-Jcs"/>
+                    <constraint firstAttribute="trailing" secondItem="zPf-ZR-2W5" secondAttribute="trailing" constant="5" id="rKo-4N-adC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="comicNumberLabel" destination="iOc-MT-L2x" id="yGC-QV-Qca"/>
+                <outlet property="comicPreviewImage" destination="JVd-EM-0G7" id="4Vs-VG-39y"/>
+                <outlet property="comicTitleLabel" destination="1rO-j2-L1w" id="Mei-YK-x86"/>
+                <outlet property="favoriteButton" destination="zPf-ZR-2W5" id="fT3-nC-HVc"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="69.642857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <namedColor name="Marble">
+            <color red="0.95686274509803926" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -8,10 +8,8 @@
 import Foundation
 import UIKit
 
-// TODO: come back here to adjust this
 enum XKCDError: Error {
     case badURL
-    case noComicFound
 }
 
 /// An XKCD Comic constructed from the JSON reply of an API response
@@ -24,6 +22,22 @@ class XKCDComic: Codable {
     let safeTitle : String
     let alt : String
     let img : String
+}
+
+extension XKCDComic: Comparable {
+    static func <(lhs: XKCDComic, rhs: XKCDComic) -> Bool {
+        return lhs.num < rhs.num
+    }
+    
+    static func ==(lhs: XKCDComic, rhs: XKCDComic) -> Bool {
+        return lhs.num == rhs.num
+    }
+}
+
+extension XKCDComic: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(num)
+    }
 }
 
 class XKCDClient {

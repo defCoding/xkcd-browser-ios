@@ -16,7 +16,7 @@ class PanZoomImageView: UIScrollView {
             }
         }
     }
-    private let imageView = UIImageView()
+    let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -13,6 +13,11 @@
 		0A4878B027DC15E900E9DB81 /* ComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878AF27DC15E900E9DB81 /* ComicViewController.swift */; };
 		0A4878B327DC2F9200E9DB81 /* PanZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878B227DC2F9200E9DB81 /* PanZoomImageView.swift */; };
 		0A4878B527DC4DB000E9DB81 /* ComicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878B427DC4DB000E9DB81 /* ComicInfoView.swift */; };
+		0A4BBFF327DD54EA001C9BB7 /* ComicsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BBFF227DD54EA001C9BB7 /* ComicsDataManager.swift */; };
+		0A4BBFF627DD569A001C9BB7 /* BinTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BBFF527DD569A001C9BB7 /* BinTree.swift */; };
+		0A6A25C727DDA4FE00CC359A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25C627DDA4FE00CC359A /* FavoritesViewController.swift */; };
+		0A6A25CC27DDB10700CC359A /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25CA27DDB10700CC359A /* ComicTableViewCell.swift */; };
+		0A6A25CD27DDB10700CC359A /* ComicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */; };
 		0A9F8ACD27DBFF540065A512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F8ACC27DBFF540065A512 /* AppDelegate.swift */; };
 		0A9F8ACF27DBFF540065A512 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F8ACE27DBFF540065A512 /* SceneDelegate.swift */; };
 		0A9F8AD427DBFF540065A512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F8AD227DBFF540065A512 /* Main.storyboard */; };
@@ -28,6 +33,11 @@
 		0A4878AF27DC15E900E9DB81 /* ComicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewController.swift; sourceTree = "<group>"; };
 		0A4878B227DC2F9200E9DB81 /* PanZoomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanZoomImageView.swift; sourceTree = "<group>"; };
 		0A4878B427DC4DB000E9DB81 /* ComicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicInfoView.swift; sourceTree = "<group>"; };
+		0A4BBFF227DD54EA001C9BB7 /* ComicsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsDataManager.swift; sourceTree = "<group>"; };
+		0A4BBFF527DD569A001C9BB7 /* BinTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinTree.swift; sourceTree = "<group>"; };
+		0A6A25C627DDA4FE00CC359A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		0A6A25CA27DDB10700CC359A /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
+		0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicTableViewCell.xib; sourceTree = "<group>"; };
 		0A9F8AC927DBFF540065A512 /* XKCD Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XKCD Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9F8ACC27DBFF540065A512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A9F8ACE27DBFF540065A512 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,10 +79,28 @@
 		0A4878B127DC2F7C00E9DB81 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A6A25CA27DDB10700CC359A /* ComicTableViewCell.swift */,
+				0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */,
 				0A4878B227DC2F9200E9DB81 /* PanZoomImageView.swift */,
 				0A4878B427DC4DB000E9DB81 /* ComicInfoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0A4BBFF427DD568C001C9BB7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0A4BBFF527DD569A001C9BB7 /* BinTree.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0A6A25C527DDA4C800CC359A /* Favorites Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0A6A25C627DDA4FE00CC359A /* FavoritesViewController.swift */,
+			);
+			path = "Favorites Controllers";
 			sourceTree = "<group>";
 		};
 		0A9F8AC027DBFF540065A512 = {
@@ -95,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				0A4878A727DC0F1A00E9DB81 /* Fonts */,
+				0A4BBFF427DD568C001C9BB7 /* Utilities */,
 				0A9F8AE427DC022F0065A512 /* Models */,
 				0A9F8AE227DC02160065A512 /* Controllers */,
 				0A4878B127DC2F7C00E9DB81 /* Views */,
@@ -113,6 +142,7 @@
 			children = (
 				0A4878AF27DC15E900E9DB81 /* ComicViewController.swift */,
 				0A4878AC27DC155F00E9DB81 /* Home Page Controllers */,
+				0A6A25C527DDA4C800CC359A /* Favorites Controllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -121,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				0A9F8AE527DC027B0065A512 /* XKCDClient.swift */,
+				0A4BBFF227DD54EA001C9BB7 /* ComicsDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A6A25CD27DDB10700CC359A /* ComicTableViewCell.xib in Resources */,
 				0A9F8AD927DBFF540065A512 /* LaunchScreen.storyboard in Resources */,
 				0A9F8AD627DBFF540065A512 /* Assets.xcassets in Resources */,
 				0A9F8AD427DBFF540065A512 /* Main.storyboard in Resources */,
@@ -198,12 +230,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9F8AE627DC027B0065A512 /* XKCDClient.swift in Sources */,
+				0A6A25CC27DDB10700CC359A /* ComicTableViewCell.swift in Sources */,
 				0A9F8ACD27DBFF540065A512 /* AppDelegate.swift in Sources */,
 				0A4878B327DC2F9200E9DB81 /* PanZoomImageView.swift in Sources */,
+				0A4BBFF627DD569A001C9BB7 /* BinTree.swift in Sources */,
 				0A4878AE27DC159400E9DB81 /* ComicsPageViewController.swift in Sources */,
+				0A6A25C727DDA4FE00CC359A /* FavoritesViewController.swift in Sources */,
 				0A4878B027DC15E900E9DB81 /* ComicViewController.swift in Sources */,
 				0A4878AB27DC151700E9DB81 /* HomePageViewController.swift in Sources */,
 				0A9F8ACF27DBFF540065A512 /* SceneDelegate.swift in Sources */,
+				0A4BBFF327DD54EA001C9BB7 /* ComicsDataManager.swift in Sources */,
 				0A4878B527DC4DB000E9DB81 /* ComicInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +392,7 @@
 				DEVELOPMENT_TEAM = VM6WVD6427;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "XKCD Reader/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "XKCD Reader";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -384,6 +421,7 @@
 				DEVELOPMENT_TEAM = VM6WVD6427;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "XKCD Reader/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "XKCD Reader";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

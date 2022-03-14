@@ -6,9 +6,23 @@
 //
 
 import UIKit
+import AVFoundation
+
+protocol ComicViewControllerDelegate {
+    /**
+     Event call when a comic in this view has loaded or updated
+     
+     - Parameter viewController:                The comic view controller
+     - Parameter comicLoaded:                   The comic
+     
+     - Returns:                                 Nothing
+     */
+    func comicViewController(_ viewController: ComicViewController, comicUpdated comic: XKCDComic)
+}
 
 class ComicViewController: UIViewController {
     @IBOutlet weak var comicImageView: PanZoomImageView!
+    var delegate: ComicViewControllerDelegate?
     
     var num = 0 {
         didSet {
@@ -17,6 +31,7 @@ class ComicViewController: UIViewController {
                     return
                 }
                 self.comic = comic
+                self.delegate?.comicViewController(self, comicUpdated: comic)
             }
         }
     }
@@ -35,6 +50,7 @@ class ComicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpGestures()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -54,5 +70,51 @@ class ComicViewController: UIViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "comicViewController") as! ComicViewController
         vc.num = comicNum
         return vc
+    }
+}
+
+extension ComicViewController: UIGestureRecognizerDelegate {
+    func setUpGestures() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        doubleTapGesture.delegate = self
+        self.view.addGestureRecognizer(doubleTapGesture)
+    }
+    
+    @objc func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        // Favorite comic if double tap is in comic bounds.
+        let location = gestureRecognizer.location(in: comicImageView.imageView)
+        guard let comic = comic, let comicImage = comicImageView.image else {
+            return
+        }
+        
+        let imageFrame = AVMakeRect(aspectRatio: comicImage.size, insideRect: comicImageView.imageView.bounds)
+        if imageFrame.contains(location) {
+            let favorited = ComicsDataManager.sharedInstance.toggleFavorite(comic: comic)
+            self.delegate?.comicViewController(self, comicUpdated: comic)
+            if (favorited) {
+                doHeartAnimation()
+            }
+        }
+    }
+    
+    func doHeartAnimation() {
+        guard let heartImage = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal) else {
+            return
+        }
+        
+        let heartImageView = UIImageView(image: heartImage)
+        heartImageView.contentMode = .scaleAspectFit
+        heartImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        heartImageView.center = self.comicImageView.center
+        self.comicImageView.addSubview(heartImageView)
+        UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut) {
+            heartImageView.center = CGPoint(x: heartImageView.center.x,
+                                            y: heartImageView.center.y - 150)
+            heartImageView.layer.opacity = 0
+        } completion: { (_) in
+            heartImageView.removeFromSuperview()
+        }
     }
 }

@@ -7,18 +7,32 @@
 
 import UIKit
 
+protocol ComicsPageViewControllerDelegate {
+    /**
+     Called whenever the current ComicViewController being displayed has its comic loaded. Used for when there is a programmatic change to a new page, where
+     the comic may not be preloaded ahead of time.
+     
+     - Parameter viewController:                The ComicsPageViewController containing all the comics
+     - Parameter currentComicLoaded:            The comic that was loaded into the current visible view
+     
+     - Returns:                                 Nothing
+     */
+    func comicsPageViewControllerDelegate(_ viewController: ComicsPageViewController, currentComicUpdated comic: XKCDComic)
+}
+
 class ComicsPageViewController: UIPageViewController {
     var comicsPageViewControllerSet = Set<ComicViewController>()
+    var comicDelegate: ComicsPageViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
-        setComicViewController(getUnusedComicViewController(comicNum: XKCDClient.latestComicNum))
+        setViewControllers([getUnusedComicViewController(comicNum: XKCDClient.latestComicNum)], direction: .forward, animated: false)
     }
    
     /// Reloads the list of ComicViews to display the latest comics.
     func reloadComicsPageViewControllerList() {
-        setComicViewController(getUnusedComicViewController(comicNum: XKCDClient.latestComicNum))
+        setViewControllers([getUnusedComicViewController(comicNum: XKCDClient.latestComicNum)], direction: .forward, animated: false)
     }
    
     /**
@@ -30,7 +44,7 @@ class ComicsPageViewController: UIPageViewController {
      */
     func displayComic(comicNum: Int) {
         guard let currentComicVC = self.viewControllers?.first as! ComicViewController? else {
-            setComicViewController(getUnusedComicViewController(comicNum: comicNum))
+            setViewControllers([getUnusedComicViewController(comicNum: comicNum)], direction: .forward, animated: false)
             return
         }
        
@@ -40,7 +54,20 @@ class ComicsPageViewController: UIPageViewController {
         }
         
         let dir: UIPageViewController.NavigationDirection = currentComicVC.num < comicNum ? .forward : .reverse
-        setComicViewController(getUnusedComicViewController(comicNum: comicNum), direction: dir, animated: true)
+        setViewControllers([getUnusedComicViewController(comicNum: comicNum)], direction: dir, animated: true)
+    }
+   
+    /**
+     Gets the current comic on display in the view controller.
+     
+     - Returns:                     The current comic being displayed
+     */
+    func getCurrentComic() -> XKCDComic? {
+        guard let currentComicVC = self.viewControllers?.first as! ComicViewController? else {
+            return nil
+        }
+        
+        return currentComicVC.comic
     }
    
     /**
@@ -53,7 +80,7 @@ class ComicsPageViewController: UIPageViewController {
     func getUnusedComicViewController(comicNum: Int) -> ComicViewController {
         /**
         Note: With this implementation, there is no mechanism for removing unused view controllers from the set. However, with
-         how this is implemented, the user cannot physically exceed three view controllers in the set, so the size of the set cannot grow
+         how this is implemented, the user cannot physically exceed four view controllers in the set, so the size of the set cannot grow
          indefinitely.
          */
         let unusedComicVC = comicsPageViewControllerSet.first { $0.parent == nil }
@@ -63,26 +90,9 @@ class ComicsPageViewController: UIPageViewController {
             return unusedComicVC
         } else {
             let newComicViewController = ComicViewController.getInstance(comicNum: comicNum)
+            newComicViewController.delegate = self
             comicsPageViewControllerSet.insert(newComicViewController)
             return newComicViewController
-        }
-    }
-   
-    /**
-     Sets the current ComicViewController being displayed to the provided view controller.
-     
-     - Parameter comicVC:               The new comic view controller
-     - Parameter direction:             Direction of animation when moving to new comic
-     - Parameter animated:              Whether or not to animate transition
-     
-     - Returns:                         Nothing
-     */
-    func setComicViewController(_ comicVC: ComicViewController, direction: UIPageViewController.NavigationDirection = .forward, animated: Bool = false) {
-        setViewControllers([comicVC], direction: direction, animated: animated) { (finished) in
-            self.delegate?.pageViewController?(self,
-                                               didFinishAnimating: finished,
-                                               previousViewControllers: self.viewControllers ?? [],
-                                               transitionCompleted: finished)
         }
     }
 }
@@ -104,5 +114,19 @@ extension ComicsPageViewController: UIPageViewControllerDataSource {
             return nil
         }
         return getUnusedComicViewController(comicNum: currentComicView.num + 1)
+    }
+}
+
+
+extension ComicsPageViewController: ComicViewControllerDelegate {
+    func comicViewController(_ viewController: ComicViewController, comicUpdated comic: XKCDComic) {
+        guard let viewControllers = self.viewControllers else {
+            return
+        }
+        
+        let currentComicView = viewControllers[0] as! ComicViewController
+        if currentComicView.num == comic.num {
+            comicDelegate?.comicsPageViewControllerDelegate(self, currentComicUpdated: comic)
+        }
     }
 }

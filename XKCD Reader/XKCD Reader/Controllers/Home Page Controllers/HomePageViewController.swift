@@ -12,6 +12,11 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var comicTitleLabel: UILabel!
     @IBOutlet weak var comicNumberLabel: UILabel!
     @IBOutlet weak var comicInfo: ComicInfoView!
+    @IBOutlet weak var favoriteButton: UIButton!
+    private var comicsPageVC: ComicsPageViewController {
+        self.children[0] as! ComicsPageViewController
+    }
+    var currentComic: XKCDComic?
     
     @IBAction func infoClicked(_ sender: Any) {
         toggleInfoView()
@@ -23,8 +28,32 @@ class HomePageViewController: UIViewController {
         comicsPageVC.displayComic(comicNum: randomComicNum)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @IBAction func favoritesClicked(_ sender: Any) {
+        guard let currentComic = currentComic else {
+            return
+        }
+        
+        let favorited = ComicsDataManager.sharedInstance.toggleFavorite(comic: currentComic)
+        updateFavoritesButtonColor(favorited: favorited)
+    }
+    
+    @IBAction func shareClicked(_ sender: UIButton) {
+        guard let currentComic = self.currentComic else {
+            return
+        }
+        
+        if let comicSite = NSURL(string: "https://xkcd.com/\(currentComic.num)") {
+            let activityVC = UIActivityViewController(activityItems: [comicSite], applicationActivities: nil)
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.present(activityVC, animated: true, completion: nil)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        comicsPageVC.delegate = self
+        comicsPageVC.comicDelegate = self
+        
         /*
          Fetch the latest comic to get its number and update the page
          controller to show the latest comics.
@@ -33,27 +62,21 @@ class HomePageViewController: UIViewController {
             guard let comic = comic, err == nil else {
                 return
             }
-           
+            
             XKCDClient.latestComicNum = comic.num
-            let comicsPageVC = self.children[0] as! ComicsPageViewController
-            comicsPageVC.reloadComicsPageViewControllerList()
+            self.currentComic = comic
+            self.comicsPageVC.reloadComicsPageViewControllerList()
         }
+    
+        setUpInfoView()
+        setUpGestures()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let comicsPageVC = self.children[0] as! ComicsPageViewController
-        comicsPageVC.delegate = self
-     
-        // Set up info view
-        comicInfo.isHidden = true
-        comicInfo.layer.shadowColor = UIColor.black.cgColor
-        comicInfo.layer.shadowOpacity = 0.4
-        comicInfo.layer.shadowOffset = .zero
-        comicInfo.layer.shadowRadius = 6
-        comicInfo.layer.shadowPath = UIBezierPath(rect: comicInfo.bounds).cgPath
-       
-        setUpGestures()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let currentComic = self.currentComic {
+            self.comicsPageVC.displayComic(comicNum: currentComic.num)
+        }
     }
    
     /**
@@ -67,26 +90,66 @@ class HomePageViewController: UIViewController {
         comicTitleLabel.text = comic.title
         comicNumberLabel.text = "#\(comic.num)"
         comicInfo.updateComic(comic: comic)
+        updateFavoritesButtonColor(favorited: ComicsDataManager.sharedInstance.isFavorite(comic: comic))
     }
    
     /**
      Toggles on and off the visibility of the comic info view.
      
-     - Returns:                    Nothing
+     - Returns:                     Nothing
      */
     func toggleInfoView() {
         comicInfo.isHidden = !comicInfo.isHidden
         comicsContainer.isUserInteractionEnabled = comicInfo.isHidden
     }
+   
+    /**
+     Updates the favorites button to match the favorited state.
+     
+     - Parameter favorited:         Whether or not the current comic is favorited
+     
+     - Returns:                     Nothing
+     */
+    private func updateFavoritesButtonColor(favorited: Bool) {
+        let heartImage: UIImage?
+        if favorited {
+            heartImage = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+        } else {
+            heartImage = UIImage(systemName: "heart")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        }
+        favoriteButton.setImage(heartImage, for: .normal)
+    }
+   
+    /**
+     Initializes the info view properties.
+     
+     - Returns:                     Nothing
+     */
+    private func setUpInfoView() {
+        comicInfo.isHidden = true
+        comicInfo.layer.shadowColor = UIColor.black.cgColor
+        comicInfo.layer.shadowOpacity = 0.4
+        comicInfo.layer.shadowOffset = CGSize(width: 6, height: 6)
+        comicInfo.layer.shadowRadius = 4
+        comicInfo.layer.shadowPath = UIBezierPath(rect: comicInfo.bounds).cgPath
+    }
 }
 
 extension HomePageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let currentComic = (pageViewController.viewControllers?.first as! ComicViewController).comic, completed else {
+        guard let comic = (pageViewController.viewControllers?.first as! ComicViewController).comic, completed else {
             return
         }
-        
-        updateComicInfo(comic: currentComic)
+       
+        currentComic = comic
+        updateComicInfo(comic: comic)
+    }
+}
+
+extension HomePageViewController: ComicsPageViewControllerDelegate {
+    func comicsPageViewControllerDelegate(_ viewController: ComicsPageViewController, currentComicUpdated comic: XKCDComic) {
+        currentComic = comic
+        updateComicInfo(comic: comic)
     }
 }
 
@@ -108,3 +171,4 @@ extension HomePageViewController: UIGestureRecognizerDelegate {
         }
     }
 }
+
