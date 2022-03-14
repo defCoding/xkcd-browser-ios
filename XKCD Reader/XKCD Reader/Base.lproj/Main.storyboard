@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="108"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a comic" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqw-Q4-jtl">
-                                        <rect key="frame" x="8" y="49" width="310" height="51"/>
+                                        <rect key="frame" x="8" y="49" width="309.66666666666669" height="51"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -39,13 +39,10 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7gl-2v-azT" userLabel="Deep Search Switch">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7gl-2v-azT" userLabel="Deep Search Switch" customClass="XKCDSwitch" customModule="XKCD_Reader" customModuleProvider="target">
                                         <rect key="frame" x="325.66666666666669" y="59" width="51" height="31"/>
                                         <color key="onTintColor" name="Marble"/>
                                         <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="switchToggled:" destination="5e3-Iq-eWO" eventType="valueChanged" id="iQg-RN-Uo8"/>
-                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" name="Charcoal"/>
@@ -98,7 +95,7 @@
         <!--Item-->
         <scene sceneID="Uet-Xz-bPb">
             <objects>
-                <viewController id="FkH-d4-cuo" sceneMemberID="viewController">
+                <viewController id="FkH-d4-cuo" customClass="SettingsViewController" customModule="XKCD_Reader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zmA-AI-3ko">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,102 +119,54 @@
                                     <constraint firstAttribute="bottom" secondItem="fJz-ly-tLw" secondAttribute="bottom" constant="16" id="nxx-sD-g7F"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vds-UM-fbo">
-                                <rect key="frame" x="8" y="117" width="374" height="636"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ceG-Jm-kqw">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="165.66666666666666"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEw-cj-Tgx">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="31.666666666666668"/>
-                                                <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="24"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rIJ-9l-PKg" userLabel="Dark Mode Section">
-                                                <rect key="frame" x="0.0" y="31.666666666666657" width="374" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Iv-QS-MS6">
-                                                        <rect key="frame" x="16" y="0.0" width="81" height="23.666666666666668"/>
-                                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="pvo-2l-j7f">
-                                                        <rect key="frame" x="177" y="-3.6666666666666572" width="197" height="32"/>
-                                                        <segments>
-                                                            <segment title="Dark"/>
-                                                            <segment title="Light"/>
-                                                            <segment title="System"/>
-                                                        </segments>
-                                                        <color key="selectedSegmentTintColor" name="Marble"/>
-                                                    </segmentedControl>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="pvo-2l-j7f" firstAttribute="centerY" secondItem="8Iv-QS-MS6" secondAttribute="centerY" id="6dZ-id-jVM"/>
-                                                    <constraint firstItem="8Iv-QS-MS6" firstAttribute="top" secondItem="rIJ-9l-PKg" secondAttribute="top" id="aLE-5T-qJP"/>
-                                                    <constraint firstAttribute="trailing" secondItem="pvo-2l-j7f" secondAttribute="trailing" id="gQL-v9-xPU"/>
-                                                    <constraint firstItem="8Iv-QS-MS6" firstAttribute="leading" secondItem="rIJ-9l-PKg" secondAttribute="leading" constant="16" id="mNs-FF-sjE"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dcq-aL-RB0">
-                                                <rect key="frame" x="0.0" y="81.666666666666657" width="374" height="84"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
+                            <tableView contentMode="scaleToFill" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DEb-no-cMe" userLabel="Settings Table">
+                                <rect key="frame" x="16" y="117" width="358" height="636"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ceG-Jm-kqw" secondAttribute="trailing" id="14I-v2-Is2"/>
-                                    <constraint firstItem="ceG-Jm-kqw" firstAttribute="height" secondItem="Vds-UM-fbo" secondAttribute="height" priority="250" id="FhR-Gv-gsG"/>
-                                    <constraint firstItem="ceG-Jm-kqw" firstAttribute="top" secondItem="Vds-UM-fbo" secondAttribute="top" id="h8G-19-TwT"/>
-                                    <constraint firstAttribute="width" constant="450" id="jWs-5Q-mLg"/>
-                                    <constraint firstItem="ceG-Jm-kqw" firstAttribute="width" secondItem="Vds-UM-fbo" secondAttribute="width" id="mQP-gR-R4R"/>
-                                    <constraint firstItem="ceG-Jm-kqw" firstAttribute="leading" secondItem="Vds-UM-fbo" secondAttribute="leading" id="mge-A9-HRQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="ceG-Jm-kqw" secondAttribute="bottom" constant="1" id="ufx-Ls-4ks"/>
+                                    <constraint firstAttribute="width" constant="400" id="RMx-R5-CbP"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="A8h-AU-1ed"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="xe3-qW-4lW"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="jWs-5Q-mLg"/>
+                                        <exclude reference="RMx-R5-CbP"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="jWs-5Q-mLg"/>
+                                        <include reference="RMx-R5-CbP"/>
                                     </mask>
                                 </variation>
-                            </scrollView>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sDv-cW-21a"/>
                         <color key="backgroundColor" name="Silver"/>
                         <constraints>
                             <constraint firstItem="knj-Of-Crc" firstAttribute="top" secondItem="zmA-AI-3ko" secondAttribute="top" id="10V-Vh-2U5"/>
-                            <constraint firstItem="sDv-cW-21a" firstAttribute="bottom" secondItem="Vds-UM-fbo" secondAttribute="bottom" constant="8" id="1eM-ex-5Nl"/>
+                            <constraint firstItem="DEb-no-cMe" firstAttribute="leading" secondItem="sDv-cW-21a" secondAttribute="leading" constant="16" id="5dG-a4-BAk"/>
                             <constraint firstItem="knj-Of-Crc" firstAttribute="leading" secondItem="sDv-cW-21a" secondAttribute="leading" id="Hph-uB-g4m"/>
                             <constraint firstItem="knj-Of-Crc" firstAttribute="trailing" secondItem="sDv-cW-21a" secondAttribute="trailing" id="QTS-kV-QmH"/>
-                            <constraint firstItem="Vds-UM-fbo" firstAttribute="top" secondItem="knj-Of-Crc" secondAttribute="bottom" constant="8" id="YIl-Fj-ICF"/>
-                            <constraint firstItem="sDv-cW-21a" firstAttribute="trailing" secondItem="Vds-UM-fbo" secondAttribute="trailing" constant="8" id="ZMo-zA-hKu"/>
-                            <constraint firstItem="Vds-UM-fbo" firstAttribute="leading" secondItem="sDv-cW-21a" secondAttribute="leading" constant="8" id="aH8-3T-WIl"/>
+                            <constraint firstItem="sDv-cW-21a" firstAttribute="trailing" secondItem="DEb-no-cMe" secondAttribute="trailing" constant="16" id="bMj-Ra-3AX"/>
                             <constraint firstItem="sDv-cW-21a" firstAttribute="top" secondItem="knj-Of-Crc" secondAttribute="bottom" constant="-65" id="eoY-sD-ACt"/>
-                            <constraint firstItem="Vds-UM-fbo" firstAttribute="centerX" secondItem="zmA-AI-3ko" secondAttribute="centerX" id="ljW-r0-TRk"/>
+                            <constraint firstItem="DEb-no-cMe" firstAttribute="centerX" secondItem="zmA-AI-3ko" secondAttribute="centerX" id="hzR-Sn-4mL"/>
+                            <constraint firstItem="DEb-no-cMe" firstAttribute="top" secondItem="knj-Of-Crc" secondAttribute="bottom" constant="8" id="i5A-XI-4cK"/>
+                            <constraint firstItem="sDv-cW-21a" firstAttribute="bottom" secondItem="DEb-no-cMe" secondAttribute="bottom" constant="8" id="omX-Uu-xlf"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="ljW-r0-TRk"/>
+                                <exclude reference="hzR-Sn-4mL"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <exclude reference="ZMo-zA-hKu"/>
-                                <exclude reference="aH8-3T-WIl"/>
-                                <include reference="ljW-r0-TRk"/>
+                                <exclude reference="bMj-Ra-3AX"/>
+                                <exclude reference="5dG-a4-BAk"/>
+                                <include reference="hzR-Sn-4mL"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="6db-3b-hDo"/>
+                    <connections>
+                        <outlet property="settingsTable" destination="DEb-no-cMe" id="OFI-29-W21"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2C2-Hf-yGo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -473,7 +422,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="108"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMH-DA-H7p" userLabel="Favorites Label">
-                                        <rect key="frame" x="8" y="52.666666666666657" width="374" height="39.333333333333343"/>
+                                        <rect key="frame" x="8" y="52.333333333333343" width="374" height="39.666666666666657"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -536,9 +485,6 @@
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

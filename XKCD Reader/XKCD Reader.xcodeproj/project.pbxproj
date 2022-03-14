@@ -20,6 +20,15 @@
 		0A6A25CD27DDB10700CC359A /* ComicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */; };
 		0A6A25D627DEDE2300CC359A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25D527DEDE2300CC359A /* SearchViewController.swift */; };
 		0A6A25D827DEE02600CC359A /* ComicsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25D727DEE02600CC359A /* ComicsTableViewController.swift */; };
+		0A6A25E727DFE00D00CC359A /* DarkModeSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25E527DFE00D00CC359A /* DarkModeSettingTableViewCell.swift */; };
+		0A6A25E827DFE00D00CC359A /* DarkModeSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A25E627DFE00D00CC359A /* DarkModeSettingTableViewCell.xib */; };
+		0A6A25EA27DFE1BD00CC359A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25E927DFE1BD00CC359A /* SettingsViewController.swift */; };
+		0A6A25ED27DFE7DC00CC359A /* SearchSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25EB27DFE7DC00CC359A /* SearchSettingTableViewCell.swift */; };
+		0A6A25EE27DFE7DC00CC359A /* SearchSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A25EC27DFE7DC00CC359A /* SearchSettingTableViewCell.xib */; };
+		0A6A25F227DFEC8800CC359A /* XKCDSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25F127DFEC8800CC359A /* XKCDSwitch.swift */; };
+		0A6A25F527DFF0D300CC359A /* ClearCacheTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25F327DFF0D300CC359A /* ClearCacheTableViewCell.swift */; };
+		0A6A25F627DFF0D300CC359A /* ClearCacheTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A25F427DFF0D300CC359A /* ClearCacheTableViewCell.xib */; };
+		0A6A25F827DFF19100CC359A /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25F727DFF19100CC359A /* SettingTableViewCell.swift */; };
 		0A9F8ACD27DBFF540065A512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F8ACC27DBFF540065A512 /* AppDelegate.swift */; };
 		0A9F8ACF27DBFF540065A512 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9F8ACE27DBFF540065A512 /* SceneDelegate.swift */; };
 		0A9F8AD427DBFF540065A512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9F8AD227DBFF540065A512 /* Main.storyboard */; };
@@ -42,6 +51,15 @@
 		0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicTableViewCell.xib; sourceTree = "<group>"; };
 		0A6A25D527DEDE2300CC359A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0A6A25D727DEE02600CC359A /* ComicsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsTableViewController.swift; sourceTree = "<group>"; };
+		0A6A25E527DFE00D00CC359A /* DarkModeSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeSettingTableViewCell.swift; sourceTree = "<group>"; };
+		0A6A25E627DFE00D00CC359A /* DarkModeSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkModeSettingTableViewCell.xib; sourceTree = "<group>"; };
+		0A6A25E927DFE1BD00CC359A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0A6A25EB27DFE7DC00CC359A /* SearchSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSettingTableViewCell.swift; sourceTree = "<group>"; };
+		0A6A25EC27DFE7DC00CC359A /* SearchSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSettingTableViewCell.xib; sourceTree = "<group>"; };
+		0A6A25F127DFEC8800CC359A /* XKCDSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XKCDSwitch.swift; sourceTree = "<group>"; };
+		0A6A25F327DFF0D300CC359A /* ClearCacheTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearCacheTableViewCell.swift; sourceTree = "<group>"; };
+		0A6A25F427DFF0D300CC359A /* ClearCacheTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClearCacheTableViewCell.xib; sourceTree = "<group>"; };
+		0A6A25F727DFF19100CC359A /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0A9F8AC927DBFF540065A512 /* XKCD Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XKCD Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9F8ACC27DBFF540065A512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A9F8ACE27DBFF540065A512 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,10 +101,12 @@
 		0A4878B127DC2F7C00E9DB81 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A6A25E427DFDFC100CC359A /* Settings Views */,
 				0A6A25CA27DDB10700CC359A /* ComicTableViewCell.swift */,
 				0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */,
 				0A4878B227DC2F9200E9DB81 /* PanZoomImageView.swift */,
 				0A4878B427DC4DB000E9DB81 /* ComicInfoView.swift */,
+				0A6A25F127DFEC8800CC359A /* XKCDSwitch.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,8 +138,23 @@
 		0A6A25D927DF26C300CC359A /* Settings Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A6A25E927DFE1BD00CC359A /* SettingsViewController.swift */,
 			);
 			path = "Settings Controllers";
+			sourceTree = "<group>";
+		};
+		0A6A25E427DFDFC100CC359A /* Settings Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A6A25E527DFE00D00CC359A /* DarkModeSettingTableViewCell.swift */,
+				0A6A25E627DFE00D00CC359A /* DarkModeSettingTableViewCell.xib */,
+				0A6A25EB27DFE7DC00CC359A /* SearchSettingTableViewCell.swift */,
+				0A6A25EC27DFE7DC00CC359A /* SearchSettingTableViewCell.xib */,
+				0A6A25F327DFF0D300CC359A /* ClearCacheTableViewCell.swift */,
+				0A6A25F427DFF0D300CC359A /* ClearCacheTableViewCell.xib */,
+				0A6A25F727DFF19100CC359A /* SettingTableViewCell.swift */,
+			);
+			path = "Settings Views";
 			sourceTree = "<group>";
 		};
 		0A9F8AC027DBFF540065A512 = {
@@ -238,9 +273,12 @@
 			files = (
 				0A6A25CD27DDB10700CC359A /* ComicTableViewCell.xib in Resources */,
 				0A9F8AD927DBFF540065A512 /* LaunchScreen.storyboard in Resources */,
+				0A6A25F627DFF0D300CC359A /* ClearCacheTableViewCell.xib in Resources */,
 				0A9F8AD627DBFF540065A512 /* Assets.xcassets in Resources */,
 				0A9F8AD427DBFF540065A512 /* Main.storyboard in Resources */,
+				0A6A25E827DFE00D00CC359A /* DarkModeSettingTableViewCell.xib in Resources */,
 				0A4878A927DC0F4000E9DB81 /* xkcd-script.ttf in Resources */,
+				0A6A25EE27DFE7DC00CC359A /* SearchSettingTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,14 +294,20 @@
 				0A9F8ACD27DBFF540065A512 /* AppDelegate.swift in Sources */,
 				0A4878B327DC2F9200E9DB81 /* PanZoomImageView.swift in Sources */,
 				0A4BBFF627DD569A001C9BB7 /* BinTree.swift in Sources */,
+				0A6A25E727DFE00D00CC359A /* DarkModeSettingTableViewCell.swift in Sources */,
+				0A6A25F827DFF19100CC359A /* SettingTableViewCell.swift in Sources */,
+				0A6A25F527DFF0D300CC359A /* ClearCacheTableViewCell.swift in Sources */,
 				0A4878AE27DC159400E9DB81 /* ComicsPageViewController.swift in Sources */,
+				0A6A25EA27DFE1BD00CC359A /* SettingsViewController.swift in Sources */,
 				0A6A25C727DDA4FE00CC359A /* FavoritesViewController.swift in Sources */,
 				0A4878B027DC15E900E9DB81 /* ComicViewController.swift in Sources */,
 				0A6A25D627DEDE2300CC359A /* SearchViewController.swift in Sources */,
 				0A6A25D827DEE02600CC359A /* ComicsTableViewController.swift in Sources */,
+				0A6A25F227DFEC8800CC359A /* XKCDSwitch.swift in Sources */,
 				0A4878AB27DC151700E9DB81 /* HomePageViewController.swift in Sources */,
 				0A9F8ACF27DBFF540065A512 /* SceneDelegate.swift in Sources */,
 				0A4BBFF327DD54EA001C9BB7 /* ComicsDataManager.swift in Sources */,
+				0A6A25ED27DFE7DC00CC359A /* SearchSettingTableViewCell.swift in Sources */,
 				0A4878B527DC4DB000E9DB81 /* ComicInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

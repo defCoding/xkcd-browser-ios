@@ -17,15 +17,6 @@ class SearchViewController: ComicsTableViewController {
         setup()
     }
    
-    @IBAction func switchToggled(_ sender: Any) {
-        // Update thumb tint color based on switch state.
-        if deepSearchSwitch.isOn {
-            deepSearchSwitch.thumbTintColor = UIColor(named: "Charcoal")
-        } else {
-            deepSearchSwitch.thumbTintColor = .lightGray
-        }
-    }
-   
     /**
      Searches the comics for the query and updates the table.
      
