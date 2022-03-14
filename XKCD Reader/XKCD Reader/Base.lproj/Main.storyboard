@@ -17,18 +17,48 @@
         <!--Search Tab-->
         <scene sceneID="Dhr-dr-ExR">
             <objects>
-                <viewController title="Search Tab" id="5e3-Iq-eWO" sceneMemberID="viewController">
+                <viewController title="Search Tab" id="5e3-Iq-eWO" customClass="SearchViewController" customModule="XKCD_Reader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tVe-eo-c1D">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-2C-nb4" userLabel="Comic Header">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="119"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a comic" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqw-Q4-jtl">
+                                        <rect key="frame" x="8" y="60" width="374" height="51"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" name="Charcoal"/>
+                                <constraints>
+                                    <constraint firstItem="jqw-Q4-jtl" firstAttribute="leading" secondItem="AUi-2C-nb4" secondAttribute="leading" constant="8" id="M7w-AQ-ZSA"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqw-Q4-jtl" secondAttribute="bottom" constant="8" id="UVG-KD-sNF"/>
+                                    <constraint firstAttribute="trailing" secondItem="jqw-Q4-jtl" secondAttribute="trailing" constant="8" id="pBh-hq-q6b"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6DQ-vv-DDh"/>
                         <color key="backgroundColor" name="Silver"/>
+                        <constraints>
+                            <constraint firstItem="AUi-2C-nb4" firstAttribute="leading" secondItem="tVe-eo-c1D" secondAttribute="leading" id="1yw-IL-2Tn"/>
+                            <constraint firstItem="AUi-2C-nb4" firstAttribute="top" secondItem="tVe-eo-c1D" secondAttribute="top" id="To3-uX-o4N"/>
+                            <constraint firstItem="AUi-2C-nb4" firstAttribute="trailing" secondItem="tVe-eo-c1D" secondAttribute="trailing" id="b9L-eb-KV7"/>
+                            <constraint firstItem="6DQ-vv-DDh" firstAttribute="top" secondItem="AUi-2C-nb4" secondAttribute="bottom" constant="-75" id="kfW-j9-HmT"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="DsE-RJ-7Yr"/>
+                    <connections>
+                        <outlet property="searchBar" destination="jqw-Q4-jtl" id="uoc-S2-b67"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCx-QH-u1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="307"/>
+            <point key="canvasLocation" x="-92.307692307692307" y="306.39810426540282"/>
         </scene>
         <!--Homepage Tab-->
         <scene sceneID="7Ih-en-Uue">

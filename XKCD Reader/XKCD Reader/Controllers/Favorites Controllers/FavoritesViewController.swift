@@ -8,12 +8,6 @@
 import UIKit
 import CoreAudio
 
-class ComicsDiffableDataSource: UITableViewDiffableDataSource<Int, XKCDComic> {
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return section == self.snapshot().numberOfSections - 1 ? "" : " "
-    }
-}
-
 class FavoritesViewController: UIViewController {
     @IBOutlet weak var comicsTableView: UITableView!
     // https://www.swiftjectivec.com/diffable-datasource-tableview/
