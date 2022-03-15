@@ -18,8 +18,6 @@ class ComicTableViewCell: UITableViewCell {
      Sets up the cell with a comic.
      
      - Parameter comic:                 Comic to display in the cell
-     
-     - Returns:                         Nothing
      */
     func setup(comic: XKCDComic) {
         self.comic = comic
@@ -42,8 +40,6 @@ class ComicTableViewCell: UITableViewCell {
      Updates the favorites button to match the favorited state.
      
      - Parameter favorited:         Whether or not the comic is favorited
-     
-     - Returns:                     Nothing
      */
     private func updateFavoritesButtonColor(favorited: Bool) {
         let heartImage: UIImage?

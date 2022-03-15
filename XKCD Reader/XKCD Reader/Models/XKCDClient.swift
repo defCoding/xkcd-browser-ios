@@ -103,8 +103,6 @@ class XKCDClient {
      
      - Parameter num:                       The number of the comic to fetch (fetches the most recent one if none is provided)
      - Parameter completion:                The callback function for when the comic is fetched
-     
-     - Returns:                             Nothing
      */
     static func fetchComic(num: Int?, completion: @escaping (XKCDComic?, Error?) -> Void) {
         var url : NSURL? = nil
@@ -157,10 +155,8 @@ class XKCDClient {
      
      - Parameter comic:                     The comic to fetch the image of
      - Parameter completion:                The callback function for when the image is fetched
-     
-     - Returns:                             Nothing
      */
-    static func fetchComicImage(comic: XKCDComic, completion: @escaping (Data?, Error?) -> Void) {
+    private static func fetchComicImage(comic: XKCDComic, completion: @escaping (Data?, Error?) -> Void) {
         guard let url = NSURL(string: comic.img) else {
             DispatchQueue.main.async { completion(nil, XKCDError.badURL) }
             return
@@ -184,8 +180,6 @@ class XKCDClient {
      - Parameter query:                     The query string
      - Parameter deepSearch:                Whether or not to perform a deep search (regular search only checks title and number)
      - Parameter completion:                The callback function for when comics are fetched
-     
-     - Returns:                             Nothing
      */
     static func fetchSearchComics(query: String, deepSearch: Bool, completion: @escaping ([XKCDComic]?, Error?) -> Void) {
         // https://stackoverflow.com/questions/35906568/wait-until-swift-for-loop-with-asynchronous-network-requests-finishes-executing

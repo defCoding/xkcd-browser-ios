@@ -39,8 +39,6 @@ class ComicsTableViewController: UIViewController {
      Displays the provided comics in the table.
      
      - Parameter comics:                Comics to display
-     
-     - Returns:                         Nothing
      */
     func displayComics(comics: [XKCDComic]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, XKCDComic>()
@@ -51,11 +49,7 @@ class ComicsTableViewController: UIViewController {
         dataSource.apply(snapshot)
     }
    
-    /**
-     Registers the ComicTableViewCell with the table view.
-     
-     - Returns:                         Nothing
-     */
+    /// Registers the ComicTableViewCell with the table view.
     private func registerTableViewCells() {
         let comicCell = UINib(nibName: "ComicTableViewCell", bundle: nil)
         comicsTableView.register(comicCell, forCellReuseIdentifier: "ComicCell")

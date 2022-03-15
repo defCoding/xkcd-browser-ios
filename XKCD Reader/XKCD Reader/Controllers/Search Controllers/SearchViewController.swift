@@ -21,8 +21,6 @@ class SearchViewController: ComicsTableViewController {
      Searches the comics for the query and updates the table.
      
      - Parameter query:                 The search query
-     
-     - Returns:                         Nothing
      */
     private func performSearch(query: String) {
         spinner.startAnimating()
@@ -35,11 +33,7 @@ class SearchViewController: ComicsTableViewController {
         }
     }
    
-    /**
-     Sets up subview attributes.
-     
-     - Returns:                        Nothing
-     */
+    /// Sets up subview attributes.
     private func setup() {
         searchBar.delegate = self
         searchBar.searchBarStyle = .minimal

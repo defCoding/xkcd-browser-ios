@@ -65,8 +65,6 @@ class ComicsDataManager {
      Favorites a comic.
      
      - Parameters comic:                    The comic to favorite
-     
-     - Returns:                Nothing
      */
     func addFavorite(comic: XKCDComic) {
         favoritesTree.insert(value: comic)
@@ -77,8 +75,6 @@ class ComicsDataManager {
      Removes a comic from the favorites.
      
      - Parameters comic:                    The comic to remove
-    
-     - Returns:                Nothing
      */
     func removeFavorite(comic: XKCDComic) {
         favoritesTree.delete(value: comic)
@@ -114,39 +110,24 @@ class ComicsDataManager {
         return favoritesTree.contains(value: comic)
     }
    
-    /**
-     Removes all comics from the favorites list.
-     
-     - Returns:                Nothing
-     */
+    /// Removes all comics from the favorites list.
     func clearFavorites() {
         favoritesTree = BinTree<XKCDComic>()
         _favorites = []
         saveFavorites()
     }
    
-    /**
-     Clears the comics and comic images cache.
-     
-     - Returns:               Nothing
-     */
+    /// Clears the comics and comic images cache.
     func clearCache() {
         comicsCache.clearCache()
     }
    
-    /**
-     Disables disk caching.
-     
-     - Returns:              Nothing
-    */
+    /// Disables disk caching.
     func disableDiskCaching() {
         comicsCache.disableDiskCaching()
     }
    
-    /**
-     Enables disk caching.
-     - Returns:             Nothing
-     */
+    /// Enables disk caching.
     func enableDiskCaching() {
         comicsCache.enableDiskCaching()
     }

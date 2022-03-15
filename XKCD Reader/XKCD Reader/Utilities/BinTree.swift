@@ -25,8 +25,6 @@ class BinTree<T: Comparable> {
      Inserts an element into the binary tree.
      
      - Parameter value:             The value to insert
-     
-     - Returns:                     Nothing
      */
     func insert(value newData: T) {
         guard let root = self.root else {
@@ -42,8 +40,6 @@ class BinTree<T: Comparable> {
      Removes an element from the binary tree if it exists.
      
      - Parameter value:             The value to remove
-     
-     - Returns:                     Nothing
      */
     func delete(value toRemove: T) {
         if contains(value: toRemove) {

@@ -14,8 +14,6 @@ protocol ComicsPageViewControllerDelegate {
      
      - Parameter viewController:                The ComicsPageViewController containing all the comics
      - Parameter currentComicLoaded:            The comic that was loaded into the current visible view
-     
-     - Returns:                                 Nothing
      */
     func comicsPageViewControllerDelegate(_ viewController: ComicsPageViewController, currentComicUpdated comic: XKCDComic)
 }
@@ -39,8 +37,6 @@ class ComicsPageViewController: UIPageViewController {
      Displays the comic with the provided number.
      
      - Parameter comicNum:              The number of the comic to display
-     
-     - Returns:                         Nothing
      */
     func displayComic(comicNum: Int) {
         guard let currentComicVC = self.viewControllers?.first as! ComicViewController? else {

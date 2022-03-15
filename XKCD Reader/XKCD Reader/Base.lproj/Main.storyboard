@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -109,6 +108,20 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODH-Pd-Xzd">
+                                        <rect key="frame" x="350" y="57.333333333333343" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="bwq-m5-wuv"/>
+                                            <constraint firstAttribute="height" constant="32" id="gST-l4-peN"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="questionmark.circle" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="helpPressed:" destination="FkH-d4-cuo" eventType="touchUpInside" id="b3S-fQ-6Ku"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Charcoal"/>
                                 <constraints>
@@ -116,6 +129,8 @@
                                     <constraint firstItem="fJz-ly-tLw" firstAttribute="leading" secondItem="knj-Of-Crc" secondAttribute="leading" constant="8" id="4de-H8-qRa"/>
                                     <constraint firstItem="fJz-ly-tLw" firstAttribute="centerX" secondItem="knj-Of-Crc" secondAttribute="centerX" id="Mui-gG-fBr"/>
                                     <constraint firstItem="fJz-ly-tLw" firstAttribute="centerX" secondItem="knj-Of-Crc" secondAttribute="centerX" id="OGf-X2-deW"/>
+                                    <constraint firstItem="ODH-Pd-Xzd" firstAttribute="centerY" secondItem="fJz-ly-tLw" secondAttribute="centerY" id="RzL-WG-S59"/>
+                                    <constraint firstAttribute="trailing" secondItem="ODH-Pd-Xzd" secondAttribute="trailing" constant="8" id="Yj4-Ek-3sG"/>
                                     <constraint firstAttribute="bottom" secondItem="fJz-ly-tLw" secondAttribute="bottom" constant="16" id="nxx-sD-g7F"/>
                                 </constraints>
                             </view>
@@ -136,6 +151,38 @@
                                     </mask>
                                 </variation>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCB-YR-KRQ">
+                                <rect key="frame" x="45" y="180.66666666666663" width="300" height="400"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQp-ZS-LNy">
+                                        <rect key="frame" x="125.99999999999999" y="8" width="48.333333333333329" height="37"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="28"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDI-0N-tXb" userLabel="Help Text">
+                                        <rect key="frame" x="8" y="53" width="284" height="339"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <mutableString key="text">To favorite a comic, you can either tap the ♡ icon, or if you are on the comics homepage, you can double tap the comic.
+
+Comics are saved to your disk by default. If you wish to disable this feature, you can do so through the settings page. Note that this will prevent you from browsing comics while offline.</mutableString>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" name="Marble"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IDI-0N-tXb" secondAttribute="trailing" constant="8" id="DJv-oo-HIU"/>
+                                    <constraint firstAttribute="bottom" secondItem="IDI-0N-tXb" secondAttribute="bottom" constant="8" id="MDH-hE-wA4"/>
+                                    <constraint firstItem="IDI-0N-tXb" firstAttribute="top" secondItem="YQp-ZS-LNy" secondAttribute="bottom" constant="8" id="OUr-dH-bfW"/>
+                                    <constraint firstItem="YQp-ZS-LNy" firstAttribute="top" secondItem="eCB-YR-KRQ" secondAttribute="top" constant="8" id="StF-IM-MRU"/>
+                                    <constraint firstAttribute="height" constant="400" id="lG0-yg-N9n"/>
+                                    <constraint firstItem="IDI-0N-tXb" firstAttribute="leading" secondItem="eCB-YR-KRQ" secondAttribute="leading" constant="8" id="qM5-8k-T5Y"/>
+                                    <constraint firstAttribute="width" constant="300" id="r1Q-fx-qMh"/>
+                                    <constraint firstItem="YQp-ZS-LNy" firstAttribute="centerX" secondItem="eCB-YR-KRQ" secondAttribute="centerX" id="s3t-vH-COc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sDv-cW-21a"/>
                         <color key="backgroundColor" name="Silver"/>
@@ -143,7 +190,9 @@
                             <constraint firstItem="knj-Of-Crc" firstAttribute="top" secondItem="zmA-AI-3ko" secondAttribute="top" id="10V-Vh-2U5"/>
                             <constraint firstItem="DEb-no-cMe" firstAttribute="leading" secondItem="sDv-cW-21a" secondAttribute="leading" constant="16" id="5dG-a4-BAk"/>
                             <constraint firstItem="knj-Of-Crc" firstAttribute="leading" secondItem="zmA-AI-3ko" secondAttribute="leading" id="Hph-uB-g4m"/>
+                            <constraint firstItem="eCB-YR-KRQ" firstAttribute="centerX" secondItem="zmA-AI-3ko" secondAttribute="centerX" id="Mug-wN-5Qo"/>
                             <constraint firstItem="knj-Of-Crc" firstAttribute="trailing" secondItem="zmA-AI-3ko" secondAttribute="trailing" id="QTS-kV-QmH"/>
+                            <constraint firstItem="eCB-YR-KRQ" firstAttribute="centerY" secondItem="zmA-AI-3ko" secondAttribute="centerY" id="Yc1-Qa-ddD"/>
                             <constraint firstItem="sDv-cW-21a" firstAttribute="trailing" secondItem="DEb-no-cMe" secondAttribute="trailing" constant="16" id="bMj-Ra-3AX"/>
                             <constraint firstItem="sDv-cW-21a" firstAttribute="top" secondItem="knj-Of-Crc" secondAttribute="bottom" constant="-65" id="eoY-sD-ACt"/>
                             <constraint firstItem="DEb-no-cMe" firstAttribute="centerX" secondItem="zmA-AI-3ko" secondAttribute="centerX" id="hzR-Sn-4mL"/>
@@ -165,6 +214,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" selectedImage="gearshape.fill" id="6db-3b-hDo"/>
                     <connections>
+                        <outlet property="helpView" destination="eCB-YR-KRQ" id="Qdf-aB-Iho"/>
                         <outlet property="settingsTable" destination="DEb-no-cMe" id="OFI-29-W21"/>
                     </connections>
                 </viewController>
@@ -271,37 +321,37 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comic Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffl-eg-Gl2">
                                         <rect key="frame" x="98" y="8.0000000000000302" width="104" height="31.666666666666671"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Released:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cg-I1-kRo" userLabel="Date Label">
                                         <rect key="frame" x="8" y="44.666666666666657" width="111.66666666666667" height="23.666666666666671"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01/01/2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz0-bH-Gdm" userLabel="Date">
                                         <rect key="frame" x="127" y="44" width="165" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alt Text:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azz-Gu-HfL" userLabel="Alt Label">
                                         <rect key="frame" x="8" y="76.333333333333343" width="68" height="23.666666666666671"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="This is some random alt text." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYA-Sc-BPR" userLabel="Alt Text">
                                         <rect key="frame" x="8" y="100.00000000000003" width="284" height="142"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" systemColor="labelColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                                <color key="backgroundColor" name="Silver"/>
+                                <color key="backgroundColor" name="Marble"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="1QZ-eX-Dbn"/>
                                     <constraint firstAttribute="bottom" secondItem="lYA-Sc-BPR" secondAttribute="bottom" constant="8" id="BZc-q6-vFt"/>
@@ -324,10 +374,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Rn-v4g" customClass="RateThisAppView" customModule="XKCD_Reader" customModuleProvider="target">
                                 <rect key="frame" x="40" y="279.66666666666669" width="310" height="202"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="If you're enjoying the XKCD Reader, it would help a lot if you could leave a review for us on the App Store!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fQh-QD-bhw" customClass="Rate">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="If you're enjoying the XKCD Reader, it would help a lot if you could leave a review for us on the App Store!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQh-QD-bhw" customClass="Rate">
                                         <rect key="frame" x="8" y="8" width="294" height="129"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" systemColor="labelColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -354,7 +404,7 @@
                                                 </state>
                                                 <buttonConfiguration key="configuration" style="plain" title="Go to App Store">
                                                     <backgroundConfiguration key="background">
-                                                        <color key="backgroundColor" name="Charcoal"/>
+                                                        <color key="backgroundColor" name="ElectricBlue"/>
                                                     </backgroundConfiguration>
                                                     <fontDescription key="titleFontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -369,7 +419,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Maybe Later">
                                                     <backgroundConfiguration key="background">
-                                                        <color key="backgroundColor" name="Charcoal"/>
+                                                        <color key="backgroundColor" name="ElectricBlue"/>
                                                     </backgroundConfiguration>
                                                     <fontDescription key="titleFontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -385,7 +435,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" name="Silver"/>
+                                <color key="backgroundColor" name="Marble"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="DMt-1d-Nw9" secondAttribute="bottom" constant="15" id="2rb-t7-oZn"/>
                                     <constraint firstAttribute="height" constant="202" id="DRZ-G4-nMg"/>
@@ -554,10 +604,14 @@
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="Charcoal">
             <color red="0.30980392156862746" green="0.37254901960784315" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ElectricBlue">
+            <color red="0.37647058823529411" green="0.45098039215686275" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Marble">
             <color red="0.95686274509803926" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -565,8 +619,5 @@
         <namedColor name="Silver">
             <color red="0.74901960784313726" green="0.76470588235294112" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

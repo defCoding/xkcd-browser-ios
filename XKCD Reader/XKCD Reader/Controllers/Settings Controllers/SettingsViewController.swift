@@ -10,13 +10,23 @@ import AVFAudio
 
 class SettingsViewController: UIViewController {
     @IBOutlet weak var settingsTable: UITableView!
+    @IBOutlet weak var helpView: UIView!
     private let sectionHeight: CGFloat = 30
+    
+    @IBAction func helpPressed(_ sender: Any) {
+        helpView.isHidden = !helpView.isHidden
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        helpView.isHidden = true
         settingsTable.dataSource = self
         settingsTable.delegate = self
         registerTableViewCells()
+        setupGestures()
+        
+        // Reload settings when app re-enters foreground. This will update the settings if
+        // user changes them from the Settings app and re-enters app.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadSettingsFromDefaults), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
@@ -102,5 +112,24 @@ extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionHeight
+    }
+}
+
+extension SettingsViewController: UIGestureRecognizerDelegate {
+    private func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleTap(_:)))
+        tapGesture.delegate = self
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        // Hide help screen is screen is visible and touch is outside of help screen
+        if (!helpView.isHidden) {
+            let tapLocation = gestureRecognizer.location(in: helpView)
+            if !helpView.bounds.contains(tapLocation) {
+                helpView.isHidden = true
+            }
+        }
     }
 }

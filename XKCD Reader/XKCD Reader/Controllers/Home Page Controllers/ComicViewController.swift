@@ -14,8 +14,6 @@ protocol ComicViewControllerDelegate {
      
      - Parameter viewController:                The comic view controller
      - Parameter comicLoaded:                   The comic
-     
-     - Returns:                                 Nothing
      */
     func comicViewController(_ viewController: ComicViewController, comicUpdated comic: XKCDComic)
 }
@@ -46,7 +44,7 @@ class ComicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         comicImageView.image = UIImage(named: "ComicNotFound")
-        setUpGestures()
+        setupGestures()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -70,7 +68,7 @@ class ComicViewController: UIViewController {
 }
 
 extension ComicViewController: UIGestureRecognizerDelegate {
-    func setUpGestures() {
+    func setupGestures() {
         let doubleTapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(handleDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
@@ -95,11 +93,7 @@ extension ComicViewController: UIGestureRecognizerDelegate {
         }
     }
    
-    /**
-     Shows the heart animation for when a comic is favorited.
-     
-     - Returns:                     Nothing
-     */
+    /// Shows the heart animation for when a comic is favorited.
     func doHeartAnimation() {
         guard let heartImage = UIImage(systemName: "heart.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal) else {
             return

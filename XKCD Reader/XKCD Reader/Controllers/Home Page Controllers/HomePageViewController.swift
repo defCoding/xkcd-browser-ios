@@ -71,9 +71,9 @@ class HomePageViewController: UIViewController {
             self.comicsPageVC.reloadComicsPageViewControllerList()
         }
     
-        setUpRatingNotification()
-        setUpInfoView()
-        setUpGestures()
+        setupRatingNotification()
+        setupInfoView()
+        setupGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,8 +87,6 @@ class HomePageViewController: UIViewController {
      Updates the labels with a new comic.
      
      - Parameter comic:             The comic to update the labels with
-     
-     - Returns:                     Nothing
      */
     func updateComicInfo(comic: XKCDComic) {
         comicTitleLabel.text = comic.title
@@ -97,11 +95,7 @@ class HomePageViewController: UIViewController {
         updateFavoritesButtonColor(favorited: ComicsDataManager.sharedInstance.isFavorite(comic: comic))
     }
    
-    /**
-     Toggles on and off the visibility of the comic info view.
-     
-     - Returns:                     Nothing
-     */
+    /// Toggles on and off the visibility of the comic info view.
     func toggleInfoView() {
         comicInfo.isHidden = !comicInfo.isHidden
         comicsContainer.isUserInteractionEnabled = comicInfo.isHidden
@@ -111,8 +105,6 @@ class HomePageViewController: UIViewController {
      Updates the favorites button to match the favorited state.
      
      - Parameter favorited:         Whether or not the current comic is favorited
-     
-     - Returns:                     Nothing
      */
     private func updateFavoritesButtonColor(favorited: Bool) {
         let heartImage: UIImage?
@@ -124,12 +116,8 @@ class HomePageViewController: UIViewController {
         favoriteButton.setImage(heartImage, for: .normal)
     }
    
-    /**
-     Initializes the info view properties.
-     
-     - Returns:                     Nothing
-     */
-    private func setUpInfoView() {
+    /// Initializes the info view properties.
+    private func setupInfoView() {
         comicInfo.isHidden = true
         comicInfo.layer.shadowColor = UIColor.black.cgColor
         comicInfo.layer.shadowOpacity = 0.4
@@ -138,13 +126,8 @@ class HomePageViewController: UIViewController {
         comicInfo.layer.shadowPath = UIBezierPath(rect: comicInfo.bounds).cgPath
     }
    
-    /**
-     Hides/displays rating notification depending on how often app has been launched.
-     
-     - Returns:                     Nothing
-     */
-    private func setUpRatingNotification() {
-        print(UserDefaults.standard.integer(forKey: "launchCount"))
+    /// Hides/displays rating notification depending on how often app has been launched.
+    private func setupRatingNotification() {
         ratingNotification.isHidden = UserDefaults.standard.integer(forKey: "launchCount") != 3
     }
 }
@@ -168,7 +151,7 @@ extension HomePageViewController: ComicsPageViewControllerDelegate {
 }
 
 extension HomePageViewController: UIGestureRecognizerDelegate {
-    private func setUpGestures() {
+    private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(handleTap(_:)))
         tapGesture.delegate = self

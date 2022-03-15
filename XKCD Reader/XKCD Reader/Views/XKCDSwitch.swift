@@ -21,7 +21,7 @@ class XKCDSwitch: UISwitch {
     func setupView() {
         onTintColor = UIColor(named: "Marble")
         thumbTintColor = isOn ? UIColor(named: "Charcoal") : .gray
-        addTarget(self, action: #selector(switchChanged(_:)), for: .valueChanged)
+        addTarget(self, action: #selector(switchChanged(_:)), for: .touchUpInside)
     }
     
     override func setOn(_ on: Bool, animated: Bool) {
