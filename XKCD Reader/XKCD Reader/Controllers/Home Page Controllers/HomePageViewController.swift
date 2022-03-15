@@ -24,7 +24,7 @@ class HomePageViewController: UIViewController {
     
     @IBAction func shuffleClicked(_ sender: Any) {
         // Grab a random comic
-        let randomComicNum = Int.random(in: 1...XKCDClient.latestComicNum)
+        let randomComicNum = Int.random(in: 1...ComicsDataManager.sharedInstance.latestComicNum)
         let comicsPageVC = self.children[0] as! ComicsPageViewController
         comicsPageVC.displayComic(comicNum: randomComicNum)
     }
@@ -64,7 +64,7 @@ class HomePageViewController: UIViewController {
                 return
             }
             
-            XKCDClient.latestComicNum = comic.num
+            ComicsDataManager.sharedInstance.latestComicNum = comic.num
             self.currentComic = comic
             self.comicsPageVC.reloadComicsPageViewControllerList()
         }

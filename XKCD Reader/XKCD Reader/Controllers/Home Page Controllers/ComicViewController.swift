@@ -26,6 +26,9 @@ class ComicViewController: UIViewController {
     
     var num = 0 {
         didSet {
+            if let comicImageView = comicImageView {
+                comicImageView.image = UIImage(named: "ComicNotFound")
+            }
             XKCDClient.fetchComic(num: num) { (comic, err) -> Void in
                 guard let comic = comic, err == nil else {
                     return
@@ -50,6 +53,7 @@ class ComicViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        comicImageView.image = UIImage(named: "ComicNotFound")
         setUpGestures()
     }
     

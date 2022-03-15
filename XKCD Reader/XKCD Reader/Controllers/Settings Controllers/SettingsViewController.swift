@@ -17,13 +17,19 @@ class SettingsViewController: UIViewController {
         settingsTable.dataSource = self
         settingsTable.delegate = self
         registerTableViewCells()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSettingsFromDefaults), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc private func reloadSettingsFromDefaults() {
+        settingsTable.reloadData()
     }
     
     private func registerTableViewCells() {
-        let darkModeCell = UINib(nibName: "DarkModeSettingTableViewCell", bundle: nil)
-        let searchCell = UINib(nibName: "SearchSettingTableViewCell", bundle: nil)
-        settingsTable.register(darkModeCell, forCellReuseIdentifier: "DarkModeCell")
-        settingsTable.register(searchCell, forCellReuseIdentifier: "SearchCell")
+        settingsTable.register(DarkModeSettingTableViewCell.self, forCellReuseIdentifier: "DarkModeCell")
+        settingsTable.register(SearchSettingTableViewCell.self, forCellReuseIdentifier: "SearchCell")
+        settingsTable.register(ClearCacheTableViewCell.self, forCellReuseIdentifier: "ClearCacheCell")
+        settingsTable.register(ClearFavoritesTableViewCell.self, forCellReuseIdentifier: "ClearFavoritesCell")
+        settingsTable.register(CacheToggleTableViewCell.self, forCellReuseIdentifier: "CacheToggleCell")
     }
 }
 
@@ -36,27 +42,45 @@ extension SettingsViewController: UITableViewDataSource {
         switch section {
         case 0:
             return 2
+        case 1:
+            return 3
         default:
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                return tableView.dequeueReusableCell(withIdentifier: "DarkModeCell", for: indexPath)
+                cell = tableView.dequeueReusableCell(withIdentifier: "DarkModeCell", for: indexPath)
             case 1:
-                return tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
+                cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                cell = tableView.dequeueReusableCell(withIdentifier: "ClearFavoritesCell", for: indexPath)
+            case 1:
+                cell = tableView.dequeueReusableCell(withIdentifier: "ClearCacheCell", for: indexPath)
+            case 2:
+                cell = tableView.dequeueReusableCell(withIdentifier: "CacheToggleCell", for: indexPath)
             default:
                 break
             }
         default:
             break
         }
-        
-        return UITableViewCell()
+        if let cell = cell as? SettingTableViewCell {
+            cell.refreshWithUserDefaults()
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
 }
 

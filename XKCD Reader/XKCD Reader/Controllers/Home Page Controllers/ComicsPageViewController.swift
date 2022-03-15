@@ -27,12 +27,12 @@ class ComicsPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
-        setViewControllers([getUnusedComicViewController(comicNum: XKCDClient.latestComicNum)], direction: .forward, animated: false)
+        setViewControllers([getUnusedComicViewController(comicNum: ComicsDataManager.sharedInstance.latestComicNum)], direction: .forward, animated: false)
     }
    
     /// Reloads the list of ComicViews to display the latest comics.
     func reloadComicsPageViewControllerList() {
-        setViewControllers([getUnusedComicViewController(comicNum: XKCDClient.latestComicNum)], direction: .forward, animated: false)
+        setViewControllers([getUnusedComicViewController(comicNum: ComicsDataManager.sharedInstance.latestComicNum)], direction: .forward, animated: false)
     }
    
     /**
@@ -110,7 +110,7 @@ extension ComicsPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let currentComicView = viewController as! ComicViewController
         // There is no next comic if we are on the latest comic
-        if currentComicView.num == XKCDClient.latestComicNum {
+        if currentComicView.num == ComicsDataManager.sharedInstance.latestComicNum {
             return nil
         }
         return getUnusedComicViewController(comicNum: currentComicView.num + 1)

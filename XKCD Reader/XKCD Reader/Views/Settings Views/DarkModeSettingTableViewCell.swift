@@ -8,9 +8,9 @@
 import UIKit
 
 class DarkModeSettingTableViewCell: SettingTableViewCell {
-    @IBOutlet weak var darkModeControl: UISegmentedControl!
-    @IBAction func switchedDarkMode(_ sender: Any) {
-        switch darkModeControl.selectedSegmentIndex {
+    @objc func switchedDarkMode(_ sender: UISegmentedControl) {
+        UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "darkMode")
+        switch sender.selectedSegmentIndex {
         case 0:
             window?.overrideUserInterfaceStyle = .dark
         case 1:
@@ -21,9 +21,33 @@ class DarkModeSettingTableViewCell: SettingTableViewCell {
             return
         }
     }
+   
+    override func commonInit() {
+        super.commonInit()
+        label = UILabel()
+        secondaryView = UISegmentedControl(items: ["Dark", "Light", "System"])
+    }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        darkModeControl.setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 18)!], for: .normal)
+    override func setupViews() {
+        super.setupViews()
+        label!.text = "Dark Mode"
+        
+        if let modeOptions = secondaryView as? UISegmentedControl {
+            modeOptions.setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 18)!], for: .normal)
+            modeOptions.selectedSegmentTintColor = UIColor(named: "Marble")
+            modeOptions.addTarget(self, action: #selector(switchedDarkMode(_:)), for: .valueChanged)
+          
+            // Check for overlap between label and segmented control and update font size if needed.
+            layoutIfNeeded() // Need to layout subviews first to check for overlap.
+            if label!.frame.intersects(modeOptions.frame) {
+                modeOptions.setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 12)!], for: .normal)
+            }
+        }
+    }
+    
+    override func refreshWithUserDefaults() {
+        if let modeOptions = secondaryView as? UISegmentedControl {
+            modeOptions.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "darkMode")
+        }
     }
 }

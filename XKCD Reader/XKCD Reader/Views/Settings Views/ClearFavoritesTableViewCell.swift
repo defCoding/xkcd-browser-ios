@@ -1,5 +1,5 @@
 //
-//  ClearCacheTableViewCell.swift
+//  ClearFavoritesTableViewCell.swift
 //  XKCD Reader
 //
 //  Created by Kevin Cao on 3/14/22.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ClearCacheTableViewCell: SettingTableViewCell {
+class ClearFavoritesTableViewCell: SettingTableViewCell {
     @objc func clearClicked(_ sender: Any?) {
-        ComicsDataManager.sharedInstance.clearCache()
+        ComicsDataManager.sharedInstance.clearFavorites()
     }
     
     override func commonInit() {
@@ -20,7 +20,7 @@ class ClearCacheTableViewCell: SettingTableViewCell {
     
     override func setupViews() {
         super.setupViews()
-        label!.text = "Clear App Cache"
+        label!.text = "Clear Favorites"
         
         if let clearButton = secondaryView as? XKCDButton {
             clearButton.setTitle("Clear", for: .normal)

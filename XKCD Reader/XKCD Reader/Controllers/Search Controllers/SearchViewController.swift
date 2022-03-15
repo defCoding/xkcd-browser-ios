@@ -45,6 +45,7 @@ class SearchViewController: ComicsTableViewController {
         searchBar.searchBarStyle = .minimal
         searchBar.searchTextField.backgroundColor = UIColor(named: "Marble")
         searchBar.searchTextField.font = UIFont(name: "xkcdScript", size: 18)
+        deepSearchSwitch.isOn = UserDefaults.standard.bool(forKey: "deepSearchDefault")
     }
 }
 

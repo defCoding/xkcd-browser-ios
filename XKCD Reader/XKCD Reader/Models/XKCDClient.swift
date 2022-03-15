@@ -10,19 +10,67 @@ import UIKit
 
 enum XKCDError: Error {
     case badURL
+    case imageNotFound
 }
 
 /// An XKCD Comic constructed from the JSON reply of an API response
-class XKCDComic: Codable {
+class XKCDComic: NSObject, NSCoding, Codable {
+    init(num: Int, month: String, day: String, year: String, title: String, transcript: String, alt: String, img: String, imgData: Data?) {
+        self.num = num
+        self.month = month
+        self.day = day
+        self.year = year
+        self.title = title
+        self.transcript = transcript
+        self.alt = alt
+        self.img = img
+        self.imgData = imgData
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(num, forKey: "num")
+        coder.encode(month, forKey: "month")
+        coder.encode(day, forKey: "day")
+        coder.encode(year, forKey: "year")
+        coder.encode(title, forKey: "title")
+        coder.encode(transcript, forKey: "transcript")
+        coder.encode(alt, forKey: "alt")
+        coder.encode(img, forKey: "img")
+    }
+    
+    required convenience init?(coder: NSCoder) {
+        let num = coder.decodeInteger(forKey: "num")
+        guard let month = coder.decodeObject(forKey: "month") as? String,
+              let day = coder.decodeObject(forKey: "day") as? String,
+              let year = coder.decodeObject(forKey: "year") as? String,
+              let title = coder.decodeObject(forKey: "title") as? String,
+              let transcript = coder.decodeObject(forKey: "transcript") as? String,
+              let alt = coder.decodeObject(forKey: "alt") as? String,
+              let img = coder.decodeObject(forKey: "img") as? String,
+              let imgData = coder.decodeObject(forKey: "imgData") as? Data else {
+                  return nil
+              }
+        
+        self.init(num: num,
+                  month: month,
+                  day: day,
+                  year: year,
+                  title: title,
+                  transcript: transcript,
+                  alt: alt,
+                  img: img,
+                  imgData: imgData)
+    }
+    
     let num: Int
     let month: String
     let day: String
     let year: String
     let title: String
-    let safeTitle: String
     let transcript: String
     let alt: String
     let img: String
+    var imgData: Data?
 }
 
 extension XKCDComic: Comparable {
@@ -35,16 +83,15 @@ extension XKCDComic: Comparable {
     }
 }
 
+/*
 extension XKCDComic: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(num)
     }
 }
+ */
 
 class XKCDClient {
-    static let comicCache = NSCache<NSNumber, XKCDComic>()
-    static let comicImageCache = NSCache<NSURL, UIImage>()
-    static var latestComicNum = 0
     /**
      Fetches an XKCD comic.
      
@@ -58,7 +105,7 @@ class XKCDClient {
         // If no comic number is provided, fetch the latest.
         if let num = num {
             // Look for cached comic to save on API calls.
-            if let cachedComic = comicCache.object(forKey: NSNumber(value: num)) {
+            if let cachedComic = ComicsDataManager.sharedInstance.comicsCache[num] {
                 DispatchQueue.main.async { completion(cachedComic, nil) }
                 return
             }
@@ -82,8 +129,14 @@ class XKCDClient {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let comic = try decoder.decode(XKCDComic.self, from: data)
-                comicCache.setObject(comic, forKey: NSNumber(value: comic.num))
-                DispatchQueue.main.async { completion(comic, nil) }
+                ComicsDataManager.sharedInstance.comicsCache[comic.num] = comic
+                fetchComicImage(comic: comic) { (imgData, error) in
+                    guard let imgData = imgData, error == nil else {
+                        DispatchQueue.main.async { completion(nil, XKCDError.imageNotFound) }
+                    }
+                    comic.imgData = imgData
+                    DispatchQueue.main.async { completion(comic, nil) }
+                }
             } catch (let err) {
                 DispatchQueue.main.async { completion(nil, err) }
             }
@@ -100,14 +153,14 @@ class XKCDClient {
      
      - Returns:                             Nothing
      */
-    static func fetchComicImage(comic: XKCDComic, completion: @escaping (UIImage?, Error?) -> Void) {
-        guard let url = NSURL(string: comic.img) else {
-            DispatchQueue.main.async { completion(nil, XKCDError.badURL) }
+    static func fetchComicImage(comic: XKCDComic, completion: @escaping (Data?, Error?) -> Void) {
+        if let cachedComicImageData = ComicsDataManager.sharedInstance.comicImagesCache[comic.num] {
+            DispatchQueue.main.async { completion(data, nil) }
             return
         }
         
-        if let cachedComicImage = comicImageCache.object(forKey: url) {
-            DispatchQueue.main.async { completion(cachedComicImage, nil) }
+        guard let url = NSURL(string: comic.img) else {
+            DispatchQueue.main.async { completion(nil, XKCDError.badURL) }
             return
         }
         
@@ -118,12 +171,8 @@ class XKCDClient {
             }
             
             
-            if let comicImage = UIImage(data: data) {
-                comicImageCache.setObject(comicImage, forKey: url)
-                DispatchQueue.main.async { completion(comicImage, nil) }
-            } else {
-                DispatchQueue.main.async { completion(nil, error) }
-            }
+            ComicsDataManager.sharedInstance.comicImagesCache[comic.num] = data
+            DispatchQueue.main.async { completion(data, nil) }
         }
         
         task.resume()
@@ -144,7 +193,7 @@ class XKCDClient {
         var comics: [XKCDComic] = []
         let comicsSemaphore = DispatchSemaphore(value: 1)
         
-        for comicNum in (1...latestComicNum).reversed() {
+        for comicNum in (1...ComicsDataManager.sharedInstance.latestComicNum).reversed() {
             group.enter()
             fetchComic(num: comicNum) { (comic, err) in
                 guard let comic = comic, err == nil else {
