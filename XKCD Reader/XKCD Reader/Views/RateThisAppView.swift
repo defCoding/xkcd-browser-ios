@@ -8,8 +8,12 @@
 import UIKit
 
 class RateThisAppView: UIView {
-    @IBAction func buttonPressed(_ sender: Any) {
+    @IBAction func openAppStore(_ sender: Any) {
         isHidden = true
-        UIApplication.shared.open(URL(string: "itms-app://apple.com")!)
+        UIApplication.shared.open(URL(string: "https://itunes.apple.com")!)
+    }
+    
+    @IBAction func maybeLater(_ sender: Any) {
+        isHidden = true
     }
 }

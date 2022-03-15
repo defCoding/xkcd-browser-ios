@@ -190,7 +190,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="108"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comic Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="SjZ-kj-SiQ" userLabel="Comic Title">
-                                        <rect key="frame" x="139" y="44.333333333333336" width="112.33333333333331" height="32.000000000000007"/>
+                                        <rect key="frame" x="139" y="44.666666666666664" width="112.33333333333331" height="31.666666666666664"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="nya-xj-whK"/>
                                         </constraints>
@@ -205,7 +205,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6R-mt-bPF" userLabel="Info Button">
-                                        <rect key="frame" x="225" y="72.666666666666671" width="45" height="31"/>
+                                        <rect key="frame" x="225" y="73" width="45.333333333333314" height="30.666666666666671"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system" title="">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -215,7 +215,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-wF-iem" userLabel="Shuffle Button">
-                                        <rect key="frame" x="7.9999999999999964" y="45" width="48.666666666666657" height="31"/>
+                                        <rect key="frame" x="7.9999999999999964" y="45.333333333333336" width="48.666666666666657" height="30.666666666666664"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="shuffle" catalog="system">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,7 +239,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgP-zG-V78" userLabel="Share Button">
-                                        <rect key="frame" x="337.66666666666669" y="45" width="44.333333333333314" height="31"/>
+                                        <rect key="frame" x="337.66666666666669" y="45.333333333333336" width="44.333333333333314" height="30.666666666666664"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -331,36 +331,70 @@
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mF5-fx-gsV">
-                                        <rect key="frame" x="91" y="152" width="128" height="42"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="DMt-1d-Nw9">
+                                        <rect key="frame" x="20.666666666666657" y="145" width="269" height="42"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" role="destructive" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mF5-fx-gsV">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="42"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="42" id="InP-Dh-nzL"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="nPc-zz-tZJ"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Go to App Store">
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="15" name="xkcdScript"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                                <buttonConfiguration key="configuration" style="plain" title="Go to App Store">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" name="Charcoal"/>
+                                                    </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="openAppStore:" destination="2fp-Rn-v4g" eventType="touchUpInside" id="xjr-4F-pRy"/>
+                                                    <action selector="openAppStore:" destination="Qyk-Xx-743" eventType="touchUpInside" id="z5r-4W-ZVl"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbn-A0-Zn6">
+                                                <rect key="frame" x="142" y="0.0" width="127" height="42"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Maybe Later">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" name="Charcoal"/>
+                                                    </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="maybeLater:" destination="2fp-Rn-v4g" eventType="touchUpInside" id="jgE-qE-QKz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="InP-Dh-nzL"/>
-                                            <constraint firstAttribute="width" constant="127.67" id="Iss-rk-NpA"/>
+                                            <constraint firstAttribute="height" constant="42" id="hkI-u1-dKz"/>
+                                            <constraint firstAttribute="width" constant="269" id="qBy-CB-TVZ"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Go to App Store">
-                                                    <attributes>
-                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="14" name="xkcdScript"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <color key="baseBackgroundColor" name="Charcoal"/>
-                                        </buttonConfiguration>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="Silver"/>
                                 <constraints>
-                                    <constraint firstItem="mF5-fx-gsV" firstAttribute="centerX" secondItem="2fp-Rn-v4g" secondAttribute="centerX" id="D2O-RL-3e5"/>
+                                    <constraint firstAttribute="bottom" secondItem="DMt-1d-Nw9" secondAttribute="bottom" constant="15" id="2rb-t7-oZn"/>
                                     <constraint firstAttribute="height" constant="202" id="DRZ-G4-nMg"/>
                                     <constraint firstItem="fQh-QD-bhw" firstAttribute="leading" secondItem="2fp-Rn-v4g" secondAttribute="leading" constant="8" id="Fxw-xi-9KU"/>
                                     <constraint firstAttribute="bottom" secondItem="fQh-QD-bhw" secondAttribute="bottom" constant="65" id="K0b-rD-6MV"/>
                                     <constraint firstAttribute="width" constant="310" id="N5V-TK-Eua"/>
                                     <constraint firstItem="fQh-QD-bhw" firstAttribute="top" secondItem="2fp-Rn-v4g" secondAttribute="top" constant="8" id="Q4h-pr-vT2"/>
-                                    <constraint firstAttribute="bottom" secondItem="mF5-fx-gsV" secondAttribute="bottom" constant="8" id="R2U-4H-1Of"/>
                                     <constraint firstAttribute="trailing" secondItem="fQh-QD-bhw" secondAttribute="trailing" constant="8" id="WEA-Hh-gIu"/>
+                                    <constraint firstItem="DMt-1d-Nw9" firstAttribute="centerX" secondItem="2fp-Rn-v4g" secondAttribute="centerX" id="xfg-xX-IeL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -393,6 +427,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S4h-tT-X6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Qyk-Xx-743" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="713.84615384615381" y="-1115.4028436018957"/>
         </scene>

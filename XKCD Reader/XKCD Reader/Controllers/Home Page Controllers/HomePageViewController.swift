@@ -145,7 +145,7 @@ class HomePageViewController: UIViewController {
      */
     private func setUpRatingNotification() {
         print(UserDefaults.standard.integer(forKey: "launchCount"))
-        ratingNotification.isHidden = UserDefaults.standard.integer(forKey: "launchCount") == 3
+        ratingNotification.isHidden = UserDefaults.standard.integer(forKey: "launchCount") != 3
     }
 }
 
