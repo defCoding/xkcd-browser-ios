@@ -20,7 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If disk caching is disabled, then clear disk cache and disable it.
         if (UserDefaults.standard.bool(forKey: "disableDiskCaching")) {
             ComicsDataManager.sharedInstance.disableDiskCaching()
+        } else {
+            ComicsDataManager.sharedInstance.enableDiskCaching()
         }
+        
+        // Keep track of how often user has launched app.
+        let launchCount = UserDefaults.standard.integer(forKey: "launchCount")
+        UserDefaults.standard.set(launchCount + 1, forKey: "launchCount")
         return true
     }
 

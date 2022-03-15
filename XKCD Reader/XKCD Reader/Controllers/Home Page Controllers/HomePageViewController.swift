@@ -8,6 +8,7 @@
 import UIKit
 
 class HomePageViewController: UIViewController {
+    @IBOutlet weak var ratingNotification: RateThisAppView!
     @IBOutlet weak var comicsContainer: UIView!
     @IBOutlet weak var comicTitleLabel: UILabel!
     @IBOutlet weak var comicNumberLabel: UILabel!
@@ -61,6 +62,7 @@ class HomePageViewController: UIViewController {
          */
         XKCDClient.fetchComic(num: nil) { (comic, err) -> Void in
             guard let comic = comic, err == nil else {
+                self.comicsPageVC.reloadComicsPageViewControllerList()
                 return
             }
             
@@ -69,6 +71,7 @@ class HomePageViewController: UIViewController {
             self.comicsPageVC.reloadComicsPageViewControllerList()
         }
     
+        setUpRatingNotification()
         setUpInfoView()
         setUpGestures()
     }
@@ -133,6 +136,16 @@ class HomePageViewController: UIViewController {
         comicInfo.layer.shadowOffset = CGSize(width: 6, height: 6)
         comicInfo.layer.shadowRadius = 4
         comicInfo.layer.shadowPath = UIBezierPath(rect: comicInfo.bounds).cgPath
+    }
+   
+    /**
+     Hides/displays rating notification depending on how often app has been launched.
+     
+     - Returns:                     Nothing
+     */
+    private func setUpRatingNotification() {
+        print(UserDefaults.standard.integer(forKey: "launchCount"))
+        ratingNotification.isHidden = UserDefaults.standard.integer(forKey: "launchCount") == 3
     }
 }
 

@@ -10,7 +10,11 @@ import UIKit
 class CacheToggleTableViewCell: SettingTableViewCell {
     @objc func switchToggled(_ sender: XKCDSwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "disableDiskCaching")
-        ComicsDataManager.sharedInstance.disableDiskCaching()
+        if sender.isOn {
+            ComicsDataManager.sharedInstance.disableDiskCaching()
+        } else {
+            ComicsDataManager.sharedInstance.enableDiskCaching()
+        }
     }
     
     override func commonInit() {

@@ -100,8 +100,8 @@ class ComicsPageViewController: UIPageViewController {
 extension ComicsPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let currentComicView = viewController as! ComicViewController
-        // There is no previous comic if current comic is comic #1
-        if currentComicView.num == 1 {
+        // There is no previous comic if current comic is comic #1 or we don't currently have a comic
+        guard let _ = currentComicView.comic, currentComicView.num > 1 else {
             return nil
         }
         return getUnusedComicViewController(comicNum: currentComicView.num - 1)
@@ -109,8 +109,8 @@ extension ComicsPageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let currentComicView = viewController as! ComicViewController
-        // There is no next comic if we are on the latest comic
-        if currentComicView.num == ComicsDataManager.sharedInstance.latestComicNum {
+        // There is no next comic if we are on the latest comic or we don't currently have a comic
+        guard let _ = currentComicView.comic, currentComicView.num != ComicsDataManager.sharedInstance.latestComicNum else {
             return nil
         }
         return getUnusedComicViewController(comicNum: currentComicView.num + 1)

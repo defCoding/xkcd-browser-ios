@@ -20,7 +20,6 @@ class ComicsDataManager {
         return _favorites
     }
     var comicsCache: TwoTierCache<XKCDComic>
-    var comicImagesCache: TwoTierCache<Data>
     var latestComicNum: Int {
         didSet {
             UserDefaults.standard.set(latestComicNum, forKey: "latestComicNum")
@@ -31,7 +30,6 @@ class ComicsDataManager {
         favoritesModified = false
         let saveToDisk = !UserDefaults.standard.bool(forKey: "disableDiskCaching")
         comicsCache = TwoTierCache<XKCDComic>(useFileSystem: saveToDisk, cacheDir: "comics")
-        comicImagesCache = TwoTierCache<Data>(useFileSystem: saveToDisk, cacheDir: "comicImages")
         latestComicNum = UserDefaults.standard.integer(forKey: "latestComicNum")
         // https://cocoacasts.com/ud-5-how-to-store-a-custom-object-in-user-defaults-in-swift
         if let data = UserDefaults.standard.data(forKey: "favorites") {
@@ -134,7 +132,6 @@ class ComicsDataManager {
      */
     func clearCache() {
         comicsCache.clearCache()
-        comicImagesCache.clearCache()
     }
    
     /**
@@ -144,18 +141,27 @@ class ComicsDataManager {
     */
     func disableDiskCaching() {
         comicsCache.disableDiskCaching()
-        comicImagesCache.disableDiskCaching()
+    }
+   
+    /**
+     Enables disk caching.
+     - Returns:             Nothing
+     */
+    func enableDiskCaching() {
+        comicsCache.enableDiskCaching()
     }
 }
 
 // https://agostini.tech/2017/06/05/two-tier-caching-with-nscache/
-public class TwoTierCache<T> {
+class TwoTierCache<T: NSObject & NSCoding> {
     private var primaryCache: RAMCache
     private var secondaryCache: FileCache?
+    private var cacheDir: String?
     
     init(useFileSystem: Bool, cacheDir: String?) {
         primaryCache = RAMCache()
         if let cacheDir = cacheDir {
+            self.cacheDir = cacheDir
             if useFileSystem {
                 secondaryCache = FileCache(cacheDir: cacheDir)
             }
@@ -175,7 +181,7 @@ public class TwoTierCache<T> {
             }
             
             do {
-                return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data!) as? T
+                return try NSKeyedUnarchiver.unarchivedObject(ofClass: T.self, from: data!)
             } catch (let err) {
                 print("Error, could not convert data into object: \(err)")
                 return nil
@@ -205,6 +211,12 @@ public class TwoTierCache<T> {
         secondaryCache?.clearCache()
         secondaryCache = nil
     }
+    
+    func enableDiskCaching() {
+        if let cacheDir = cacheDir, secondaryCache == nil {
+            secondaryCache = FileCache(cacheDir: cacheDir)
+        }
+    }
 }
 
 private class RAMCache {
@@ -233,32 +245,6 @@ private class RAMCache {
 
 private class FileCache {
     private let cachePath: String
-    private lazy var cacheDir: URL? = {
-        var cacheDir: URL? = nil
-        do {
-            cacheDir = try FileManager
-                .default
-                .url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                .appendingPathComponent(cachePath, isDirectory: true)
-        } catch (let err) {
-            print("Error generating cache directory URL: \(err)")
-            return nil
-        }
-        
-        guard let cacheDir = cacheDir else {
-            return cacheDir
-        }
-        
-        do {
-            try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true, attributes: nil)
-        } catch (let err) {
-            print("Error creating cache directory: \(err)")
-            return nil
-        }
-        
-        return cacheDir
-    }()
-    
     
     init(cacheDir: String) {
         cachePath = cacheDir
@@ -268,7 +254,7 @@ private class FileCache {
         guard let path = fileURL(key: key) else {
             return nil
         }
-        
+       
         return try? Data(contentsOf: path)
     }
     
@@ -289,7 +275,7 @@ private class FileCache {
     }
     
     func clearCache() {
-        guard let cacheDir = cacheDir else {
+        guard let cacheDir = getCacheDir() else {
             return
         }
         
@@ -301,10 +287,36 @@ private class FileCache {
     }
     
     private func fileURL(key: Int) -> URL? {
-        guard let cacheDir = cacheDir else {
+        guard let cacheDir = getCacheDir() else {
             return nil
         }
         
         return cacheDir.appendingPathComponent(String(key))
+    }
+    
+    private func getCacheDir() -> URL? {
+        var cacheDir: URL? = nil
+        do {
+            cacheDir = try FileManager
+                .default
+                .url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingPathComponent(cachePath, isDirectory: true)
+        } catch (let err) {
+            print("Error generating cache directory URL: \(err)")
+            return nil
+        }
+        
+        guard let cacheDir = cacheDir else {
+            return nil
+        }
+        
+        do {
+            try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true, attributes: nil)
+        } catch (let err) {
+            print("Error creating cache directory: \(err)")
+            return nil
+        }
+        
+        return cacheDir
     }
 }

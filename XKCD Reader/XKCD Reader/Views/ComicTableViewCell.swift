@@ -25,8 +25,8 @@ class ComicTableViewCell: UITableViewCell {
         self.comic = comic
         comicTitleLabel.text = comic.title
         comicNumberLabel.text = "#\(comic.num)"
-        XKCDClient.fetchComicImage(comic: comic) { (img, err) in
-            self.comicPreviewImage.image = img
+        if let imgData = comic.imgData {
+            self.comicPreviewImage.image = UIImage(data: imgData)
         }
         updateFavoritesButtonColor(favorited: ComicsDataManager.sharedInstance.isFavorite(comic: comic))
     }

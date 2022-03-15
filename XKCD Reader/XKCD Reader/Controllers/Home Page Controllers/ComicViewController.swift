@@ -34,22 +34,14 @@ class ComicViewController: UIViewController {
                     return
                 }
                 self.comic = comic
+                if let imgData = comic.imgData {
+                    self.comicImageView.image = UIImage(data: imgData)
+                }
                 self.delegate?.comicViewController(self, comicUpdated: comic)
             }
         }
     }
-    var comic: XKCDComic? = nil {
-        didSet {
-            if let comic = comic {
-                XKCDClient.fetchComicImage(comic: comic) { (image, err) -> Void in
-                    guard let image = image, err == nil else {
-                        return
-                    }
-                    self.comicImageView?.image = image
-                }
-            }
-        }
-    }
+    var comic: XKCDComic?
 
     override func viewDidLoad() {
         super.viewDidLoad()

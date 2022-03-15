@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JiN-Tq-2Xa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JiN-Tq-2Xa">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="108"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a comic" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqw-Q4-jtl">
-                                        <rect key="frame" x="8" y="49" width="310" height="51"/>
+                                        <rect key="frame" x="8" y="49" width="309.66666666666669" height="51"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -321,10 +321,53 @@
                                     <outlet property="dateLabel" destination="Mz0-bH-Gdm" id="6s7-jo-BCc"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Rn-v4g" customClass="RateThisAppView" customModule="XKCD_Reader" customModuleProvider="target">
+                                <rect key="frame" x="40" y="279.66666666666669" width="310" height="202"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="If you're enjoying the XKCD Reader, it would help a lot if you could leave a review for us on the App Store!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fQh-QD-bhw" customClass="Rate">
+                                        <rect key="frame" x="8" y="8" width="294" height="129"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mF5-fx-gsV">
+                                        <rect key="frame" x="91" y="152" width="128" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="InP-Dh-nzL"/>
+                                            <constraint firstAttribute="width" constant="127.67" id="Iss-rk-NpA"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Go to App Store">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="14" name="xkcdScript"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="baseBackgroundColor" name="Charcoal"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Silver"/>
+                                <constraints>
+                                    <constraint firstItem="mF5-fx-gsV" firstAttribute="centerX" secondItem="2fp-Rn-v4g" secondAttribute="centerX" id="D2O-RL-3e5"/>
+                                    <constraint firstAttribute="height" constant="202" id="DRZ-G4-nMg"/>
+                                    <constraint firstItem="fQh-QD-bhw" firstAttribute="leading" secondItem="2fp-Rn-v4g" secondAttribute="leading" constant="8" id="Fxw-xi-9KU"/>
+                                    <constraint firstAttribute="bottom" secondItem="fQh-QD-bhw" secondAttribute="bottom" constant="65" id="K0b-rD-6MV"/>
+                                    <constraint firstAttribute="width" constant="310" id="N5V-TK-Eua"/>
+                                    <constraint firstItem="fQh-QD-bhw" firstAttribute="top" secondItem="2fp-Rn-v4g" secondAttribute="top" constant="8" id="Q4h-pr-vT2"/>
+                                    <constraint firstAttribute="bottom" secondItem="mF5-fx-gsV" secondAttribute="bottom" constant="8" id="R2U-4H-1Of"/>
+                                    <constraint firstAttribute="trailing" secondItem="fQh-QD-bhw" secondAttribute="trailing" constant="8" id="WEA-Hh-gIu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IoD-9T-uN9"/>
                         <color key="backgroundColor" name="Silver"/>
                         <constraints>
+                            <constraint firstItem="2fp-Rn-v4g" firstAttribute="centerX" secondItem="Brx-Bk-zfr" secondAttribute="centerX" id="3he-NG-iaL"/>
                             <constraint firstItem="87a-Fp-hCI" firstAttribute="leading" secondItem="IoD-9T-uN9" secondAttribute="leading" constant="8" id="6Ci-PA-hTs"/>
                             <constraint firstItem="yi7-5K-8DJ" firstAttribute="leading" secondItem="Brx-Bk-zfr" secondAttribute="leading" id="7DP-3G-nAs"/>
                             <constraint firstItem="87a-Fp-hCI" firstAttribute="trailing" secondItem="IoD-9T-uN9" secondAttribute="trailing" constant="-8" id="Fzk-ob-Fxx"/>
@@ -332,6 +375,7 @@
                             <constraint firstItem="yi7-5K-8DJ" firstAttribute="trailing" secondItem="Brx-Bk-zfr" secondAttribute="trailing" id="I3c-c3-2ka"/>
                             <constraint firstItem="IoD-9T-uN9" firstAttribute="bottom" secondItem="87a-Fp-hCI" secondAttribute="bottom" constant="60" id="PvE-gg-to3"/>
                             <constraint firstItem="yi7-5K-8DJ" firstAttribute="top" secondItem="Brx-Bk-zfr" secondAttribute="top" id="RxV-wx-Md2"/>
+                            <constraint firstItem="2fp-Rn-v4g" firstAttribute="centerY" secondItem="Brx-Bk-zfr" secondAttribute="centerY" id="UEh-5R-zm4"/>
                             <constraint firstItem="Ppf-tP-EaZ" firstAttribute="centerY" secondItem="Brx-Bk-zfr" secondAttribute="centerY" id="VoP-GA-PrH"/>
                             <constraint firstItem="87a-Fp-hCI" firstAttribute="top" secondItem="yi7-5K-8DJ" secondAttribute="bottom" constant="20" id="WpH-bq-n6m"/>
                             <constraint firstItem="IoD-9T-uN9" firstAttribute="top" secondItem="yi7-5K-8DJ" secondAttribute="bottom" constant="-64" id="hVX-So-9Uq"/>
@@ -345,11 +389,12 @@
                         <outlet property="comicTitleLabel" destination="SjZ-kj-SiQ" id="3oU-qG-NUv"/>
                         <outlet property="comicsContainer" destination="87a-Fp-hCI" id="loT-Np-Lw2"/>
                         <outlet property="favoriteButton" destination="Yn3-nC-H8j" id="wFb-JM-m4f"/>
+                        <outlet property="ratingNotification" destination="2fp-Rn-v4g" id="VeV-G8-g2k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S4h-tT-X6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="714" y="-1115"/>
+            <point key="canvasLocation" x="713.84615384615381" y="-1115.4028436018957"/>
         </scene>
         <!--Comic Page View Controller-->
         <scene sceneID="MeC-EY-Z1s">
