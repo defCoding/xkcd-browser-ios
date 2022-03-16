@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A1B6B8E27E1B45700CB3016 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B6B8D27E1B45700CB3016 /* SplashScreenView.swift */; };
+		0A1B6B9027E1C32A00CB3016 /* PopUpWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B6B8F27E1C32A00CB3016 /* PopUpWarningView.swift */; };
 		0A4878A927DC0F4000E9DB81 /* xkcd-script.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4878A827DC0F4000E9DB81 /* xkcd-script.ttf */; };
 		0A4878AB27DC151700E9DB81 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878AA27DC151700E9DB81 /* HomePageViewController.swift */; };
 		0A4878AE27DC159400E9DB81 /* ComicsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878AD27DC159400E9DB81 /* ComicsPageViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		0A1B6B8D27E1B45700CB3016 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		0A1B6B8F27E1C32A00CB3016 /* PopUpWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWarningView.swift; sourceTree = "<group>"; };
 		0A4878A827DC0F4000E9DB81 /* xkcd-script.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "xkcd-script.ttf"; sourceTree = "<group>"; };
 		0A4878AA27DC151700E9DB81 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		0A4878AD27DC159400E9DB81 /* ComicsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsPageViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				0A6A260327E0846E00CC359A /* RateThisAppView.swift */,
 				0A52AFC827E177250010173B /* ComicsCacheLoadView.swift */,
 				0A1B6B8D27E1B45700CB3016 /* SplashScreenView.swift */,
+				0A1B6B8F27E1C32A00CB3016 /* PopUpWarningView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				0A1B6B8E27E1B45700CB3016 /* SplashScreenView.swift in Sources */,
 				0A4878AB27DC151700E9DB81 /* HomePageViewController.swift in Sources */,
 				0A6A25FA27E01B7200CC359A /* XKCDButton.swift in Sources */,
+				0A1B6B9027E1C32A00CB3016 /* PopUpWarningView.swift in Sources */,
 				0A9F8ACF27DBFF540065A512 /* SceneDelegate.swift in Sources */,
 				0A4BBFF327DD54EA001C9BB7 /* ComicsDataManager.swift in Sources */,
 				0A6A25ED27DFE7DC00CC359A /* SearchSettingTableViewCell.swift in Sources */,

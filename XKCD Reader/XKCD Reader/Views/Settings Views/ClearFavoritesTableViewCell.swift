@@ -10,7 +10,15 @@ import UIKit
 /// Clearing favorites table cell
 class ClearFavoritesTableViewCell: SettingTableViewCell {
     @objc func clearClicked(_ sender: Any?) {
-        ComicsDataManager.sharedInstance.clearFavorites()
+        // Fetch settings table view and place in center of that
+        guard let superview = superview?.superview else {
+            return
+        }
+       
+        let warningPopup = PopUpWarningView(text: "This will clear all favorited comics. Are you sure you want to continue?") {
+            ComicsDataManager.sharedInstance.clearFavorites()
+        }
+        superview.addSubview(warningPopup)
     }
     
     override func commonInit() {

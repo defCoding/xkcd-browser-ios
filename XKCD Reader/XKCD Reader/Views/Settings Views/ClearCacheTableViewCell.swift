@@ -10,7 +10,15 @@ import UIKit
 /// Clearing cache table cell
 class ClearCacheTableViewCell: SettingTableViewCell {
     @objc func clearClicked(_ sender: Any?) {
-        ComicsDataManager.sharedInstance.clearCache()
+        // Fetch settings table view and place in center of that
+        guard let superview = superview?.superview else {
+            return
+        }
+       
+        let warningPopup = PopUpWarningView(text: "This will clear all cached comics. Are you sure you want to continue?") {
+            ComicsDataManager.sharedInstance.clearCache()
+        }
+        superview.addSubview(warningPopup)
     }
     
     override func commonInit() {
