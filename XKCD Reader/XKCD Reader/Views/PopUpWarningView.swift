@@ -10,6 +10,7 @@ import UIKit
 /// Pop up warning view with custom text and action
 class PopUpWarningView: UIView {
     var warningText: String?
+    var fontSize: CGFloat = 20
     var onOk: () -> Void?
     var onCancel: (() -> Void)?
     
@@ -29,8 +30,9 @@ class PopUpWarningView: UIView {
         fatalError("init(coder:) was not implemented")
     }
     
-    init(text: String, onOk: @escaping () -> Void, onCancel: (() -> Void)? = nil) {
+    init(text: String, onOk: @escaping () -> Void, onCancel: (() -> Void)? = nil, fontSize: CGFloat = 20) {
         self.warningText = text
+        self.fontSize = fontSize
         self.onOk = onOk
         self.onCancel = onCancel
         super.init(frame: CGRect(x: 0, y: 0, width: 310, height: 202))
@@ -63,7 +65,9 @@ class PopUpWarningView: UIView {
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = .byWordWrapping
         textLabel.text = self.warningText
-        textLabel.font = UIFont(name: "xkcdScript", size: 20)
+        textLabel.textColor = .black
+        textLabel.font = UIFont(name: "xkcdScript", size: fontSize)
+        
         addSubview(textLabel)
         
         NSLayoutConstraint.activate([

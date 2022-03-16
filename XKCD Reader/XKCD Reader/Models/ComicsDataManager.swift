@@ -14,7 +14,7 @@ class ComicsDataManager {
     private var favoritesTree: BinTree<XKCDComic>
     private var _favorites: [XKCDComic]
     var favorites: [XKCDComic] {
-        if (favoritesModified) {
+        if favoritesModified {
             _favorites = favoritesTree.reverseOrderTraversal()
             favoritesModified = false
         }

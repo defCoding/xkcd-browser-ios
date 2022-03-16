@@ -111,7 +111,7 @@ private class TreeNode<T: Comparable> {
      - Parameter value:            The value to insert
      */
     func insert(value newData: T) {
-        if (newData > self.data) {
+        if newData > self.data {
             guard let right = self.right else {
                 self.right = TreeNode<T>(data: newData)
                 return
@@ -134,9 +134,9 @@ private class TreeNode<T: Comparable> {
      - Returns:                 Returns the new tree after the node was removed
      */
     func delete(value toRemove: T) -> TreeNode<T>? {
-        if (toRemove > self.data) {
+        if toRemove > self.data {
             self.right = self.right?.delete(value: toRemove)
-        } else if (toRemove < self.data) {
+        } else if toRemove < self.data {
             self.left = self.left?.delete(value: toRemove)
         } else {
             guard let left = self.left else {
@@ -158,9 +158,9 @@ private class TreeNode<T: Comparable> {
      - Returns:                 True if the value exists, false otherwise
      */
     func contains(value: T) -> Bool {
-        if (value > self.data) {
+        if value > self.data {
             return self.right != nil && self.right!.contains(value: value)
-        } else if (value < self.data) {
+        } else if value < self.data {
             return self.left != nil && self.left!.contains(value: value)
         } else {
             return true

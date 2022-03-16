@@ -37,11 +37,11 @@ class MainTabBarViewController: UITabBarController {
             homepageVC.currentComic = comic
             homepageVC.reloadComics()
        
-            let progressView = ComicsCacheLoadView()
-            self.view.addSubview(progressView)
-            progressView.center = self.view.center
-            progressView.isHidden = false
             if cacheAll {
+                let progressView = ComicsCacheLoadView()
+                self.view.addSubview(progressView)
+                progressView.center = self.view.center
+                progressView.isHidden = false
                 XKCDClient.cacheAllComicsToDisk(progress: { progress in
                     progressView.progressBar.progress = progress
                 }, completion: {

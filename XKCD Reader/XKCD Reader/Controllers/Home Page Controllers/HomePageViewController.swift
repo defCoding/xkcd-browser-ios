@@ -148,7 +148,7 @@ extension HomePageViewController: UIGestureRecognizerDelegate {
     /// Handles a tap and hides the info screen accordingly
     @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         // Hide comic info if info is visible and touch is outside of info
-        if (!comicInfo.isHidden) {
+        if !comicInfo.isHidden {
             let tapLocation = gestureRecognizer.location(in: comicInfo)
             if !comicInfo.bounds.contains(tapLocation) {
                 toggleInfoView()

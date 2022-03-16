@@ -224,7 +224,7 @@ class XKCDClient {
                 var basicMatch = comic.title.range(of: query, options: options) != nil
                 basicMatch = basicMatch || String(comic.num) == query
                 var indepthMatch = false
-                if (deepSearch) {
+                if deepSearch {
                     indepthMatch = comic.alt.range(of: query, options: options) != nil
                     indepthMatch = indepthMatch || comic.transcript.range(of: query, options: options) != nil
                 }

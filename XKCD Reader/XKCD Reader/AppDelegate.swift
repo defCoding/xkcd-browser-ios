@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: appDefaults)
         
         // If disk caching is disabled, then clear disk cache and disable it.
-        if (UserDefaults.standard.bool(forKey: "disableDiskCaching")) {
+        if UserDefaults.standard.bool(forKey: "disableDiskCaching") {
             ComicsDataManager.sharedInstance.disableDiskCaching()
         } else {
             ComicsDataManager.sharedInstance.enableDiskCaching()

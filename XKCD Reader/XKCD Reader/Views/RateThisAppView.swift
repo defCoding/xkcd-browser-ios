@@ -52,6 +52,7 @@ class RateThisAppView: UIView {
         textLabel.lineBreakMode = .byWordWrapping
         textLabel.text = "If you're enjoying the XKCD Reader, it would help a lot if you could leave a review for us on the App Store!"
         textLabel.font = UIFont(name: "xkcdScript", size: 18)
+        textLabel.textColor = .black
         addSubview(textLabel)
         
         NSLayoutConstraint.activate([

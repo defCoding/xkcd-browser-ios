@@ -137,7 +137,7 @@ extension SettingsViewController: UIGestureRecognizerDelegate {
     /// Handles the tap and hides the help screen accordingly
     @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         // Hide help screen if screen is visible and touch is outside of help screen
-        if (!helpView.isHidden) {
+        if !helpView.isHidden {
             let tapLocation = gestureRecognizer.location(in: helpView)
             if !helpView.bounds.contains(tapLocation) {
                 helpView.isHidden = true

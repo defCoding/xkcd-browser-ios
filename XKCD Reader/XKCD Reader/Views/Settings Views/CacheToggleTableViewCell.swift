@@ -12,7 +12,19 @@ class CacheToggleTableViewCell: SettingTableViewCell {
     @objc func switchToggled(_ sender: XKCDSwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "disableDiskCaching")
         if sender.isOn {
-            ComicsDataManager.sharedInstance.disableDiskCaching()
+            // Fetch settings table view and place in center of that
+            guard let superview = superview?.superview else {
+                return
+            }
+            
+            let warningPopup = PopUpWarningView(text: "This will clear all cached comics and prevent comics from being cached to disk. You will not be able to browse comics offline. Are you sure you want to continue?", onOk: {
+                ComicsDataManager.sharedInstance.disableDiskCaching()
+            }, onCancel: {
+                if let cacheSwitch = self.secondaryView as? XKCDSwitch {
+                    cacheSwitch.setOn(false, animated: true)
+                }
+            }, fontSize: 16)
+            superview.addSubview(warningPopup)
         } else {
             ComicsDataManager.sharedInstance.enableDiskCaching()
         }

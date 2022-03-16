@@ -86,7 +86,7 @@ extension ComicViewController: UIGestureRecognizerDelegate {
         }
         let favorited = ComicsDataManager.sharedInstance.toggleFavorite(comic: comic)
         self.delegate?.comicViewController(self, comicUpdated: comic)
-        if (favorited) {
+        if favorited {
             doHeartAnimation()
         }
     }
