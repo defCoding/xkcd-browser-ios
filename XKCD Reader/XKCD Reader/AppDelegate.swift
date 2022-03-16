@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         // Save initial launch date
         if launchCount == 1 {
-            print(NSDate.now)
             UserDefaults.standard.set(NSDate.now, forKey:"Initial Launch")
         }
         return true
