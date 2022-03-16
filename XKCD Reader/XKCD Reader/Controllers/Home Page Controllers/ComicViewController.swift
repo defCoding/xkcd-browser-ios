@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 
+/// Delegate that listens for when a ComicViewController's comic has been updated
 protocol ComicViewControllerDelegate {
     /**
      Event call when a comic in this view has loaded or updated
@@ -18,6 +19,7 @@ protocol ComicViewControllerDelegate {
     func comicViewController(_ viewController: ComicViewController, comicUpdated comic: XKCDComic)
 }
 
+/// View controller for fully displaying a comic
 class ComicViewController: UIViewController {
     @IBOutlet weak var comicImageView: PanZoomImageView!
     var delegate: ComicViewControllerDelegate?
@@ -68,6 +70,7 @@ class ComicViewController: UIViewController {
 }
 
 extension ComicViewController: UIGestureRecognizerDelegate {
+    /// Sets up the double tap gesture for the controller
     func setupGestures() {
         let doubleTapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(handleDoubleTap(_:)))
@@ -75,7 +78,8 @@ extension ComicViewController: UIGestureRecognizerDelegate {
         doubleTapGesture.delegate = self
         self.view.addGestureRecognizer(doubleTapGesture)
     }
-    
+   
+    /// Handles the double tap gesture and checks if it is on a comic
     @objc func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         // Favorite comic if double tap is in comic bounds.
         let location = gestureRecognizer.location(in: comicImageView.imageView)

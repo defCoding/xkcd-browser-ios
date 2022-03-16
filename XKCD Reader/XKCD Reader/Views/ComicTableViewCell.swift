@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Table Cell for displaying comics in a table
 class ComicTableViewCell: UITableViewCell {
     @IBOutlet weak var comicPreviewImage: UIImageView!
     @IBOutlet weak var comicTitleLabel: UILabel!

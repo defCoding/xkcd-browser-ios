@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Delegate that listens for when the currently presented comic has been updated
 protocol ComicsPageViewControllerDelegate {
     /**
      Called whenever the current ComicViewController being displayed has its comic loaded. Used for when there is a programmatic change to a new page, where
@@ -18,6 +19,7 @@ protocol ComicsPageViewControllerDelegate {
     func comicsPageViewControllerDelegate(_ viewController: ComicsPageViewController, currentComicUpdated comic: XKCDComic)
 }
 
+/// View Controller for displaying comics in a side-by-side scrollable fashion
 class ComicsPageViewController: UIPageViewController {
     var comicsPageViewControllerSet = Set<ComicViewController>()
     var comicDelegate: ComicsPageViewControllerDelegate?
@@ -115,11 +117,18 @@ extension ComicsPageViewController: UIPageViewControllerDataSource {
 
 
 extension ComicsPageViewController: ComicViewControllerDelegate {
+    /**
+     Event handler for when one of the comic view controllers has loaded a comic
+     
+     - Parameter viewController:                    The ComicViewController holding the comic
+     - Parameter currentComicUpdated:               The comic that was loaded
+     */
     func comicViewController(_ viewController: ComicViewController, comicUpdated comic: XKCDComic) {
         guard let viewControllers = self.viewControllers else {
             return
         }
-        
+       
+        // Only pass the event to the homepage if the current comic displayed is the one that loaded.
         let currentComicView = viewControllers[0] as! ComicViewController
         if currentComicView.num == comic.num {
             comicDelegate?.comicsPageViewControllerDelegate(self, currentComicUpdated: comic)

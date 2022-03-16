@@ -89,14 +89,7 @@ extension XKCDComic: Comparable {
     }
 }
 
-/*
-extension XKCDComic: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(num)
-    }
-}
- */
-
+/// An XKCDClient for fetching comic data.
 class XKCDClient {
     /**
      Fetches an XKCD comic.
@@ -104,13 +97,13 @@ class XKCDClient {
      - Parameter num:                       The number of the comic to fetch (fetches the most recent one if none is provided)
      - Parameter completion:                The callback function for when the comic is fetched
      */
-    static func fetchComic(num: Int?, completion: @escaping (XKCDComic?, Error?) -> Void) {
+    static func fetchComic(num: Int?, completion: ((XKCDComic?, Error?) -> Void)? = nil) {
         var url : NSURL? = nil
         // If no comic number is provided, fetch the latest.
         if let num = num {
             // Look for cached comic to save on API calls.
             if let cachedComic = ComicsDataManager.sharedInstance.comicsCache[num] {
-                DispatchQueue.main.async { completion(cachedComic, nil) }
+                DispatchQueue.main.async { completion?(cachedComic, nil) }
                 return
             }
             url = NSURL(string: "https://xkcd.com/\(num)/info.0.json")
@@ -119,13 +112,14 @@ class XKCDClient {
         }
         
         guard let url = url else {
-            DispatchQueue.main.async { completion(nil, XKCDError.badURL) }
+            DispatchQueue.main.async { completion?(nil, XKCDError.badURL) }
             return
         }
-        
+       
+        print("DEBUG -- fetching comic from \(url)")
         let task = URLSession.shared.dataTask(with: url as URL) { (data, response, error) -> Void in
             guard let data = data, error == nil else {
-                DispatchQueue.main.async { completion(nil, error) }
+                DispatchQueue.main.async { completion?(nil, error) }
                 return
             }
             
@@ -135,15 +129,15 @@ class XKCDClient {
                 let comic = try decoder.decode(XKCDComic.self, from: data)
                 fetchComicImage(comic: comic) { (imgData, error) in
                     guard let imgData = imgData, error == nil else {
-                        DispatchQueue.main.async { completion(nil, XKCDError.imageNotFound) }
+                        DispatchQueue.main.async { completion?(nil, XKCDError.imageNotFound) }
                         return
                     }
                     comic.imgData = imgData
                     ComicsDataManager.sharedInstance.comicsCache[comic.num] = comic
-                    DispatchQueue.main.async { completion(comic, nil) }
+                    DispatchQueue.main.async { completion?(comic, nil) }
                 }
             } catch (let err) {
-                DispatchQueue.main.async { completion(nil, err) }
+                DispatchQueue.main.async { completion?(nil, err) }
             }
         }
     
@@ -162,6 +156,7 @@ class XKCDClient {
             return
         }
         
+        print("DEBUG -- fetching comic image from \(url)")
         let task = URLSession.shared.dataTask(with: url as URL) { (data, response, error) -> Void in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(nil, error) }
@@ -172,6 +167,33 @@ class XKCDClient {
         }
         
         task.resume()
+    }
+   
+    /**
+     Caches all the comics to disk
+     
+     - Parameter progress:                  Callback function as progress gets updated
+     - Parameter completion:                Callback function when all comics are cached
+     */
+    static func cacheAllComicsToDisk(progress: ((Float) -> Void?)? = nil, completion: (() -> Void)? = nil) {
+        let group = DispatchGroup()
+        var totalCached: Double = 0
+        let totalSemaphore = DispatchSemaphore(value: 1)
+        
+        for comicNum in (1...ComicsDataManager.sharedInstance.latestComicNum).reversed() {
+            group.enter()
+            fetchComic(num: comicNum) { (_, _) in
+                totalSemaphore.wait()
+                totalCached += 1
+                progress?(Float(totalCached / Double(ComicsDataManager.sharedInstance.latestComicNum)))
+                totalSemaphore.signal()
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion?()
+        }
     }
    
     /**

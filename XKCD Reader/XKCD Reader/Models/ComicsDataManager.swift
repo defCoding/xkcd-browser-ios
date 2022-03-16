@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The singleton data manager containing the cached comics and the favorited comics
 class ComicsDataManager {
     static let sharedInstance = ComicsDataManager()
     private var favoritesModified: Bool
@@ -40,16 +41,14 @@ class ComicsDataManager {
                 _favorites = favoritesTree.reverseOrderTraversal()
                 return
             } catch (let err) {
-                print("Error loading favorites: \(err)")
+                print("ERROR -- could not load favorites: \(err)")
             }
         }
         favoritesTree = BinTree<XKCDComic>()
         _favorites = []
     }
    
-    /**
-     Saves the favorited comics to UserDefaults.
-     */
+    /// Saves the favorited comics to UserDefaults.
     func saveFavorites() {
         // https://cocoacasts.com/ud-5-how-to-store-a-custom-object-in-user-defaults-in-swift
         do {
@@ -57,7 +56,7 @@ class ComicsDataManager {
             let data = try encoder.encode(favorites)
             UserDefaults.standard.set(data, forKey: "favorites")
         } catch (let err) {
-            print("Error saving favorites: \(err)")
+            print("ERROR -- could not save favorites: \(err)")
         }
     }
    
@@ -134,83 +133,102 @@ class ComicsDataManager {
 }
 
 // https://agostini.tech/2017/06/05/two-tier-caching-with-nscache/
+/// A TwoTierCache that caches both in memory and into disk (optional)
 class TwoTierCache<T: NSObject & NSCoding> {
-    private var primaryCache: RAMCache
-    private var secondaryCache: FileCache?
     private var cacheDir: String?
+    var ramCache: RAMCache
+    var diskCache: FileCache?
     
     init(useFileSystem: Bool, cacheDir: String?) {
-        primaryCache = RAMCache()
+        ramCache = RAMCache()
         if let cacheDir = cacheDir {
             self.cacheDir = cacheDir
             if useFileSystem {
-                secondaryCache = FileCache(cacheDir: cacheDir)
+                diskCache = FileCache(cacheDir: cacheDir)
             }
         }
     }
     
     subscript(key: Int) -> T? {
         get {
-            var data = primaryCache.load(key: key)
+            var data = ramCache.load(key: key)
             
             if data == nil {
-                guard let fileResult = secondaryCache?.load(key: key) else {
+                guard let fileResult = diskCache?.load(key: key) else {
                     return nil
                 }
-                primaryCache.save(key: key, value: fileResult)
+                ramCache.save(key: key, value: fileResult)
                 data = fileResult
+            } else {
+                print("DEBUG -- fetched comic #\(key) from memory cache")
             }
             
             do {
                 return try NSKeyedUnarchiver.unarchivedObject(ofClass: T.self, from: data!)
             } catch (let err) {
-                print("Error, could not convert data into object: \(err)")
+                print("ERROR -- could not convert data into object: \(err)")
                 return nil
             }
         }
         
         set {
             guard let comic = newValue as T? else {
-                print("Saving wrong type to cache.")
+                print("ERROR -- saving wrong type to cache.")
                 return
             }
             do {
-                primaryCache.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
-                secondaryCache?.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
+                ramCache.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
+                diskCache?.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
             } catch (let err) {
-                print("Error saving data to cache: \(err)")
+                print("ERROR -- could not save data to cache: \(err)")
             }
         }
     }
-    
+   
+    /// Clears both caches
     func clearCache() {
-        primaryCache.clearCache()
-        secondaryCache?.clearCache()
+        ramCache.clearCache()
+        diskCache?.clearCache()
     }
-    
+   
+    /// Disables the disk cache and clears it
     func disableDiskCaching() {
-        secondaryCache?.clearCache()
-        secondaryCache = nil
+        diskCache?.clearCache()
+        diskCache = nil
     }
-    
+   
+    /// Enables the disk cache
     func enableDiskCaching() {
-        if let cacheDir = cacheDir, secondaryCache == nil {
-            secondaryCache = FileCache(cacheDir: cacheDir)
+        if let cacheDir = cacheDir, diskCache == nil {
+            diskCache = FileCache(cacheDir: cacheDir)
         }
     }
 }
 
-private class RAMCache {
+class RAMCache {
     private let cache: NSCache<NSNumber, NSData>
     
     init() {
         cache = NSCache<NSNumber, NSData>()
     }
-    
+   
+    /**
+     Loads a value from memory given the key
+     
+     - Parameter key:               The key for the value
+     
+     - Returns:                     The value matching the key
+     */
     func load(key: Int) -> Data? {
         return cache.object(forKey: NSNumber(value: key)) as Data?
     }
-    
+   
+    /**
+     Saves a  value to memory given the key
+     
+     - Parameter key:               The key for the value
+     - Parameter value:             The value for the key
+     */
     func save(key: Int, value: Data?) {
         if let value = value {
             cache.setObject(NSData(data: value), forKey: NSNumber(value: key))
@@ -218,27 +236,42 @@ private class RAMCache {
             cache.removeObject(forKey: NSNumber(value: key))
         }
     }
-    
+   
+    /// Clears the cache from memory
     func clearCache() {
         cache.removeAllObjects()
     }
 }
 
-private class FileCache {
+class FileCache {
     private let cachePath: String
     
     init(cacheDir: String) {
         cachePath = cacheDir
     }
-    
+   
+    /**
+     Loads a value from disk given the key
+     
+     - Parameter key:               The key for the value
+     
+     - Returns:                     The value matching the key
+     */
     func load(key: Int) -> Data? {
         guard let path = fileURL(key: key) else {
             return nil
         }
-       
+        
+        print("DEBUG -- fetching comic #\(key) from disk at path \(path)")
         return try? Data(contentsOf: path)
     }
     
+    /**
+     Saves a  value to disk given the key
+     
+     - Parameter key:               The key for the value
+     - Parameter value:             The value for the key
+     */
     func save(key: Int, value: Data?) {
         guard let path = fileURL(key: key) else {
             return
@@ -248,13 +281,14 @@ private class FileCache {
             do {
                 try NSData(data: value).write(to: path, options: .atomic)
             } catch (let err) {
-                print("Error writing data to file: \(err)")
+                print("ERROR -- could not write data to file: \(err)")
             }
         } else {
             try? FileManager.default.removeItem(at: path)
         }
     }
-    
+   
+    /// Clears the cache from disk
     func clearCache() {
         guard let cacheDir = getCacheDir() else {
             return
@@ -263,10 +297,17 @@ private class FileCache {
         do {
             try FileManager.default.removeItem(at: cacheDir)
         } catch (let err) {
-            print("Error deleting caches directory: \(err)")
+            print("ERROR -- could not delete caches directory: \(err)")
         }
     }
-    
+   
+    /**
+     Fetches the corresponding file URL for a key.
+     
+     - Parameter key:           The key to fetch
+     
+     - Returns:                 The corresponding URL
+     */
     private func fileURL(key: Int) -> URL? {
         guard let cacheDir = getCacheDir() else {
             return nil
@@ -274,7 +315,12 @@ private class FileCache {
         
         return cacheDir.appendingPathComponent(String(key))
     }
-    
+   
+    /**
+     Fetches the cache directory from disk.
+     
+     - Returns:                 The URL of the disk cache
+     */
     private func getCacheDir() -> URL? {
         var cacheDir: URL? = nil
         do {
@@ -283,7 +329,7 @@ private class FileCache {
                 .url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 .appendingPathComponent(cachePath, isDirectory: true)
         } catch (let err) {
-            print("Error generating cache directory URL: \(err)")
+            print("ERROR -- could not generate cache directory URL: \(err)")
             return nil
         }
         
@@ -294,7 +340,7 @@ private class FileCache {
         do {
             try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true, attributes: nil)
         } catch (let err) {
-            print("Error creating cache directory: \(err)")
+            print("ERROR -- could not create cache directory: \(err)")
             return nil
         }
         

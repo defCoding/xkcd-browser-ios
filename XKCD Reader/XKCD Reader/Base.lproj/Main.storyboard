@@ -155,19 +155,21 @@
                                 <rect key="frame" x="45" y="180.66666666666663" width="300" height="400"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQp-ZS-LNy">
-                                        <rect key="frame" x="125.99999999999999" y="8" width="48.333333333333329" height="37"/>
-                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="28"/>
+                                        <rect key="frame" x="131" y="8" width="38" height="29"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="22"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDI-0N-tXb" userLabel="Help Text">
-                                        <rect key="frame" x="8" y="53" width="284" height="339"/>
+                                        <rect key="frame" x="8" y="45" width="284" height="347"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <mutableString key="text">To favorite a comic, you can either tap the ♡ icon, or if you are on the comics homepage, you can double tap the comic.
+                                        <string key="text">To favorite a comic, you can either tap the ♡ icon, or if you are on the comics homepage, you can double tap the comic.
 
-Comics are saved to your disk by default. If you wish to disable this feature, you can do so through the settings page. Note that this will prevent you from browsing comics while offline.</mutableString>
+You can zoom into and out of comics by pinching the screen.
+
+Comics are saved to your disk by default. If you wish to disable this feature, you can do so through the settings page. Note that this will prevent you from browsing comics while offline.</string>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="19"/>
+                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -371,87 +373,10 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                                     <outlet property="dateLabel" destination="Mz0-bH-Gdm" id="6s7-jo-BCc"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Rn-v4g" customClass="RateThisAppView" customModule="XKCD_Reader" customModuleProvider="target">
-                                <rect key="frame" x="40" y="279.66666666666669" width="310" height="202"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="If you're enjoying the XKCD Reader, it would help a lot if you could leave a review for us on the App Store!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQh-QD-bhw" customClass="Rate">
-                                        <rect key="frame" x="8" y="8" width="294" height="129"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="DMt-1d-Nw9">
-                                        <rect key="frame" x="20.666666666666657" y="145" width="269" height="42"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" role="destructive" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mF5-fx-gsV">
-                                                <rect key="frame" x="0.0" y="0.0" width="127" height="42"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="42" id="InP-Dh-nzL"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="nPc-zz-tZJ"/>
-                                                </constraints>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Go to App Store">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="15" name="xkcdScript"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <buttonConfiguration key="configuration" style="plain" title="Go to App Store">
-                                                    <backgroundConfiguration key="background">
-                                                        <color key="backgroundColor" name="ElectricBlue"/>
-                                                    </backgroundConfiguration>
-                                                    <fontDescription key="titleFontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="openAppStore:" destination="2fp-Rn-v4g" eventType="touchUpInside" id="xjr-4F-pRy"/>
-                                                    <action selector="openAppStore:" destination="Qyk-Xx-743" eventType="touchUpInside" id="z5r-4W-ZVl"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbn-A0-Zn6">
-                                                <rect key="frame" x="142" y="0.0" width="127" height="42"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Maybe Later">
-                                                    <backgroundConfiguration key="background">
-                                                        <color key="backgroundColor" name="ElectricBlue"/>
-                                                    </backgroundConfiguration>
-                                                    <fontDescription key="titleFontDescription" name="xkcdScript" family="xkcd Script" pointSize="15"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="maybeLater:" destination="2fp-Rn-v4g" eventType="touchUpInside" id="jgE-qE-QKz"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="hkI-u1-dKz"/>
-                                            <constraint firstAttribute="width" constant="269" id="qBy-CB-TVZ"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" name="Marble"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="DMt-1d-Nw9" secondAttribute="bottom" constant="15" id="2rb-t7-oZn"/>
-                                    <constraint firstAttribute="height" constant="202" id="DRZ-G4-nMg"/>
-                                    <constraint firstItem="fQh-QD-bhw" firstAttribute="leading" secondItem="2fp-Rn-v4g" secondAttribute="leading" constant="8" id="Fxw-xi-9KU"/>
-                                    <constraint firstAttribute="bottom" secondItem="fQh-QD-bhw" secondAttribute="bottom" constant="65" id="K0b-rD-6MV"/>
-                                    <constraint firstAttribute="width" constant="310" id="N5V-TK-Eua"/>
-                                    <constraint firstItem="fQh-QD-bhw" firstAttribute="top" secondItem="2fp-Rn-v4g" secondAttribute="top" constant="8" id="Q4h-pr-vT2"/>
-                                    <constraint firstAttribute="trailing" secondItem="fQh-QD-bhw" secondAttribute="trailing" constant="8" id="WEA-Hh-gIu"/>
-                                    <constraint firstItem="DMt-1d-Nw9" firstAttribute="centerX" secondItem="2fp-Rn-v4g" secondAttribute="centerX" id="xfg-xX-IeL"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IoD-9T-uN9"/>
                         <color key="backgroundColor" name="Silver"/>
                         <constraints>
-                            <constraint firstItem="2fp-Rn-v4g" firstAttribute="centerX" secondItem="Brx-Bk-zfr" secondAttribute="centerX" id="3he-NG-iaL"/>
                             <constraint firstItem="87a-Fp-hCI" firstAttribute="leading" secondItem="IoD-9T-uN9" secondAttribute="leading" constant="8" id="6Ci-PA-hTs"/>
                             <constraint firstItem="yi7-5K-8DJ" firstAttribute="leading" secondItem="Brx-Bk-zfr" secondAttribute="leading" id="7DP-3G-nAs"/>
                             <constraint firstItem="87a-Fp-hCI" firstAttribute="trailing" secondItem="IoD-9T-uN9" secondAttribute="trailing" constant="-8" id="Fzk-ob-Fxx"/>
@@ -459,7 +384,6 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                             <constraint firstItem="yi7-5K-8DJ" firstAttribute="trailing" secondItem="Brx-Bk-zfr" secondAttribute="trailing" id="I3c-c3-2ka"/>
                             <constraint firstItem="IoD-9T-uN9" firstAttribute="bottom" secondItem="87a-Fp-hCI" secondAttribute="bottom" constant="60" id="PvE-gg-to3"/>
                             <constraint firstItem="yi7-5K-8DJ" firstAttribute="top" secondItem="Brx-Bk-zfr" secondAttribute="top" id="RxV-wx-Md2"/>
-                            <constraint firstItem="2fp-Rn-v4g" firstAttribute="centerY" secondItem="Brx-Bk-zfr" secondAttribute="centerY" id="UEh-5R-zm4"/>
                             <constraint firstItem="Ppf-tP-EaZ" firstAttribute="centerY" secondItem="Brx-Bk-zfr" secondAttribute="centerY" id="VoP-GA-PrH"/>
                             <constraint firstItem="87a-Fp-hCI" firstAttribute="top" secondItem="yi7-5K-8DJ" secondAttribute="bottom" constant="20" id="WpH-bq-n6m"/>
                             <constraint firstItem="IoD-9T-uN9" firstAttribute="top" secondItem="yi7-5K-8DJ" secondAttribute="bottom" constant="-64" id="hVX-So-9Uq"/>
@@ -473,11 +397,9 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                         <outlet property="comicTitleLabel" destination="SjZ-kj-SiQ" id="3oU-qG-NUv"/>
                         <outlet property="comicsContainer" destination="87a-Fp-hCI" id="loT-Np-Lw2"/>
                         <outlet property="favoriteButton" destination="Yn3-nC-H8j" id="wFb-JM-m4f"/>
-                        <outlet property="ratingNotification" destination="2fp-Rn-v4g" id="VeV-G8-g2k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S4h-tT-X6T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Qyk-Xx-743" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="713.84615384615381" y="-1115.4028436018957"/>
         </scene>
@@ -518,10 +440,10 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
             </objects>
             <point key="canvasLocation" x="2313.8461538461538" y="-1120.3791469194312"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar View Controller-->
         <scene sceneID="Om4-l8-gJC">
             <objects>
-                <tabBarController id="JiN-Tq-2Xa" sceneMemberID="viewController">
+                <tabBarController id="JiN-Tq-2Xa" customClass="MainTabBarViewController" customModule="XKCD_Reader" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="TnS-qn-dos">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -609,9 +531,6 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="Charcoal">
             <color red="0.30980392156862746" green="0.37254901960784315" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ElectricBlue">
-            <color red="0.37647058823529411" green="0.45098039215686275" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Marble">
             <color red="0.95686274509803926" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -8,10 +8,12 @@
 import UIKit
 import AVFAudio
 
+/// View Controller for displaying app settings
 class SettingsViewController: UIViewController {
     @IBOutlet weak var settingsTable: UITableView!
     @IBOutlet weak var helpView: UIView!
     private let sectionHeight: CGFloat = 30
+    private let rowHeight: CGFloat = 44
     
     @IBAction func helpPressed(_ sender: Any) {
         helpView.isHidden = !helpView.isHidden
@@ -22,6 +24,8 @@ class SettingsViewController: UIViewController {
         helpView.isHidden = true
         settingsTable.dataSource = self
         settingsTable.delegate = self
+        helpView.layer.borderColor = UIColor(named: "ElectricBlue")?.cgColor
+        helpView.layer.borderWidth = 2
         registerTableViewCells()
         setupGestures()
         
@@ -29,11 +33,13 @@ class SettingsViewController: UIViewController {
         // user changes them from the Settings app and re-enters app.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadSettingsFromDefaults), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-    
+   
+    /// Reload the setting cells of the table with data from UserDefaults
     @objc private func reloadSettingsFromDefaults() {
         settingsTable.reloadData()
     }
-    
+   
+    /// Registers the various setting cells with the table
     private func registerTableViewCells() {
         settingsTable.register(DarkModeSettingTableViewCell.self, forCellReuseIdentifier: "DarkModeCell")
         settingsTable.register(SearchSettingTableViewCell.self, forCellReuseIdentifier: "SearchCell")
@@ -86,7 +92,7 @@ extension SettingsViewController: UITableViewDataSource {
             break
         }
         if let cell = cell as? SettingTableViewCell {
-            cell.refreshWithUserDefaults()
+            cell.refreshWithUserDefaults() // Refresh the controls with the UserDefaults values
             return cell
         } else {
             return UITableViewCell()
@@ -98,7 +104,7 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionLabel = UILabel()
         sectionLabel.font = UIFont(name: "xkcdScript", size: 24)
-        // sectionLabel.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: sectionHeight)
+        sectionLabel.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: sectionHeight)
         switch section {
         case 0:
             sectionLabel.text = "App Settings"
@@ -113,18 +119,24 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionHeight
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
+    }
 }
 
 extension SettingsViewController: UIGestureRecognizerDelegate {
+    /// Sets up the tap gestures for the controller
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(handleTap(_:)))
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
     }
-    
+   
+    /// Handles the tap and hides the help screen accordingly
     @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        // Hide help screen is screen is visible and touch is outside of help screen
+        // Hide help screen if screen is visible and touch is outside of help screen
         if (!helpView.isHidden) {
             let tapLocation = gestureRecognizer.location(in: helpView)
             if !helpView.bounds.contains(tapLocation) {

@@ -7,8 +7,8 @@
 
 import UIKit
 
+/// View Controller for the home page containing the comics
 class HomePageViewController: UIViewController {
-    @IBOutlet weak var ratingNotification: RateThisAppView!
     @IBOutlet weak var comicsContainer: UIView!
     @IBOutlet weak var comicTitleLabel: UILabel!
     @IBOutlet weak var comicNumberLabel: UILabel!
@@ -18,7 +18,7 @@ class HomePageViewController: UIViewController {
         self.children[0] as! ComicsPageViewController
     }
     var currentComic: XKCDComic?
-    
+  
     @IBAction func infoClicked(_ sender: Any) {
         toggleInfoView()
     }
@@ -55,23 +55,6 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
         comicsPageVC.delegate = self
         comicsPageVC.comicDelegate = self
-        
-        /*
-         Fetch the latest comic to get its number and update the page
-         controller to show the latest comics.
-         */
-        XKCDClient.fetchComic(num: nil) { (comic, err) -> Void in
-            guard let comic = comic, err == nil else {
-                self.comicsPageVC.reloadComicsPageViewControllerList()
-                return
-            }
-            
-            ComicsDataManager.sharedInstance.latestComicNum = comic.num
-            self.currentComic = comic
-            self.comicsPageVC.reloadComicsPageViewControllerList()
-        }
-    
-        setupRatingNotification()
         setupInfoView()
         setupGestures()
     }
@@ -81,6 +64,11 @@ class HomePageViewController: UIViewController {
         if let currentComic = self.currentComic {
             self.comicsPageVC.displayComic(comicNum: currentComic.num)
         }
+    }
+   
+    /// Reloads the homepage to show the latest comics.
+    func reloadComics() {
+        self.comicsPageVC.reloadComicsPageViewControllerList()
     }
    
     /**
@@ -119,16 +107,8 @@ class HomePageViewController: UIViewController {
     /// Initializes the info view properties.
     private func setupInfoView() {
         comicInfo.isHidden = true
-        comicInfo.layer.shadowColor = UIColor.black.cgColor
-        comicInfo.layer.shadowOpacity = 0.4
-        comicInfo.layer.shadowOffset = CGSize(width: 6, height: 6)
-        comicInfo.layer.shadowRadius = 4
-        comicInfo.layer.shadowPath = UIBezierPath(rect: comicInfo.bounds).cgPath
-    }
-   
-    /// Hides/displays rating notification depending on how often app has been launched.
-    private func setupRatingNotification() {
-        ratingNotification.isHidden = UserDefaults.standard.integer(forKey: "launchCount") != 3
+        comicInfo.layer.borderColor = UIColor(named: "ElectricBlue")?.cgColor
+        comicInfo.layer.borderWidth = 2
     }
 }
 
@@ -144,6 +124,12 @@ extension HomePageViewController: UIPageViewControllerDelegate {
 }
 
 extension HomePageViewController: ComicsPageViewControllerDelegate {
+    /**
+     Event handler for when the current comic in the contained ComicsPageViewController has loaded.
+     
+     - Parameter viewController:                    The ComicsPageViewController holding the comic
+     - Parameter currentComicUpdated:               The comic that was loaded
+     */
     func comicsPageViewControllerDelegate(_ viewController: ComicsPageViewController, currentComicUpdated comic: XKCDComic) {
         currentComic = comic
         updateComicInfo(comic: comic)
@@ -151,13 +137,15 @@ extension HomePageViewController: ComicsPageViewControllerDelegate {
 }
 
 extension HomePageViewController: UIGestureRecognizerDelegate {
+    /// Sets up a tap gesture for the controller
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(handleTap(_:)))
         tapGesture.delegate = self
         self.view.addGestureRecognizer(tapGesture)
     }
-   
+  
+    /// Handles a tap and hides the info screen accordingly
     @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         // Hide comic info if info is visible and touch is outside of info
         if (!comicInfo.isHidden) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1B6B8E27E1B45700CB3016 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B6B8D27E1B45700CB3016 /* SplashScreenView.swift */; };
 		0A4878A927DC0F4000E9DB81 /* xkcd-script.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A4878A827DC0F4000E9DB81 /* xkcd-script.ttf */; };
 		0A4878AB27DC151700E9DB81 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878AA27DC151700E9DB81 /* HomePageViewController.swift */; };
 		0A4878AE27DC159400E9DB81 /* ComicsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878AD27DC159400E9DB81 /* ComicsPageViewController.swift */; };
@@ -15,6 +16,8 @@
 		0A4878B527DC4DB000E9DB81 /* ComicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4878B427DC4DB000E9DB81 /* ComicInfoView.swift */; };
 		0A4BBFF327DD54EA001C9BB7 /* ComicsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BBFF227DD54EA001C9BB7 /* ComicsDataManager.swift */; };
 		0A4BBFF627DD569A001C9BB7 /* BinTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BBFF527DD569A001C9BB7 /* BinTree.swift */; };
+		0A52AFC727E157BA0010173B /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52AFC627E157BA0010173B /* MainTabBarViewController.swift */; };
+		0A52AFC927E177250010173B /* ComicsCacheLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52AFC827E177250010173B /* ComicsCacheLoadView.swift */; };
 		0A6A25C727DDA4FE00CC359A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25C627DDA4FE00CC359A /* FavoritesViewController.swift */; };
 		0A6A25CC27DDB10700CC359A /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6A25CA27DDB10700CC359A /* ComicTableViewCell.swift */; };
 		0A6A25CD27DDB10700CC359A /* ComicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */; };
@@ -40,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A1B6B8D27E1B45700CB3016 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		0A4878A827DC0F4000E9DB81 /* xkcd-script.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "xkcd-script.ttf"; sourceTree = "<group>"; };
 		0A4878AA27DC151700E9DB81 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		0A4878AD27DC159400E9DB81 /* ComicsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsPageViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 		0A4878B427DC4DB000E9DB81 /* ComicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicInfoView.swift; sourceTree = "<group>"; };
 		0A4BBFF227DD54EA001C9BB7 /* ComicsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsDataManager.swift; sourceTree = "<group>"; };
 		0A4BBFF527DD569A001C9BB7 /* BinTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinTree.swift; sourceTree = "<group>"; };
+		0A52AFC627E157BA0010173B /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		0A52AFC827E177250010173B /* ComicsCacheLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCacheLoadView.swift; sourceTree = "<group>"; };
 		0A6A25C627DDA4FE00CC359A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		0A6A25CA27DDB10700CC359A /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
 		0A6A25CB27DDB10700CC359A /* ComicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicTableViewCell.xib; sourceTree = "<group>"; };
@@ -114,6 +120,8 @@
 				0A6A25F127DFEC8800CC359A /* XKCDSwitch.swift */,
 				0A6A25F927E01B7200CC359A /* XKCDButton.swift */,
 				0A6A260327E0846E00CC359A /* RateThisAppView.swift */,
+				0A52AFC827E177250010173B /* ComicsCacheLoadView.swift */,
+				0A1B6B8D27E1B45700CB3016 /* SplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,10 +161,10 @@
 		0A6A25E427DFDFC100CC359A /* Settings Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A6A25F727DFF19100CC359A /* SettingTableViewCell.swift */,
 				0A6A25E527DFE00D00CC359A /* DarkModeSettingTableViewCell.swift */,
 				0A6A25EB27DFE7DC00CC359A /* SearchSettingTableViewCell.swift */,
 				0A6A25F327DFF0D300CC359A /* ClearCacheTableViewCell.swift */,
-				0A6A25F727DFF19100CC359A /* SettingTableViewCell.swift */,
 				0A6A25FB27E0204300CC359A /* ClearFavoritesTableViewCell.swift */,
 				0A6A25FD27E0225500CC359A /* CacheToggleTableViewCell.swift */,
 			);
@@ -201,6 +209,7 @@
 		0A9F8AE227DC02160065A512 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A52AFC627E157BA0010173B /* MainTabBarViewController.swift */,
 				0A6A25D727DEE02600CC359A /* ComicsTableViewController.swift */,
 				0A4878AC27DC155F00E9DB81 /* Home Page Controllers */,
 				0A6A25C527DDA4C800CC359A /* Favorites Controllers */,
@@ -298,11 +307,13 @@
 				0A9F8ACD27DBFF540065A512 /* AppDelegate.swift in Sources */,
 				0A4878B327DC2F9200E9DB81 /* PanZoomImageView.swift in Sources */,
 				0A4BBFF627DD569A001C9BB7 /* BinTree.swift in Sources */,
+				0A52AFC727E157BA0010173B /* MainTabBarViewController.swift in Sources */,
 				0A6A25FE27E0225500CC359A /* CacheToggleTableViewCell.swift in Sources */,
 				0A6A25E727DFE00D00CC359A /* DarkModeSettingTableViewCell.swift in Sources */,
 				0A6A25F827DFF19100CC359A /* SettingTableViewCell.swift in Sources */,
 				0A6A260427E0846E00CC359A /* RateThisAppView.swift in Sources */,
 				0A6A25F527DFF0D300CC359A /* ClearCacheTableViewCell.swift in Sources */,
+				0A52AFC927E177250010173B /* ComicsCacheLoadView.swift in Sources */,
 				0A4878AE27DC159400E9DB81 /* ComicsPageViewController.swift in Sources */,
 				0A6A25FC27E0204300CC359A /* ClearFavoritesTableViewCell.swift in Sources */,
 				0A6A25EA27DFE1BD00CC359A /* SettingsViewController.swift in Sources */,
@@ -311,6 +322,7 @@
 				0A6A25D627DEDE2300CC359A /* SearchViewController.swift in Sources */,
 				0A6A25D827DEE02600CC359A /* ComicsTableViewController.swift in Sources */,
 				0A6A25F227DFEC8800CC359A /* XKCDSwitch.swift in Sources */,
+				0A1B6B8E27E1B45700CB3016 /* SplashScreenView.swift in Sources */,
 				0A4878AB27DC151700E9DB81 /* HomePageViewController.swift in Sources */,
 				0A6A25FA27E01B7200CC359A /* XKCDButton.swift in Sources */,
 				0A9F8ACF27DBFF540065A512 /* SceneDelegate.swift in Sources */,

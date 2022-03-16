@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Deep search setting table cell
 class SearchSettingTableViewCell: SettingTableViewCell {
     @objc func switchChanged(_ sender: XKCDSwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "deepSearchDefault")

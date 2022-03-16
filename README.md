@@ -23,3 +23,7 @@
 [Aysnchronous API Calls in a Loop](https://stackoverflow.com/questions/35906568/wait-until-swift-for-loop-with-asynchronous-network-requests-finishes-executing)
 
 [Two Tier Caching](https://agostini.tech/2017/06/05/two-tier-caching-with-nscache/)
+
+[Checking for Internet Activity](https://stackoverflow.com/questions/59245501/ios13-check-for-internet-connection-instantly)
+
+[Change UISwitch Background Color](https://padamthapa.com/blog/how-to-change-color-of-uiswitch-in-off-state/)

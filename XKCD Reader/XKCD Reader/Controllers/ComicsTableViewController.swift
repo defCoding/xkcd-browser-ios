@@ -13,6 +13,7 @@ class ComicsDiffableDataSource: UITableViewDiffableDataSource<Int, XKCDComic> {
     }
 }
 
+/// An abstraction of any table that displays comics. Shows comics with preview, title, number, and favorites button.
 class ComicsTableViewController: UIViewController {
     @IBOutlet weak var comicsTableView: UITableView!
     // https://www.swiftjectivec.com/diffable-datasource-tableview/

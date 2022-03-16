@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Toggling disk caching table cell
 class CacheToggleTableViewCell: SettingTableViewCell {
     @objc func switchToggled(_ sender: XKCDSwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "disableDiskCaching")

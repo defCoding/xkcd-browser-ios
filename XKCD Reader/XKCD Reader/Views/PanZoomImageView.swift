@@ -8,6 +8,7 @@
 import UIKit
 
 /// https://betterprogramming.pub/creating-a-zoomable-image-view-in-swift-c5ce67f17b2e
+/// A zoomable and pannable UIImage
 class PanZoomImageView: UIScrollView {
     var image: UIImage? {
         didSet {
@@ -35,7 +36,8 @@ class PanZoomImageView: UIScrollView {
         super.init(coder: coder)
         commonInit()
     }
-    
+   
+    /// Initializer for setting up view
     private func commonInit() {
         // Setup image view
         imageView.translatesAutoresizingMaskIntoConstraints = false

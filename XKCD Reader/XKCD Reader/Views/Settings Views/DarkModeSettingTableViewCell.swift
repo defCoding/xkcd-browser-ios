@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// DarkMode setting table cell
 class DarkModeSettingTableViewCell: SettingTableViewCell {
     @objc func switchedDarkMode(_ sender: UISegmentedControl) {
         UserDefaults.standard.set(sender.selectedSegmentIndex, forKey: "darkMode")
@@ -31,17 +32,12 @@ class DarkModeSettingTableViewCell: SettingTableViewCell {
     override func setupViews() {
         super.setupViews()
         label!.text = "Dark Mode"
-        
+       
         if let modeOptions = secondaryView as? UISegmentedControl {
-            modeOptions.setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 18)!], for: .normal)
+            modeOptions.apportionsSegmentWidthsByContent = true
+            modeOptions.setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 16)!], for: .normal)
             modeOptions.selectedSegmentTintColor = UIColor(named: "Marble")
             modeOptions.addTarget(self, action: #selector(switchedDarkMode(_:)), for: .valueChanged)
-          
-            // Check for overlap between label and segmented control and update font size if needed.
-            layoutIfNeeded() // Need to layout subviews first to check for overlap.
-            if label!.frame.intersects(modeOptions.frame) {
-                modeOptions.setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 12)!], for: .normal)
-            }
         }
     }
     

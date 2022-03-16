@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Clearing favorites table cell
 class ClearFavoritesTableViewCell: SettingTableViewCell {
     @objc func clearClicked(_ sender: Any?) {
         ComicsDataManager.sharedInstance.clearFavorites()
@@ -23,7 +24,7 @@ class ClearFavoritesTableViewCell: SettingTableViewCell {
         label!.text = "Clear Favorites"
         
         if let clearButton = secondaryView as? XKCDButton {
-            clearButton.setTitle("Clear", for: .normal)
+            clearButton.setTitle("Clear", fontSize: 18, for: .normal)
             clearButton.addTarget(self, action: #selector(clearClicked(_:)), for: .touchUpInside)
         }
     }

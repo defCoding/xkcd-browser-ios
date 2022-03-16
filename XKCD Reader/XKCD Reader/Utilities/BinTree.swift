@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A binary tree data structure capable of holding any Comparable datatype
 class BinTree<T: Comparable> {
     fileprivate var root: TreeNode<T>?
     var size: Int
@@ -76,7 +77,14 @@ class BinTree<T: Comparable> {
     func reverseOrderTraversal() -> [T] {
         return root == nil ? [] : root!.reverseOrderTraversal()
     }
-    
+   
+    /**
+     Constructs a binary tree from a sorted array.
+     
+     - Parameter data:              The array to read from
+     - Parameter start:             The inclusive starting point of the interval
+     - Parameter end:               The exclusive ending point of the interval
+     */
     private func constructFromSortedArray(data: [T], start: Int, end: Int) {
         if start >= end {
             return
@@ -96,7 +104,12 @@ private class TreeNode<T: Comparable> {
     init(data: T) {
         self.data = data
     }
-    
+   
+    /**
+     Inserts a value into a binary tree at this node.
+     
+     - Parameter value:            The value to insert
+     */
     func insert(value newData: T) {
         if (newData > self.data) {
             guard let right = self.right else {
@@ -112,7 +125,14 @@ private class TreeNode<T: Comparable> {
             left.insert(value: newData)
         }
     }
-    
+   
+    /**
+     Removes a value from the binary tree starting at this node.
+     
+     - Parameter value:         The value to remove
+     
+     - Returns:                 Returns the new tree after the node was removed
+     */
     func delete(value toRemove: T) -> TreeNode<T>? {
         if (toRemove > self.data) {
             self.right = self.right?.delete(value: toRemove)
@@ -129,7 +149,14 @@ private class TreeNode<T: Comparable> {
         }
         return self
     }
-    
+   
+    /**
+     Checks if a value is contained in the binary tree starting at this node.
+     
+     - Parameter value:         The value to search for
+     
+     - Returns:                 True if the value exists, false otherwise
+     */
     func contains(value: T) -> Bool {
         if (value > self.data) {
             return self.right != nil && self.right!.contains(value: value)
@@ -139,19 +166,34 @@ private class TreeNode<T: Comparable> {
             return true
         }
     }
-    
+   
+    /**
+     Returns an array representation of an in-order traversal of the binary tree starting at this node.
+     
+     - Returns:                 The array representation of the in-order traversal
+     */
     func inOrderTraversal() -> [T] {
         let leftT = self.left == nil ? [] : self.left!.inOrderTraversal()
         let rightT = self.right == nil ? [] : self.right!.inOrderTraversal()
         return leftT + [self.data] + rightT
     }
     
+    /**
+     Returns an array representation of a reverse in-order traversal of the binary tree starting at this node.
+     
+     - Returns:                 The array representation of the reverse in-order traversal
+     */
     func reverseOrderTraversal() -> [T] {
         let rightT = self.right == nil ? [] : self.right!.reverseOrderTraversal()
         let leftT = self.left == nil ? [] : self.left!.reverseOrderTraversal()
         return rightT + [self.data] + leftT
     }
-    
+   
+    /**
+     Gets the rightmost node of the binary tree starting at this node.
+     
+     - Returns:                 The rightmost node
+     */
     private func getRightMost() -> TreeNode<T> {
         if let right = self.right {
             return right.getRightMost()

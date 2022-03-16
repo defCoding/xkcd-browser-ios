@@ -40,6 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        
+        // Set initial dark/light mode based on user setting.
         switch UserDefaults.standard.integer(forKey: "darkMode") {
         case 0:
             window?.overrideUserInterfaceStyle = .dark

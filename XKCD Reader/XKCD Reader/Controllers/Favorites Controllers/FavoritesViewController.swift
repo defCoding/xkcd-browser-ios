@@ -8,6 +8,7 @@
 import UIKit
 import CoreAudio
 
+/// View Controller for displaying favorited comics
 class FavoritesViewController: ComicsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()

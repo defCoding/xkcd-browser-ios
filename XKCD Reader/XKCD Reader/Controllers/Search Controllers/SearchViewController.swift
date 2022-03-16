@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// View Controller for searching for comics and displaying searched results
 class SearchViewController: ComicsTableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var deepSearchSwitch: UISwitch!
