@@ -1,0 +1,9 @@
+This is the XKCD Reader app, an app dedicated to browsing XKCD comics. At launch, the app will download and cache all XKCD comics for easy browsing (this can be toggled).
+
+On the homepage tab, you can favorite comics, read the alt text, and shuffle to random comics.
+
+Next, on the favorites tab, you can view and manage your favorited comics.
+
+In the search tab, you can search for comics. A regular search will only search the title and comic number, whereas a deep search will also search the comic's alt text and transcript.
+
+Finally, at the settings page, you can adjust app settings like dark mode and manage your data!
