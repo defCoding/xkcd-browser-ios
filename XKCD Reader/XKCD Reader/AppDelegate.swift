@@ -22,8 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Keep track of how often user has launched app.
-        let launchCount = UserDefaults.standard.integer(forKey: "launchCount")
-        UserDefaults.standard.set(launchCount + 1, forKey: "launchCount")
+        var launchCount = UserDefaults.standard.integer(forKey: "launchCount")
+        launchCount += 1
+        UserDefaults.standard.set(launchCount, forKey: "launchCount")
+       
+        // Save initial launch date
+        if launchCount == 1 {
+            print(NSDate.now)
+            UserDefaults.standard.set(NSDate.now, forKey:"Initial Launch")
+        }
         return true
     }
 

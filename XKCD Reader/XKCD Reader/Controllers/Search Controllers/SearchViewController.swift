@@ -46,8 +46,11 @@ class SearchViewController: ComicsTableViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
         if let query = searchBar.text {
-            performSearch(query: query)
+            if query != "" {
+                performSearch(query: query)
+            }
         }
     }
 }

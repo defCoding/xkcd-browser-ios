@@ -26,7 +26,7 @@
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for a comic" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqw-Q4-jtl">
                                         <rect key="frame" x="8" y="49" width="309.66666666666669" height="51"/>
-                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
                                             <string>Title</string>

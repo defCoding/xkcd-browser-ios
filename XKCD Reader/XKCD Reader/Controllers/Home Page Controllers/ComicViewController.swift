@@ -79,21 +79,15 @@ extension ComicViewController: UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(doubleTapGesture)
     }
    
-    /// Handles the double tap gesture and checks if it is on a comic
+    /// Handles the double tap gesture and toggles the comic's favorite
     @objc func handleDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        // Favorite comic if double tap is in comic bounds.
-        let location = gestureRecognizer.location(in: comicImageView.imageView)
-        guard let comic = comic, let comicImage = comicImageView.image else {
+        guard let comic = comic else {
             return
         }
-        
-        let imageFrame = AVMakeRect(aspectRatio: comicImage.size, insideRect: comicImageView.imageView.bounds)
-        if imageFrame.contains(location) {
-            let favorited = ComicsDataManager.sharedInstance.toggleFavorite(comic: comic)
-            self.delegate?.comicViewController(self, comicUpdated: comic)
-            if (favorited) {
-                doHeartAnimation()
-            }
+        let favorited = ComicsDataManager.sharedInstance.toggleFavorite(comic: comic)
+        self.delegate?.comicViewController(self, comicUpdated: comic)
+        if (favorited) {
+            doHeartAnimation()
         }
     }
    

@@ -15,14 +15,14 @@ class PopUpWarningView: UIView {
     
     /// Handler for ok button press
     @objc func onOkPressed(_ sender: Any) {
-        onOk()
         removeFromSuperview()
+        onOk()
     }
    
     /// Handler for cancel button press
     @objc func onCancelPressed(_ sender: Any) {
-        onCancel?()
         removeFromSuperview()
+        onCancel?()
     }
     
     required init?(coder: NSCoder) {

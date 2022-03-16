@@ -177,6 +177,7 @@ class TwoTierCache<T: NSObject & NSCoding> {
                 return
             }
             do {
+                print("DEBUG -- saving comic #\(key) to cache")
                 ramCache.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
                 diskCache?.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
             } catch (let err) {
@@ -187,8 +188,10 @@ class TwoTierCache<T: NSObject & NSCoding> {
    
     /// Clears both caches
     func clearCache() {
-        ramCache.clearCache()
-        diskCache?.clearCache()
+        DispatchQueue.main.async {
+            self.ramCache.clearCache()
+            self.diskCache?.clearCache()
+        }
     }
    
     /// Disables the disk cache and clears it
