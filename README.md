@@ -27,3 +27,5 @@
 [Checking for Internet Activity](https://stackoverflow.com/questions/59245501/ios13-check-for-internet-connection-instantly)
 
 [Change UISwitch Background Color](https://padamthapa.com/blog/how-to-change-color-of-uiswitch-in-off-state/)
+
+[Registering Settings Bundle to UserDefaults](https://github.com/Abstract45/SettingsExample)

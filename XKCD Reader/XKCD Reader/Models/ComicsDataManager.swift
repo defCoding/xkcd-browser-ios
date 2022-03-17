@@ -41,7 +41,7 @@ class ComicsDataManager {
                 _favorites = favoritesTree.reverseOrderTraversal()
                 return
             } catch (let err) {
-                print("ERROR -- could not load favorites: \(err)")
+                NSLog("%@", "ERROR -- could not load favorites: \(err)")
             }
         }
         favoritesTree = BinTree<XKCDComic>()
@@ -56,7 +56,7 @@ class ComicsDataManager {
             let data = try encoder.encode(favorites)
             UserDefaults.standard.set(data, forKey: "favorites")
         } catch (let err) {
-            print("ERROR -- could not save favorites: \(err)")
+            NSLog("%@", "ERROR -- could not save favorites: \(err)")
         }
     }
    
@@ -160,28 +160,28 @@ class TwoTierCache<T: NSObject & NSCoding> {
                 ramCache.save(key: key, value: fileResult)
                 data = fileResult
             } else {
-                print("DEBUG -- fetched comic #\(key) from memory cache")
+                NSLog("%@", "DEBUG -- fetched comic #\(key) from memory cache")
             }
             
             do {
                 return try NSKeyedUnarchiver.unarchivedObject(ofClass: T.self, from: data!)
             } catch (let err) {
-                print("ERROR -- could not convert data into object: \(err)")
+                NSLog("%@", "ERROR -- could not convert data into object: \(err)")
                 return nil
             }
         }
         
         set {
             guard let comic = newValue as T? else {
-                print("ERROR -- saving wrong type to cache.")
+                NSLog("%@", "ERROR -- saving wrong type to cache.")
                 return
             }
             do {
-                print("DEBUG -- saving comic #\(key) to cache")
+                NSLog("%@", "DEBUG -- saving comic #\(key) to cache")
                 ramCache.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
                 diskCache?.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
             } catch (let err) {
-                print("ERROR -- could not save data to cache: \(err)")
+                NSLog("%@", "ERROR -- could not save data to cache: \(err)")
             }
         }
     }
@@ -265,7 +265,7 @@ class FileCache {
             return nil
         }
         
-        print("DEBUG -- fetching comic #\(key) from disk at path \(path)")
+        NSLog("%@", "DEBUG -- fetching comic #\(key) from disk at path \(path)")
         return try? Data(contentsOf: path)
     }
     
@@ -284,7 +284,7 @@ class FileCache {
             do {
                 try NSData(data: value).write(to: path, options: .atomic)
             } catch (let err) {
-                print("ERROR -- could not write data to file: \(err)")
+                NSLog("%@", "ERROR -- could not write data to file: \(err)")
             }
         } else {
             try? FileManager.default.removeItem(at: path)
@@ -300,7 +300,7 @@ class FileCache {
         do {
             try FileManager.default.removeItem(at: cacheDir)
         } catch (let err) {
-            print("ERROR -- could not delete caches directory: \(err)")
+            NSLog("%@", "ERROR -- could not delete caches directory: \(err)")
         }
     }
    
@@ -332,7 +332,7 @@ class FileCache {
                 .url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 .appendingPathComponent(cachePath, isDirectory: true)
         } catch (let err) {
-            print("ERROR -- could not generate cache directory URL: \(err)")
+            NSLog("%@", "ERROR -- could not generate cache directory URL: \(err)")
             return nil
         }
         
@@ -343,7 +343,7 @@ class FileCache {
         do {
             try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true, attributes: nil)
         } catch (let err) {
-            print("ERROR -- could not create cache directory: \(err)")
+            NSLog("%@", "ERROR -- could not create cache directory: \(err)")
             return nil
         }
         

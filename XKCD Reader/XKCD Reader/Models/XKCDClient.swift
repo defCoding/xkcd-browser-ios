@@ -116,7 +116,7 @@ class XKCDClient {
             return
         }
        
-        print("DEBUG -- fetching comic from \(url)")
+        NSLog("%@", "DEBUG -- fetching comic from \(url)")
         let task = URLSession.shared.dataTask(with: url as URL) { (data, response, error) -> Void in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion?(nil, error) }
@@ -156,7 +156,7 @@ class XKCDClient {
             return
         }
         
-        print("DEBUG -- fetching comic image from \(url)")
+        NSLog("%@", "DEBUG -- fetching comic image from \(url)")
         let task = URLSession.shared.dataTask(with: url as URL) { (data, response, error) -> Void in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(nil, error) }
