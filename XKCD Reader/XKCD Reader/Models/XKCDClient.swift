@@ -208,6 +208,7 @@ class XKCDClient {
         let group = DispatchGroup()
         var comics: [XKCDComic] = []
         let comicsSemaphore = DispatchSemaphore(value: 1)
+        var sortRating: [Int: Int] = [:]
         
         for comicNum in (1...ComicsDataManager.sharedInstance.latestComicNum).reversed() {
             group.enter()
@@ -221,15 +222,34 @@ class XKCDClient {
                     .diacriticInsensitive,
                     .caseInsensitive,
                 ]
-                var basicMatch = comic.title.range(of: query, options: options) != nil
-                basicMatch = basicMatch || String(comic.num) == query
-                var indepthMatch = false
-                if deepSearch {
-                    indepthMatch = comic.alt.range(of: query, options: options) != nil
-                    indepthMatch = indepthMatch || comic.transcript.range(of: query, options: options) != nil
+               
+                /*
+                 Ordering of relevancy from most relevant to search query to least:
+                 1. Comic number matches
+                 2. Comic title contains match
+                 3. Comic transcript contains match
+                 4. Comic alt text contains match
+                 */
+                var matched = false
+                if String(comic.num) == query {
+                    sortRating[comic.num] = 3
+                    matched = true
+                } else if comic.title.range(of: query, options: options) != nil {
+                    sortRating[comic.num] = 2
+                    matched = true
                 }
                 
-                if basicMatch || indepthMatch {
+                if deepSearch && !matched {
+                    if comic.transcript.range(of: query, options: options) != nil {
+                        sortRating[comic.num] = 1
+                        matched = true
+                    } else if comic.alt.range(of: query, options: options) != nil {
+                        sortRating[comic.num] = 0
+                        matched = true
+                    }
+                }
+                
+                if matched {
                     comicsSemaphore.wait()
                     comics.append(comic)
                     comicsSemaphore.signal()
@@ -239,7 +259,9 @@ class XKCDClient {
         }
        
         group.notify(queue: .main) {
-            completion(comics.sorted().reversed(), nil)
+            completion(comics.sorted(by: {
+                return sortRating[$0.num]! > sortRating[$1.num]! || $0.num > $1.num
+            }), nil)
         }
     }
 }

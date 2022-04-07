@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 /// View Controller for the home page containing the comics
 class HomePageViewController: UIViewController {
@@ -43,12 +44,23 @@ class HomePageViewController: UIViewController {
         guard let currentComic = self.currentComic else {
             return
         }
-        
-        if let comicSite = NSURL(string: "https://xkcd.com/\(currentComic.num)") {
-            let activityVC = UIActivityViewController(activityItems: [comicSite], applicationActivities: nil)
-            activityVC.popoverPresentationController?.sourceView = sender
-            self.present(activityVC, animated: true, completion: nil)
+      
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
+            guard let comicSite = NSURL(string: "https://xkcd.com/\(currentComic.num)") else { return }
+            var items: [Any] = [comicSite]
+            if status == .authorized {
+                guard let imgData = currentComic.imgData else { return }
+                guard let comicImage = UIImage(data: imgData) else { return }
+                items.append(comicImage)
+            }
+            DispatchQueue.main.async {
+                let activityVC = UIActivityViewController(activityItems: items,
+                                                          applicationActivities: nil)
+                activityVC.popoverPresentationController?.sourceView = sender
+                self.present(activityVC, animated: true, completion: nil)
+            }
         }
+        
     }
     
     override func viewDidLoad() {
