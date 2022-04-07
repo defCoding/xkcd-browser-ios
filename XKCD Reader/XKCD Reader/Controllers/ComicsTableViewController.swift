@@ -69,7 +69,7 @@ extension ComicsTableViewController: UITableViewDelegate {
             return
         }
         let homepageVC = tabBarController.viewControllers?[0] as! HomePageViewController
-        homepageVC.currentComic = comic
         tabBarController.selectedIndex = 0
+        homepageVC.displayComic(comicNum: comic.num)
     }
 }

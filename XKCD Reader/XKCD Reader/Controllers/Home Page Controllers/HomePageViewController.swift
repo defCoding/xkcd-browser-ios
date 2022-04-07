@@ -100,6 +100,10 @@ class HomePageViewController: UIViewController {
         comicInfo.isHidden = !comicInfo.isHidden
         comicsContainer.isUserInteractionEnabled = comicInfo.isHidden
     }
+    
+    func displayComic(comicNum: Int) {
+        comicsPageVC.displayComic(comicNum: comicNum)
+    }
    
     /**
      Updates the favorites button to match the favorited state.
