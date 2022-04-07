@@ -29,7 +29,7 @@ class SplashScreenView: UIView {
         stack.axis = .vertical
         
         let appLabel = UILabel()
-        appLabel.text = "XKCD Reader"
+        appLabel.text = "XKCD Browser"
         appLabel.font = UIFont(name: "xkcdScript", size: 36)
         appLabel.sizeToFit()
         // appLabel.translatesAutoresizingMaskIntoConstraints = false

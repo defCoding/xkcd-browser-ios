@@ -484,7 +484,8 @@
 				DEVELOPMENT_TEAM = VM6WVD6427;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "XKCD Reader/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "XKCD Reader";
+				INFOPLIST_KEY_CFBundleDisplayName = "XKCD Browser";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "XKCD Reader would like permission to save comics to your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -513,7 +514,8 @@
 				DEVELOPMENT_TEAM = VM6WVD6427;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "XKCD Reader/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "XKCD Reader";
+				INFOPLIST_KEY_CFBundleDisplayName = "XKCD Browser";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "XKCD Reader would like permission to save comics to your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
