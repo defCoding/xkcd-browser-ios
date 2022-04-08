@@ -11,7 +11,11 @@ import UIKit
 class RateThisAppView: UIView {
     @objc func openAppStorePressed(_ sender: Any) {
         isHidden = true
-        UIApplication.shared.open(URL(string: "https://apps.apple.com/us/app/xkcd-browser/id1618306887")!)
+        if let url = URL(string: "itms-apps://apple.com/app/id1618306887") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
     }
     
     @objc func maybeLaterPressed(_ sender: Any) {
