@@ -22,11 +22,11 @@ If you want to report a bug or request a new feature, you can do so through [her
 
 ## Screenshots
 <p float="left">
-  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/App%20Preview/screenshots/6.5/homepage.png" width=150 />
-  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/App%20Preview/screenshots/6.5/homepage2.png" width=150 />
-  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/App%20Preview/screenshots/6.5/favorites.png" width=150 />
-  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/App%20Preview/screenshots/6.5/search.png" width=150 />
-  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/App%20Preview/screenshots/6.5/settings.png" width=150 />
+  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/preview/screenshots/6.5/homepage.png" width=150 />
+  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/preview/screenshots/6.5/homepage2.png" width=150 />
+  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/preview/screenshots/6.5/favorites.png" width=150 />
+  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/preview/screenshots/6.5/search.png" width=150 />
+  <img src="https://github.com/defCoding/xkcd-browser-ios/blob/main/preview/screenshots/6.5/settings.png" width=150 />
  </p>
  
 ## Privacy Policy
