@@ -8,9 +8,10 @@ The XKCD Browser is an iOS app for browsing XKCD comics! You can browse comics w
 
 All comics are sourced from https://xkcd.com and are drawn by Randall Munroe.
 
+## Support
 If you want to report a bug or request a new feature, you can do so through [here](https://github.com/defCoding/xkcd-browser-ios/issues/new/choose).
 
-## Supported Features
+## Features
 - Offline browsing
 - Favoriting comics
 - View comic alt text
