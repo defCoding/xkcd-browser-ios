@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Dynamic zoom depending on image size to allow larger zoom for larger images.
 
 ### Changed
-- Save cached comics to `.documentDirectory` instead of `cachesDirectory` for permanent storage.
+- Save cached comics to `.documentDirectory` instead of `.cachesDirectory` for permanent storage.
 - Update TabBar font to `xkcdScript`.
 
 ## [[1.0.0]](https://github.com/defCoding/xkcd-browser-ios/releases/tag/v1.0.0) - 2022-04-07
