@@ -1,6 +1,6 @@
 # XKCD Browser
 
-[![License](https://img.shields.io/badge/license-MIT-informational)](https://github.com/defCoding/bot-TA-discord/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-informational)](https://github.com/defCoding/xkcd-browser-ios/blob/main/LICENSE.md)
 [![Language](https://img.shields.io/badge/Code-Swift-%23ff6931?logo=Swift)](https://developer.apple.com/swift/)
 [![Download](https://img.shields.io/badge/Get-App%20Store-%230D96F6?logo=AppStore)](https://apps.apple.com/us/app/xkcd-browser/id1618306887)
 
