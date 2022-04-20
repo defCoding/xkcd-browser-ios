@@ -9,46 +9,19 @@ import UIKit
 
 /// ViewController for app TabBarController. This controller's view contains all other views.
 class MainTabBarViewController: UITabBarController {
-
+    private var progressView: ComicsCacheLoadView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        XKCDClient.sharedInstance.subscribe(self)
         setupRatingView()
-        syncComics(cacheAll: !UserDefaults.standard.bool(forKey: "disableDiskCaching"))
-        showSplash()
-    }
-   
-    /**
-     Loads the latest comic and syncs up the homepage to show the latest comic
-     
-     - Parameter cacheAll:                      Whether or not to cache all comics.
-     */
-    private func syncComics(cacheAll: Bool) {
-        guard let homepageVC = self.viewControllers?[0] as? HomePageViewController else {
-            return
-        }
-       
-        XKCDClient.fetchComic(num: nil) { (comic, err) in
-            guard let comic = comic, err == nil else {
-                homepageVC.reloadComics()
-                return
-            }
-            
-            ComicsDataManager.sharedInstance.latestComicNum = comic.num
-            homepageVC.currentComic = comic
+        progressView = ComicsCacheLoadView()
+        self.view.addSubview(progressView)
+        setupProgressView()
+        if let homepageVC = self.viewControllers?[0] as? HomePageViewController {
             homepageVC.reloadComics()
-       
-            if cacheAll {
-                let progressView = ComicsCacheLoadView()
-                self.view.addSubview(progressView)
-                progressView.center = self.view.center
-                progressView.isHidden = false
-                XKCDClient.cacheAllComicsToDisk(progress: { progress in
-                    progressView.progressBar.progress = progress
-                }, completion: {
-                    progressView.removeFromSuperview()
-                })
-            }
         }
+        showSplash()
     }
     
     /// Loads up the rating view on the user's third launch.
@@ -62,6 +35,12 @@ class MainTabBarViewController: UITabBarController {
             ])
         }
     }
+    
+    /// Sets up the comics cache loading progress view.
+    private func setupProgressView() {
+        progressView.center = self.view.center
+        progressView.isHidden = false
+    }
    
     /// Shows the splash screen
     private func showSplash() {
@@ -72,5 +51,19 @@ class MainTabBarViewController: UITabBarController {
         } completion: { _ in
             splashScreen.removeFromSuperview()
         }
+    }
+}
+
+extension MainTabBarViewController: XKCDClientSubscriber {
+    func cacheStartedListener() {
+        progressView.isHidden = false
+    }
+    
+    func cacheProgressListener(_ prog: Float) {
+        progressView.progressBar.progress = prog
+    }
+    
+    func cacheCompletedListener() {
+        progressView.isHidden = true
     }
 }

@@ -25,7 +25,7 @@ class SearchViewController: ComicsTableViewController {
      */
     private func performSearch(query: String) {
         spinner.startAnimating()
-        XKCDClient.fetchSearchComics(query: query, deepSearch: deepSearchSwitch.isOn) { (comics, err) in
+        XKCDClient.sharedInstance.fetchSearchComics(query: query, deepSearch: deepSearchSwitch.isOn) { (comics, err) in
             guard let comics = comics, err == nil else {
                 return
             }

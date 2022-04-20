@@ -12,6 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Register settings bundle
         registerSettingsBundle()
+       
+        // Set tabbar font
+        UITabBarItem.appearance().setTitleTextAttributes([.font: UIFont(name: "xkcdScript", size: 14)!], for: .normal)
         
         // If disk caching is disabled, then clear disk cache and disable it.
         if UserDefaults.standard.bool(forKey: "disableDiskCaching") {
@@ -50,17 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Registers the default values from the settings bundle.
     func registerSettingsBundle() {
         guard let settingsBundle = Bundle.main.url(forResource: "Settings", withExtension:"bundle") else {
-            NSLog("%@", "ERROR -- could not find Settings.bundle")
+            // NSLog("%@", "ERROR -- could not find Settings.bundle")
             return;
         }
         
         guard let settings = NSDictionary(contentsOf: settingsBundle.appendingPathComponent("Root.plist")) else {
-            NSLog("%@", "ERROR - could not find Root.plist in settings bundle")
+            // NSLog("%@", "ERROR - could not find Root.plist in settings bundle")
             return
         }
         
         guard let preferences = settings.object(forKey: "PreferenceSpecifiers") as? [[String: AnyObject]] else {
-            NSLog("%@", "ERROR - Root.plist has invalid format")
+            // NSLog("%@", "ERROR - Root.plist has invalid format")
             return
         }
         
