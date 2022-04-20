@@ -39,7 +39,7 @@ class MainTabBarViewController: UITabBarController {
     /// Sets up the comics cache loading progress view.
     private func setupProgressView() {
         progressView.center = self.view.center
-        progressView.isHidden = false
+        progressView.isHidden = true
     }
    
     /// Shows the splash screen
