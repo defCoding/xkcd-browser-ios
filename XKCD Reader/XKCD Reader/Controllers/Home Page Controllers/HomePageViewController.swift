@@ -24,6 +24,10 @@ class HomePageViewController: UIViewController {
         toggleInfoView()
     }
     
+    @IBAction func refreshClicked(_ sender: Any) {
+        reloadComics(animated: true)
+    }
+    
     @IBAction func shuffleClicked(_ sender: Any) {
         // Grab a random comic
         let randomComicNum = Int.random(in: 1...ComicsDataManager.sharedInstance.latestComicNum)
@@ -78,9 +82,26 @@ class HomePageViewController: UIViewController {
         }
     }
    
-    /// Reloads the homepage to show the latest comics.
-    func reloadComics() {
-        self.comicsPageVC.reloadComicsPageViewControllerList()
+    /**
+     Reloads the homepage to show the latest comics.
+     
+     - Parameter animated:                      Show scroll animation
+     */
+    func reloadComics(animated: Bool = false) {
+        XKCDClient.sharedInstance.fetchComic(num: nil) { (comic, err) in
+            guard let comic = comic, err == nil else {
+                self.comicsPageVC.reloadComicsPageViewControllerList(animated: animated)
+                return
+            }
+            
+            ComicsDataManager.sharedInstance.latestComicNum = comic.num
+            self.currentComic = comic
+            self.comicsPageVC.reloadComicsPageViewControllerList(animated: animated)
+            
+            if !UserDefaults.standard.bool(forKey: "disableDiskCaching") {
+                XKCDClient.sharedInstance.cacheAllComicsToDisk()
+            }
+        }
     }
    
     /**

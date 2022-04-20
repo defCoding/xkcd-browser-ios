@@ -29,7 +29,7 @@ class ComicViewController: UIViewController {
             if let comicImageView = comicImageView {
                 comicImageView.image = UIImage(named: "ComicNotFound")
             }
-            XKCDClient.fetchComic(num: num) { (comic, err) -> Void in
+            XKCDClient.sharedInstance.fetchComic(num: num) { (comic, err) -> Void in
                 guard let comic = comic, err == nil else {
                     return
                 }

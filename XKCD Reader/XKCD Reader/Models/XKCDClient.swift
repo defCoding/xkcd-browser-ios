@@ -91,13 +91,29 @@ extension XKCDComic: Comparable {
 
 /// An XKCDClient for fetching comic data.
 class XKCDClient {
+    static let sharedInstance = XKCDClient()
+    private var subscribers: [XKCDClientSubscriber]
+    
+    fileprivate init() {
+        subscribers = []
+    }
+   
+    /**
+     Add a subscriber to listen for when comics are being cached.
+     
+     - Parameter sub:                       The subscriber to add
+     */
+    func subscribe(_ sub: XKCDClientSubscriber) {
+        subscribers.append(sub)
+    }
+    
     /**
      Fetches an XKCD comic.
      
      - Parameter num:                       The number of the comic to fetch (fetches the most recent one if none is provided)
      - Parameter completion:                The callback function for when the comic is fetched
      */
-    static func fetchComic(num: Int?, completion: ((XKCDComic?, Error?) -> Void)? = nil) {
+    func fetchComic(num: Int?, completion: ((XKCDComic?, Error?) -> Void)? = nil) {
         var url : NSURL? = nil
         // If no comic number is provided, fetch the latest.
         if let num = num {
@@ -116,7 +132,7 @@ class XKCDClient {
             return
         }
        
-        NSLog("%@", "DEBUG -- fetching comic from \(url)")
+        // NSLog("%@", "DEBUG -- fetching comic from \(url)")
         let task = URLSession.shared.dataTask(with: url as URL) { (data, response, error) -> Void in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion?(nil, error) }
@@ -127,7 +143,7 @@ class XKCDClient {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let comic = try decoder.decode(XKCDComic.self, from: data)
-                fetchComicImage(comic: comic) { (imgData, error) in
+                self.fetchComicImage(comic: comic) { (imgData, error) in
                     guard let imgData = imgData, error == nil else {
                         DispatchQueue.main.async { completion?(nil, XKCDError.imageNotFound) }
                         return
@@ -150,13 +166,13 @@ class XKCDClient {
      - Parameter comic:                     The comic to fetch the image of
      - Parameter completion:                The callback function for when the image is fetched
      */
-    private static func fetchComicImage(comic: XKCDComic, completion: @escaping (Data?, Error?) -> Void) {
+    func fetchComicImage(comic: XKCDComic, completion: @escaping (Data?, Error?) -> Void) {
         guard let url = NSURL(string: comic.img) else {
             DispatchQueue.main.async { completion(nil, XKCDError.badURL) }
             return
         }
         
-        NSLog("%@", "DEBUG -- fetching comic image from \(url)")
+        // NSLog("%@", "DEBUG -- fetching comic image from \(url)")
         let task = URLSession.shared.dataTask(with: url as URL) { (data, response, error) -> Void in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(nil, error) }
@@ -171,28 +187,33 @@ class XKCDClient {
    
     /**
      Caches all the comics to disk
-     
-     - Parameter progress:                  Callback function as progress gets updated
-     - Parameter completion:                Callback function when all comics are cached
      */
-    static func cacheAllComicsToDisk(progress: ((Float) -> Void?)? = nil, completion: (() -> Void)? = nil) {
+    func cacheAllComicsToDisk() {
         let group = DispatchGroup()
         var totalCached: Double = 0
         let totalSemaphore = DispatchSemaphore(value: 1)
+       
+        for subscriber in self.subscribers {
+            subscriber.cacheStartedListener()
+        }
         
         for comicNum in (1...ComicsDataManager.sharedInstance.latestComicNum).reversed() {
             group.enter()
             fetchComic(num: comicNum) { (_, _) in
                 totalSemaphore.wait()
                 totalCached += 1
-                progress?(Float(totalCached / Double(ComicsDataManager.sharedInstance.latestComicNum)))
+                for subscriber in self.subscribers {
+                    subscriber.cacheProgressListener(Float(totalCached / Double(ComicsDataManager.sharedInstance.latestComicNum)))
+                }
                 totalSemaphore.signal()
                 group.leave()
             }
         }
         
         group.notify(queue: .main) {
-            completion?()
+            for subscriber in self.subscribers {
+                subscriber.cacheCompletedListener()
+            }
         }
     }
    
@@ -203,7 +224,7 @@ class XKCDClient {
      - Parameter deepSearch:                Whether or not to perform a deep search (regular search only checks title and number)
      - Parameter completion:                The callback function for when comics are fetched
      */
-    static func fetchSearchComics(query: String, deepSearch: Bool, completion: @escaping ([XKCDComic]?, Error?) -> Void) {
+    func fetchSearchComics(query: String, deepSearch: Bool, completion: @escaping ([XKCDComic]?, Error?) -> Void) {
         // https://stackoverflow.com/questions/35906568/wait-until-swift-for-loop-with-asynchronous-network-requests-finishes-executing
         let group = DispatchGroup()
         var comics: [XKCDComic] = []
@@ -264,4 +285,17 @@ class XKCDClient {
             }), nil)
         }
     }
+}
+
+protocol XKCDClientSubscriber {
+    /// Called when XKCDClient has begun caching all comics.
+    func cacheStartedListener()
+    /**
+     Called as XKCDClient is caching comics.
+     
+     - Parameter progress:                      The current progress of caching
+     */
+    func cacheProgressListener(_ prog: Float)
+    /// Called when XKCDClient has finished caching all comics.
+    func cacheCompletedListener()
 }

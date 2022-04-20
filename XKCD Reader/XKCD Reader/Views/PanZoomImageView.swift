@@ -14,6 +14,11 @@ class PanZoomImageView: UIScrollView {
         didSet {
             if let image = image {
                 imageView.image = image
+                // Dynamic zoom scale dependent on image height
+                let minPixels = 400.0
+                self.maximumZoomScale = max(3,
+                                            image.size.height / minPixels,
+                                            image.size.width / minPixels)
             }
         }
     }

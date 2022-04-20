@@ -103,13 +103,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJz-ly-tLw" userLabel="Settings Label">
-                                        <rect key="frame" x="8" y="53.333333333333343" width="374" height="39.666666666666657"/>
+                                        <rect key="frame" x="8" y="58" width="374" height="35"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODH-Pd-Xzd">
-                                        <rect key="frame" x="350" y="57.333333333333343" width="32" height="32"/>
+                                        <rect key="frame" x="350" y="59.666666666666657" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="bwq-m5-wuv"/>
                                             <constraint firstAttribute="height" constant="32" id="gST-l4-peN"/>
@@ -155,13 +155,13 @@
                                 <rect key="frame" x="45" y="180.66666666666663" width="300" height="400"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQp-ZS-LNy">
-                                        <rect key="frame" x="131" y="8" width="38" height="29"/>
+                                        <rect key="frame" x="127.33333333333336" y="8.0000000000000018" width="45.666666666666671" height="25.666666666666671"/>
                                         <fontDescription key="fontDescription" name="xkcdScript" family="xkcd Script" pointSize="22"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDI-0N-tXb" userLabel="Help Text">
-                                        <rect key="frame" x="8" y="45" width="284" height="347"/>
+                                        <rect key="frame" x="8" y="41.666666666666686" width="284" height="350.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">To favorite a comic, you can either tap the ♡ icon, or if you are on the comics homepage, you can double tap the comic.
 
@@ -257,7 +257,7 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6R-mt-bPF" userLabel="Info Button">
-                                        <rect key="frame" x="225" y="73" width="45.333333333333314" height="30.666666666666671"/>
+                                        <rect key="frame" x="272.33333333333331" y="73" width="45.333333333333314" height="30.666666666666671"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system" title="">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -267,7 +267,7 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-wF-iem" userLabel="Shuffle Button">
-                                        <rect key="frame" x="7.9999999999999964" y="45.333333333333336" width="48.666666666666657" height="30.666666666666664"/>
+                                        <rect key="frame" x="7.9999999999999964" y="73" width="48.666666666666657" height="30.666666666666671"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="shuffle" catalog="system">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -277,7 +277,7 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn3-nC-H8j" userLabel="Favorites Button">
-                                        <rect key="frame" x="132" y="75.666666666666671" width="25" height="25"/>
+                                        <rect key="frame" x="106" y="40" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="ahW-qG-Ca4"/>
                                             <constraint firstAttribute="width" constant="25" id="fiR-5D-c58"/>
@@ -290,8 +290,18 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                                             <action selector="favoritesClicked:" destination="lyC-05-14d" eventType="touchUpInside" id="zq8-dM-8Fp"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GwQ-OR-Wr0" userLabel="Refresh Button">
+                                        <rect key="frame" x="76.666666666666671" y="72.666666666666671" width="43" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system" title="">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="refreshClicked:" destination="lyC-05-14d" eventType="touchUpInside" id="Qet-Xc-SNm"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgP-zG-V78" userLabel="Share Button">
-                                        <rect key="frame" x="337.66666666666669" y="45.333333333333336" width="44.333333333333314" height="30.666666666666664"/>
+                                        <rect key="frame" x="337.66666666666669" y="73" width="44.333333333333314" height="30.666666666666671"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -305,16 +315,18 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="vgP-zG-V78" secondAttribute="trailing" constant="8" id="0w7-IW-clf"/>
                                     <constraint firstItem="SjZ-kj-SiQ" firstAttribute="centerX" secondItem="yi7-5K-8DJ" secondAttribute="centerX" id="5wB-fa-ncJ"/>
-                                    <constraint firstItem="SwH-s7-w4S" firstAttribute="leading" secondItem="Yn3-nC-H8j" secondAttribute="trailing" constant="8" id="Dyy-uT-vZd"/>
-                                    <constraint firstItem="XQa-wF-iem" firstAttribute="centerY" secondItem="SjZ-kj-SiQ" secondAttribute="centerY" id="ILV-QQ-f3O"/>
+                                    <constraint firstItem="GwQ-OR-Wr0" firstAttribute="leading" secondItem="XQa-wF-iem" secondAttribute="trailing" constant="20" id="A2S-5U-w10"/>
+                                    <constraint firstItem="XQa-wF-iem" firstAttribute="centerY" secondItem="SwH-s7-w4S" secondAttribute="centerY" id="AIn-pA-ZGA"/>
                                     <constraint firstItem="XQa-wF-iem" firstAttribute="leading" secondItem="yi7-5K-8DJ" secondAttribute="leading" constant="8" id="JYG-ZZ-YKe"/>
-                                    <constraint firstItem="K6R-mt-bPF" firstAttribute="centerY" secondItem="Yn3-nC-H8j" secondAttribute="centerY" id="N8t-nE-UvD"/>
+                                    <constraint firstItem="GwQ-OR-Wr0" firstAttribute="centerY" secondItem="SwH-s7-w4S" secondAttribute="centerY" id="QnN-7i-vep"/>
+                                    <constraint firstItem="vgP-zG-V78" firstAttribute="leading" secondItem="K6R-mt-bPF" secondAttribute="trailing" constant="20" id="Rcf-Sr-L9b"/>
+                                    <constraint firstItem="K6R-mt-bPF" firstAttribute="centerY" secondItem="SwH-s7-w4S" secondAttribute="centerY" id="RnI-jB-N6u"/>
                                     <constraint firstAttribute="bottom" secondItem="SwH-s7-w4S" secondAttribute="bottom" constant="8" id="VEa-Tf-44q"/>
-                                    <constraint firstItem="Yn3-nC-H8j" firstAttribute="centerY" secondItem="SwH-s7-w4S" secondAttribute="centerY" id="abE-6h-RJn"/>
                                     <constraint firstItem="SwH-s7-w4S" firstAttribute="centerX" secondItem="yi7-5K-8DJ" secondAttribute="centerX" id="dRV-kR-bS3"/>
                                     <constraint firstItem="SwH-s7-w4S" firstAttribute="top" secondItem="SjZ-kj-SiQ" secondAttribute="bottom" id="dcn-GY-WHP"/>
-                                    <constraint firstItem="K6R-mt-bPF" firstAttribute="leading" secondItem="SwH-s7-w4S" secondAttribute="trailing" id="mLo-qL-RNT"/>
-                                    <constraint firstItem="vgP-zG-V78" firstAttribute="centerY" secondItem="XQa-wF-iem" secondAttribute="centerY" id="uGn-R9-kqb"/>
+                                    <constraint firstItem="SjZ-kj-SiQ" firstAttribute="leading" secondItem="Yn3-nC-H8j" secondAttribute="trailing" constant="8" id="hly-CN-41f"/>
+                                    <constraint firstItem="vgP-zG-V78" firstAttribute="centerY" secondItem="SwH-s7-w4S" secondAttribute="centerY" id="q74-9o-nlt"/>
+                                    <constraint firstItem="Yn3-nC-H8j" firstAttribute="centerY" secondItem="SjZ-kj-SiQ" secondAttribute="centerY" constant="-8" id="t8F-86-b0s"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ppf-tP-EaZ" customClass="ComicInfoView" customModule="XKCD_Reader" customModuleProvider="target">
@@ -518,6 +530,7 @@ Comics are saved to your disk by default. If you wish to disable this feature, y
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="books.vertical.fill" catalog="system" width="128" height="109"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>

@@ -30,9 +30,13 @@ class ComicsPageViewController: UIPageViewController {
         setViewControllers([getUnusedComicViewController(comicNum: ComicsDataManager.sharedInstance.latestComicNum)], direction: .forward, animated: false)
     }
    
-    /// Reloads the list of ComicViews to display the latest comics.
-    func reloadComicsPageViewControllerList() {
-        setViewControllers([getUnusedComicViewController(comicNum: ComicsDataManager.sharedInstance.latestComicNum)], direction: .forward, animated: false)
+    /**
+     Reloads the list of ComicViews to display the latest comics.
+     
+     - Parameter animated:              Show scroll animation
+     */
+    func reloadComicsPageViewControllerList(animated: Bool = false) {
+        setViewControllers([getUnusedComicViewController(comicNum: ComicsDataManager.sharedInstance.latestComicNum)], direction: .forward, animated: animated)
     }
    
     /**

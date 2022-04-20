@@ -40,8 +40,8 @@ class ComicsDataManager {
                 favoritesTree = BinTree<XKCDComic>(sortedData: comics)
                 _favorites = favoritesTree.reverseOrderTraversal()
                 return
-            } catch (let err) {
-                NSLog("%@", "ERROR -- could not load favorites: \(err)")
+            } catch {
+                // NSLog("%@", "ERROR -- could not load favorites: \(err)")
             }
         }
         favoritesTree = BinTree<XKCDComic>()
@@ -55,8 +55,8 @@ class ComicsDataManager {
             let encoder = JSONEncoder()
             let data = try encoder.encode(favorites)
             UserDefaults.standard.set(data, forKey: "favorites")
-        } catch (let err) {
-            NSLog("%@", "ERROR -- could not save favorites: \(err)")
+        } catch {
+            // NSLog("%@", "ERROR -- could not save favorites: \(err)")
         }
     }
    
@@ -160,28 +160,28 @@ class TwoTierCache<T: NSObject & NSCoding> {
                 ramCache.save(key: key, value: fileResult)
                 data = fileResult
             } else {
-                NSLog("%@", "DEBUG -- fetched comic #\(key) from memory cache")
+                // NSLog("%@", "DEBUG -- fetched comic #\(key) from memory cache")
             }
             
             do {
                 return try NSKeyedUnarchiver.unarchivedObject(ofClass: T.self, from: data!)
-            } catch (let err) {
-                NSLog("%@", "ERROR -- could not convert data into object: \(err)")
+            } catch {
+                // NSLog("%@", "ERROR -- could not convert data into object: \(err)")
                 return nil
             }
         }
         
         set {
             guard let comic = newValue as T? else {
-                NSLog("%@", "ERROR -- saving wrong type to cache.")
+                // NSLog("%@", "ERROR -- saving wrong type to cache.")
                 return
             }
             do {
-                NSLog("%@", "DEBUG -- saving comic #\(key) to cache")
+                // NSLog("%@", "DEBUG -- saving comic #\(key) to cache")
                 ramCache.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
                 diskCache?.save(key: key, value: try NSKeyedArchiver.archivedData(withRootObject: comic, requiringSecureCoding: false))
-            } catch (let err) {
-                NSLog("%@", "ERROR -- could not save data to cache: \(err)")
+            } catch {
+                // NSLog("%@", "ERROR -- could not save data to cache: \(err)")
             }
         }
     }
@@ -265,7 +265,7 @@ class FileCache {
             return nil
         }
         
-        NSLog("%@", "DEBUG -- fetching comic #\(key) from disk at path \(path)")
+        // NSLog("%@", "DEBUG -- fetching comic #\(key) from disk at path \(path)")
         return try? Data(contentsOf: path)
     }
     
@@ -283,8 +283,8 @@ class FileCache {
         if let value = value as Data? {
             do {
                 try NSData(data: value).write(to: path, options: .atomic)
-            } catch (let err) {
-                NSLog("%@", "ERROR -- could not write data to file: \(err)")
+            } catch {
+                // NSLog("%@", "ERROR -- could not write data to file: \(err)")
             }
         } else {
             try? FileManager.default.removeItem(at: path)
@@ -329,7 +329,7 @@ class FileCache {
         do {
             cacheDir = try FileManager
                 .default
-                .url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 .appendingPathComponent(cachePath, isDirectory: true)
         } catch (let err) {
             NSLog("%@", "ERROR -- could not generate cache directory URL: \(err)")
