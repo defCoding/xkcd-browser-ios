@@ -12,10 +12,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Save cached comics to `.documentDirectory` instead of `cachesDirectory` for permanent storage.
 - Update TabBar font to `xkcdScript`.
 
-### Fixed
-
 ## [[1.0.0]](https://github.com/defCoding/xkcd-browser-ios/releases/tag/v1.0.0) - 2022-04-07
 Initial release.
-### Added
-### Changed
-### Fixed
